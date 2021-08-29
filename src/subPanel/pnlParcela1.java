@@ -1,21 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package subPanel;
 
-/**
- *
- * @author Rodri
- */
+import controlador.ParcelaC;
+
 public class pnlParcela1 extends javax.swing.JPanel {
 
-    /**
-     * Creates new form pnlParcela1
-     */
     public pnlParcela1() {
         initComponents();
+        ParcelaC c;
+        ParcelaC.setListar("");
     }
 
     /**
@@ -36,17 +28,9 @@ public class pnlParcela1 extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         txtBuscarAgricultura1 = new RSMaterialComponent.RSTextFieldOne();
         btnAEspecie1 = new newscomponents.RSButtonFlat_new();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        rSDateChooser3 = new newscomponents.RSDateChooser();
-        jLabel10 = new javax.swing.JLabel();
-        rSDateChooser4 = new newscomponents.RSDateChooser();
-        jLabel11 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        rSTableMetroCustom3 = new RSMaterialComponent.RSTableMetroCustom();
+        tblParcela = new RSMaterialComponent.RSTableMetroCustom();
         jSeparator1 = new javax.swing.JSeparator();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        rSComboBox3 = new RSMaterialComponent.RSComboBox();
 
         jPanel2.setBackground(new java.awt.Color(225, 232, 193));
 
@@ -118,68 +102,52 @@ public class pnlParcela1 extends javax.swing.JPanel {
                 txtBuscarAgricultura1ActionPerformed(evt);
             }
         });
+        txtBuscarAgricultura1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtBuscarAgricultura1KeyTyped(evt);
+            }
+        });
 
         btnAEspecie1.setBackground(new java.awt.Color(0, 114, 81));
         btnAEspecie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_joyent_30px_2.png"))); // NOI18N
         btnAEspecie1.setText("Nueva Parcela");
+        btnAEspecie1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAEspecie1MouseClicked(evt);
+            }
+        });
         btnAEspecie1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAEspecie1ActionPerformed(evt);
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(51, 51, 55));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_filter_24px_1.png"))); // NOI18N
-        jLabel8.setText("Filtros de busqueda:");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(51, 51, 55));
-        jLabel9.setText("De");
-
-        rSDateChooser3.setBackground(new java.awt.Color(76, 164, 86));
-        rSDateChooser3.setBgColor(new java.awt.Color(76, 164, 86));
-        rSDateChooser3.setDate(new java.util.Date(1622440800000L));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(51, 51, 55));
-        jLabel10.setText("Hasta");
-
-        rSDateChooser4.setBgColor(new java.awt.Color(76, 164, 86));
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(51, 51, 55));
-        jLabel11.setText("Parcela:");
-
-        rSTableMetroCustom3.setModel(new javax.swing.table.DefaultTableModel(
+        tblParcela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Codigo Parcela", "Perimetro", "Tipo de tierra", "Estado"
             }
-        ));
-        rSTableMetroCustom3.setBackgoundHead(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom3.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
-        rSTableMetroCustom3.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
-        rSTableMetroCustom3.setColorBorderHead(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom3.setColorBorderRows(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom3.setColorPrimaryText(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom3.setColorSecondary(new java.awt.Color(143, 217, 116));
-        rSTableMetroCustom3.setGridColor(new java.awt.Color(91, 180, 98));
-        jScrollPane3.setViewportView(rSTableMetroCustom3);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        jCheckBox2.setBackground(new java.awt.Color(225, 232, 193));
-
-        rSComboBox3.setBackground(new java.awt.Color(204, 255, 204));
-        rSComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2", "RSItem 2", "RSItem 3", "RSItem 4" }));
-        rSComboBox3.setColorArrow(new java.awt.Color(76, 164, 86));
-        rSComboBox3.setColorBorde(new java.awt.Color(122, 201, 104));
-        rSComboBox3.setColorFondo(new java.awt.Color(76, 164, 86));
-        rSComboBox3.setColorSeleccion(new java.awt.Color(122, 201, 104));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblParcela.setBackgoundHead(new java.awt.Color(91, 180, 98));
+        tblParcela.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
+        tblParcela.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
+        tblParcela.setColorBorderHead(new java.awt.Color(91, 180, 98));
+        tblParcela.setColorBorderRows(new java.awt.Color(91, 180, 98));
+        tblParcela.setColorPrimaryText(new java.awt.Color(91, 180, 98));
+        tblParcela.setColorSecondary(new java.awt.Color(143, 217, 116));
+        tblParcela.setGridColor(new java.awt.Color(91, 180, 98));
+        tblParcela.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(tblParcela);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -189,30 +157,11 @@ public class pnlParcela1 extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(txtBuscarAgricultura1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAEspecie1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rSDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox2)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rSDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel11)
-                                .addGap(18, 18, 18)
-                                .addComponent(rSComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 175, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -227,21 +176,9 @@ public class pnlParcela1 extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscarAgricultura1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAEspecie1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox2, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(rSDateChooser3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(rSDateChooser4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rSComboBox3, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(92, 92, 92)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(369, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,23 +231,26 @@ public class pnlParcela1 extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtBuscarAgricultura1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarAgricultura1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarAgricultura1ActionPerformed
-
     private void btnAEspecie1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAEspecie1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAEspecie1ActionPerformed
 
+    private void txtBuscarAgricultura1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarAgricultura1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarAgricultura1ActionPerformed
+
+    private void btnAEspecie1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAEspecie1MouseClicked
+        new yumsystem.frmParcela().setVisible(true);
+    }//GEN-LAST:event_btnAEspecie1MouseClicked
+
+    private void txtBuscarAgricultura1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarAgricultura1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarAgricultura1KeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private newscomponents.RSButtonFlat_new btnAEspecie1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -318,11 +258,8 @@ public class pnlParcela1 extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private RSMaterialComponent.RSComboBox rSComboBox2;
-    private RSMaterialComponent.RSComboBox rSComboBox3;
-    private newscomponents.RSDateChooser rSDateChooser3;
-    private newscomponents.RSDateChooser rSDateChooser4;
     private RSMaterialComponent.RSTableMetroCustom rSTableMetroCustom2;
-    private RSMaterialComponent.RSTableMetroCustom rSTableMetroCustom3;
+    public static RSMaterialComponent.RSTableMetroCustom tblParcela;
     private RSMaterialComponent.RSTextFieldOne txtBuscarAgricultura1;
     // End of variables declaration//GEN-END:variables
 }

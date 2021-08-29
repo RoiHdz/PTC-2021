@@ -1,16 +1,23 @@
 package yumsystem;
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import modelo.Conexion;
 /**
  *
  * @author Willy
  */
-public class Inicioje extends javax.swing.JFrame {
-
+public class Login extends javax.swing.JFrame {
+    Conexion cc = new Conexion();
+    Connection con= cc.getConexion();
+    
 
     
-    public Inicioje() {
+    public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -29,8 +36,8 @@ public class Inicioje extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnEntrar = new RSMaterialComponent.RSButtonMaterialOne();
-        txtPassword = new RSMaterialComponent.RSPasswordMaterial();
-        txtUsuario = new RSMaterialComponent.RSTextFieldMaterial();
+        txtPW = new RSMaterialComponent.RSPasswordMaterial();
+        txtUser = new RSMaterialComponent.RSTextFieldMaterial();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,21 +91,26 @@ public class Inicioje extends javax.swing.JFrame {
                 btnEntrarMouseClicked(evt);
             }
         });
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
 
-        txtPassword.setBackground(new java.awt.Color(240, 240, 240));
-        txtPassword.setForeground(new java.awt.Color(0, 0, 0));
-        txtPassword.setColorMaterial(new java.awt.Color(0, 114, 81));
-        txtPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtPassword.setPhColor(new java.awt.Color(102, 102, 102));
-        txtPassword.setPlaceholder("Ingrese su Contraseña");
+        txtPW.setBackground(new java.awt.Color(240, 240, 240));
+        txtPW.setForeground(new java.awt.Color(0, 0, 0));
+        txtPW.setColorMaterial(new java.awt.Color(0, 114, 81));
+        txtPW.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtPW.setPhColor(new java.awt.Color(102, 102, 102));
+        txtPW.setPlaceholder("Ingrese su Contraseña");
 
-        txtUsuario.setBackground(new java.awt.Color(242, 242, 242));
-        txtUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        txtUsuario.setColorMaterial(new java.awt.Color(0, 114, 81));
-        txtUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtUsuario.setPhColor(new java.awt.Color(102, 102, 102));
-        txtUsuario.setPlaceholder("Ingrese su Usuario");
-        txtUsuario.setSelectionColor(new java.awt.Color(0, 114, 81));
+        txtUser.setBackground(new java.awt.Color(242, 242, 242));
+        txtUser.setForeground(new java.awt.Color(0, 0, 0));
+        txtUser.setColorMaterial(new java.awt.Color(0, 114, 81));
+        txtUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtUser.setPhColor(new java.awt.Color(102, 102, 102));
+        txtUser.setPlaceholder("Ingrese su Usuario");
+        txtUser.setSelectionColor(new java.awt.Color(0, 114, 81));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,8 +126,8 @@ public class Inicioje extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
+                        .addComponent(txtPW, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                        .addComponent(txtUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)))
                 .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -125,11 +137,11 @@ public class Inicioje extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPW, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
@@ -137,7 +149,41 @@ public class Inicioje extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//Login con SQL Server 
+    
+    public void validarUsuario(){
+        int resultado= 0;
+        String pass=String.valueOf(txtPW.getPassword());
+        String usuario=txtUser.getText();
+        String SQL = "select *from Usuarios where username='"+usuario+ "'and contrasenia='"+pass+"' ";
+        
+        try {
+          Statement st= con.createStatement();
+          ResultSet rs=st.executeQuery(SQL);  
+          
+            if (rs.next()) {
+                resultado= 1;
+                if (resultado==1) {
+                    menuPrincipal form = new menuPrincipal();
+                    form.setVisible(true);
+                    this.dispose();
+                }
+                
+            }else{
+        JOptionPane.showMessageDialog(null,"Error de Acceso,Usuario o Contraseña Equivocados ");
+                 }
+                } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error " + e.getMessage());
+        }
+        
+        
+    }
+   
+    
+    
+    
+    
+    
     private void lblYumMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblYumMouseClicked
    
     }//GEN-LAST:event_lblYumMouseClicked
@@ -151,20 +197,13 @@ public class Inicioje extends javax.swing.JFrame {
     }//GEN-LAST:event_lblYumMouseExited
 
     private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
-        //configurando el usuario pro defecto
-        String user = txtUsuario.getText();
-        String pass = txtPassword.getText();
-        if (user.equals("")) {
-            JOptionPane.showMessageDialog(this, "Ninguno de los campos puede estar vacio");
-        }
-        if (pass.equals("")) {
-            JOptionPane.showMessageDialog(this, "Ninguno de los campos puede estar vacio");
-        }
-        if (user.equals("") && !pass.equals("")) {
-            
-        }
+       
         
     }//GEN-LAST:event_btnEntrarMouseClicked
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+       validarUsuario();
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,20 +222,21 @@ public class Inicioje extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicioje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicioje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicioje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicioje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inicioje().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }
@@ -207,7 +247,7 @@ public class Inicioje extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblYum;
-    private RSMaterialComponent.RSPasswordMaterial txtPassword;
-    private RSMaterialComponent.RSTextFieldMaterial txtUsuario;
+    private RSMaterialComponent.RSPasswordMaterial txtPW;
+    private RSMaterialComponent.RSTextFieldMaterial txtUser;
     // End of variables declaration//GEN-END:variables
 }

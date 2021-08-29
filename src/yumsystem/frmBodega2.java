@@ -1,5 +1,7 @@
 package yumsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rodri
@@ -32,8 +34,6 @@ public class frmBodega2 extends javax.swing.JFrame {
         btnexit = new RSMaterialComponent.RSButtonMaterialOne();
         rSButtonMaterialOne2 = new RSMaterialComponent.RSButtonMaterialOne();
         cmbMaquinaria = new RSMaterialComponent.RSComboBox();
-        jLabel8 = new javax.swing.JLabel();
-        cmbTipoFaq = new RSMaterialComponent.RSComboBox();
         txtMarca = new RSMaterialComponent.RSTextFieldMaterial();
         jLabel2 = new javax.swing.JLabel();
         txtMax = new RSMaterialComponent.RSTextFieldMaterial();
@@ -48,7 +48,6 @@ public class frmBodega2 extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(242, 242, 242));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre:");
 
         txtNombre.setBackground(new java.awt.Color(242, 242, 242));
@@ -60,11 +59,9 @@ public class frmBodega2 extends javax.swing.JFrame {
         txtNombre.setSelectionColor(new java.awt.Color(0, 114, 81));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Marca:");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Estado :");
 
         btnexit.setBackground(new java.awt.Color(0, 114, 81));
@@ -96,16 +93,6 @@ public class frmBodega2 extends javax.swing.JFrame {
         cmbMaquinaria.setColorSeleccion(new java.awt.Color(0, 114, 81));
         cmbMaquinaria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Tipo:");
-
-        cmbTipoFaq.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Liquido", "Polvo" }));
-        cmbTipoFaq.setColorArrow(new java.awt.Color(0, 114, 81));
-        cmbTipoFaq.setColorFondo(new java.awt.Color(0, 114, 81));
-        cmbTipoFaq.setColorSeleccion(new java.awt.Color(0, 114, 81));
-        cmbTipoFaq.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-
         txtMarca.setBackground(new java.awt.Color(242, 242, 242));
         txtMarca.setForeground(new java.awt.Color(0, 0, 0));
         txtMarca.setColorMaterial(new java.awt.Color(0, 114, 81));
@@ -115,7 +102,6 @@ public class frmBodega2 extends javax.swing.JFrame {
         txtMarca.setSelectionColor(new java.awt.Color(0, 114, 81));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Cantidad maxima:");
 
         txtMax.setBackground(new java.awt.Color(242, 242, 242));
@@ -127,7 +113,6 @@ public class frmBodega2 extends javax.swing.JFrame {
         txtMax.setSelectionColor(new java.awt.Color(0, 114, 81));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Cantidad actual:");
 
         txtAct.setBackground(new java.awt.Color(242, 242, 242));
@@ -146,30 +131,29 @@ public class frmBodega2 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rSButtonMaterialOne2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnexit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel8)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                            .addComponent(jLabel2)
-                            .addComponent(cmbTipoFaq, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
-                        .addGap(35, 35, 35)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGap(35, 35, 35)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel3)
-                                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(cmbMaquinaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(rSButtonMaterialOne2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnexit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cmbMaquinaria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtMax, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -192,13 +176,9 @@ public class frmBodega2 extends javax.swing.JFrame {
                     .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7))
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmbTipoFaq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmbMaquinaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(cmbMaquinaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rSButtonMaterialOne2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,7 +226,19 @@ public class frmBodega2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnexitMouseClicked
 
     private void rSButtonMaterialOne2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonMaterialOne2MouseClicked
-        
+        /*Cambiar el modelo*/
+        modelo.Bodega2 s = new modelo.Bodega2();
+        /*Aplicar los set correspondientes al modelo*/
+        s.setNombre(this.txtNombre.getText());
+        s.setMarca(this.txtMarca.getText());
+        s.setCantidadMax(Integer.parseInt(this.txtMax.getText()));
+        s.setCantidadActual(Integer.parseInt(this.txtAct.getText()));
+        /*Cambiar el controlador LaborC*/
+        if (controlador.Bodega2C.isRegister(s)) {
+            /*Cambiar el controlador LaborC*/
+            controlador.Bodega2C.setListar("");
+            JOptionPane.showMessageDialog(this, "Exitoso");
+        }
     }//GEN-LAST:event_rSButtonMaterialOne2MouseClicked
 
     /**
@@ -287,13 +279,11 @@ public class frmBodega2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSButtonMaterialOne btnexit;
     private RSMaterialComponent.RSComboBox cmbMaquinaria;
-    private RSMaterialComponent.RSComboBox cmbTipoFaq;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private RSMaterialComponent.RSButtonMaterialOne rSButtonMaterialOne2;

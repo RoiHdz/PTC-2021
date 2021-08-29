@@ -5,6 +5,8 @@
  */
 package subPanel;
 
+import controlador.Bodega2C;
+
 /**
  *
  * @author Rodri
@@ -16,6 +18,8 @@ public class pnlBodega2 extends javax.swing.JPanel {
      */
     public pnlBodega2() {
         initComponents();
+        Bodega2C c;
+        Bodega2C.setListar("");
     }
 
     /**
@@ -39,7 +43,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         btnMaquinaria = new newscomponents.RSButtonFlat_new();
         jScrollPane1 = new javax.swing.JScrollPane();
-        rSTableMetroCustom1 = new RSMaterialComponent.RSTableMetroCustom();
+        tblMaquinaria = new RSMaterialComponent.RSTableMetroCustom();
 
         jPanel1.setBackground(new java.awt.Color(225, 232, 193));
 
@@ -93,26 +97,31 @@ public class pnlBodega2 extends javax.swing.JPanel {
             }
         });
 
-        rSTableMetroCustom1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMaquinaria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Marca", "Candidad Maxima", "Cantidad Actual", "Estado"
             }
-        ));
-        rSTableMetroCustom1.setBackgoundHead(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
-        rSTableMetroCustom1.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
-        rSTableMetroCustom1.setColorBorderHead(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setColorBorderRows(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setColorPrimaryText(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setColorSecondary(new java.awt.Color(143, 217, 116));
-        rSTableMetroCustom1.setGridColor(new java.awt.Color(91, 180, 98));
-        jScrollPane1.setViewportView(rSTableMetroCustom1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblMaquinaria.setBackgoundHead(new java.awt.Color(91, 180, 98));
+        tblMaquinaria.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
+        tblMaquinaria.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
+        tblMaquinaria.setColorBorderHead(new java.awt.Color(91, 180, 98));
+        tblMaquinaria.setColorBorderRows(new java.awt.Color(91, 180, 98));
+        tblMaquinaria.setColorPrimaryText(new java.awt.Color(91, 180, 98));
+        tblMaquinaria.setColorSecondary(new java.awt.Color(143, 217, 116));
+        tblMaquinaria.setGridColor(new java.awt.Color(91, 180, 98));
+        jScrollPane1.setViewportView(tblMaquinaria);
 
         javax.swing.GroupLayout rSPanelOpacity1Layout = new javax.swing.GroupLayout(rSPanelOpacity1);
         rSPanelOpacity1.setLayout(rSPanelOpacity1Layout);
@@ -121,7 +130,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                 .addComponent(txtBuscarAgricultura, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMaquinaria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnMaquinaria, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +151,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel6)))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         rSPanelOpacity1Layout.setVerticalGroup(
@@ -169,9 +178,9 @@ public class pnlBodega2 extends javax.swing.JPanel {
                     .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rSDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -180,34 +189,30 @@ public class pnlBodega2 extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rSPanelOpacity1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                .addComponent(rSPanelOpacity1, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rSPanelOpacity1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(rSPanelOpacity1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 713, Short.MAX_VALUE)
+            .addGap(0, 733, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 558, Short.MAX_VALUE)
+            .addGap(0, 514, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
@@ -238,7 +243,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
     private newscomponents.RSDateChooser rSDateChooser1;
     private newscomponents.RSDateChooser rSDateChooser2;
     private newscomponents.RSPanelOpacity rSPanelOpacity1;
-    private RSMaterialComponent.RSTableMetroCustom rSTableMetroCustom1;
+    public static RSMaterialComponent.RSTableMetroCustom tblMaquinaria;
     private RSMaterialComponent.RSTextFieldOne txtBuscarAgricultura;
     // End of variables declaration//GEN-END:variables
 }
