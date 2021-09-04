@@ -1,6 +1,7 @@
 package yumsystem;
 
 import javax.swing.JOptionPane;
+import modelo.Bodega2;
 
 /**
  *
@@ -25,6 +26,7 @@ public class frmBodega2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -32,13 +34,14 @@ public class frmBodega2 extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnexit = new RSMaterialComponent.RSButtonMaterialOne();
-        rSButtonMaterialOne2 = new RSMaterialComponent.RSButtonMaterialOne();
-        cmbMaquinaria = new RSMaterialComponent.RSComboBox();
+        guardar = new RSMaterialComponent.RSButtonMaterialOne();
         txtMarca = new RSMaterialComponent.RSTextFieldMaterial();
         jLabel2 = new javax.swing.JLabel();
         txtMax = new RSMaterialComponent.RSTextFieldMaterial();
         jLabel4 = new javax.swing.JLabel();
         txtAct = new RSMaterialComponent.RSTextFieldMaterial();
+        btnActivo = new RSMaterialComponent.RSRadioButtonMaterial();
+        btnInactivo = new RSMaterialComponent.RSRadioButtonMaterial();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -57,6 +60,11 @@ public class frmBodega2 extends javax.swing.JFrame {
         txtNombre.setPhColor(new java.awt.Color(102, 102, 102));
         txtNombre.setPlaceholder("Nombre");
         txtNombre.setSelectionColor(new java.awt.Color(0, 114, 81));
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Marca:");
@@ -78,20 +86,19 @@ public class frmBodega2 extends javax.swing.JFrame {
             }
         });
 
-        rSButtonMaterialOne2.setBackground(new java.awt.Color(0, 114, 81));
-        rSButtonMaterialOne2.setText("Guardar");
-        rSButtonMaterialOne2.setBackgroundHover(new java.awt.Color(0, 114, 81));
-        rSButtonMaterialOne2.addMouseListener(new java.awt.event.MouseAdapter() {
+        guardar.setBackground(new java.awt.Color(0, 114, 81));
+        guardar.setText("Guardar");
+        guardar.setBackgroundHover(new java.awt.Color(0, 114, 81));
+        guardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rSButtonMaterialOne2MouseClicked(evt);
+                guardarMouseClicked(evt);
             }
         });
-
-        cmbMaquinaria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ocupado", "Libre" }));
-        cmbMaquinaria.setColorArrow(new java.awt.Color(0, 114, 81));
-        cmbMaquinaria.setColorFondo(new java.awt.Color(0, 114, 81));
-        cmbMaquinaria.setColorSeleccion(new java.awt.Color(0, 114, 81));
-        cmbMaquinaria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarActionPerformed(evt);
+            }
+        });
 
         txtMarca.setBackground(new java.awt.Color(242, 242, 242));
         txtMarca.setForeground(new java.awt.Color(0, 0, 0));
@@ -111,6 +118,11 @@ public class frmBodega2 extends javax.swing.JFrame {
         txtMax.setPhColor(new java.awt.Color(102, 102, 102));
         txtMax.setPlaceholder("Maximo");
         txtMax.setSelectionColor(new java.awt.Color(0, 114, 81));
+        txtMax.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMaxKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Cantidad actual:");
@@ -122,6 +134,23 @@ public class frmBodega2 extends javax.swing.JFrame {
         txtAct.setPhColor(new java.awt.Color(102, 102, 102));
         txtAct.setPlaceholder("Actual");
         txtAct.setSelectionColor(new java.awt.Color(0, 114, 81));
+        txtAct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtActKeyTyped(evt);
+            }
+        });
+
+        buttonGroup1.add(btnActivo);
+        btnActivo.setForeground(new java.awt.Color(0, 114, 81));
+        btnActivo.setText("Activo");
+        btnActivo.setColorCheck(new java.awt.Color(122, 201, 104));
+        btnActivo.setColorUnCheck(new java.awt.Color(0, 114, 81));
+
+        buttonGroup1.add(btnInactivo);
+        btnInactivo.setForeground(new java.awt.Color(0, 114, 81));
+        btnInactivo.setText("Inactivo");
+        btnInactivo.setColorCheck(new java.awt.Color(122, 201, 104));
+        btnInactivo.setColorUnCheck(new java.awt.Color(0, 114, 81));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -131,11 +160,19 @@ public class frmBodega2 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(rSButtonMaterialOne2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnexit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(btnInactivo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel7)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,13 +184,7 @@ public class frmBodega2 extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel3)
                                     .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cmbMaquinaria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMax, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -177,11 +208,13 @@ public class frmBodega2 extends javax.swing.JFrame {
                     .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbMaquinaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rSButtonMaterialOne2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInactivo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnexit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -225,21 +258,55 @@ public class frmBodega2 extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnexitMouseClicked
 
-    private void rSButtonMaterialOne2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonMaterialOne2MouseClicked
+    private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
         /*Cambiar el modelo*/
         modelo.Bodega2 s = new modelo.Bodega2();
         /*Aplicar los set correspondientes al modelo*/
         s.setNombre(this.txtNombre.getText());
         s.setMarca(this.txtMarca.getText());
-        s.setCantidadMax(Integer.parseInt(this.txtMax.getText()));
+        s.setCantidaMax(Integer.parseInt(this.txtMax.getText()));
         s.setCantidadActual(Integer.parseInt(this.txtAct.getText()));
+        
+          if (btnActivo.isSelected() == true) {
+            s.setEstado("Activo");
+        }
+        else if (btnInactivo.isSelected()==true) {
+            s.setEstado("Inactivo");
+        }
         /*Cambiar el controlador LaborC*/
         if (controlador.Bodega2C.isRegister(s)) {
             /*Cambiar el controlador LaborC*/
             controlador.Bodega2C.setListar("");
             JOptionPane.showMessageDialog(this, "Exitoso");
         }
-    }//GEN-LAST:event_rSButtonMaterialOne2MouseClicked
+         else{
+            JOptionPane.showMessageDialog(this, "Error");
+        }
+        txtNombre.setText(null);
+        txtMarca.setText(null);
+        txtAct.setText(null);
+         txtMax.setText(null);
+                                  
+    }//GEN-LAST:event_guardarMouseClicked
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+             char c= evt.getKeyChar();
+            if((c<'a' ||c>'z') && (c<'A') |c>'Z')evt.consume(); 
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaxKeyTyped
+          char c= evt.getKeyChar();
+       if(c<'0' ||c>'9')evt.consume();
+    }//GEN-LAST:event_txtMaxKeyTyped
+
+    private void txtActKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtActKeyTyped
+           char c= evt.getKeyChar();
+       if(c<'0' ||c>'9')evt.consume();
+    }//GEN-LAST:event_txtActKeyTyped
+
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_guardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,8 +344,11 @@ public class frmBodega2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private RSMaterialComponent.RSRadioButtonMaterial btnActivo;
+    private RSMaterialComponent.RSRadioButtonMaterial btnInactivo;
     private RSMaterialComponent.RSButtonMaterialOne btnexit;
-    private RSMaterialComponent.RSComboBox cmbMaquinaria;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private RSMaterialComponent.RSButtonMaterialOne guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -286,7 +356,6 @@ public class frmBodega2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private RSMaterialComponent.RSButtonMaterialOne rSButtonMaterialOne2;
     private RSMaterialComponent.RSTextFieldMaterial txtAct;
     private RSMaterialComponent.RSTextFieldMaterial txtMarca;
     private RSMaterialComponent.RSTextFieldMaterial txtMax;

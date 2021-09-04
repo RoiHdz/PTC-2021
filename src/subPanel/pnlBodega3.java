@@ -4,18 +4,35 @@
  * and open the template in the editor.
  */
 package subPanel;
+import controlador.Bodega2C;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+import controlador.B_FAQC;
 
 /**
  *
  * @author Rodri
  */
 public class pnlBodega3 extends javax.swing.JPanel {
+     private static modelo.Conexion con = new modelo.Conexion();
+    private static Connection conexion = con.getConexion();
+    DefaultTableModel model = new DefaultTableModel();  
+    PreparedStatement ps = null;
+    Statement st = null;
+    ResultSet rs = null; 
 
     /**
      * Creates new form pnlBodega3
      */
     public pnlBodega3() {
         initComponents();
+            B_FAQC BF;
+        B_FAQC.setListar("");
+               
     }
 
     /**
@@ -29,7 +46,7 @@ public class pnlBodega3 extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         rSPanelOpacity1 = new newscomponents.RSPanelOpacity();
-        txtBuscarAgricultura = new RSMaterialComponent.RSTextFieldOne();
+        btnB_FAQ = new RSMaterialComponent.RSTextFieldOne();
         jLabel5 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
@@ -39,18 +56,23 @@ public class pnlBodega3 extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         btnAEspecie = new newscomponents.RSButtonFlat_new();
         jScrollPane1 = new javax.swing.JScrollPane();
-        rSTableMetroCustom1 = new RSMaterialComponent.RSTableMetroCustom();
+        tblBFAQ = new RSMaterialComponent.RSTableMetroCustom();
 
         jPanel1.setBackground(new java.awt.Color(225, 232, 193));
 
         rSPanelOpacity1.setBackground(new java.awt.Color(242, 242, 242));
 
-        txtBuscarAgricultura.setForeground(new java.awt.Color(0, 0, 0));
-        txtBuscarAgricultura.setBorderColor(new java.awt.Color(0, 204, 51));
-        txtBuscarAgricultura.setPlaceholder("Buscar...");
-        txtBuscarAgricultura.addActionListener(new java.awt.event.ActionListener() {
+        btnB_FAQ.setForeground(new java.awt.Color(0, 0, 0));
+        btnB_FAQ.setBorderColor(new java.awt.Color(0, 204, 51));
+        btnB_FAQ.setPlaceholder("Buscar...");
+        btnB_FAQ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarAgriculturaActionPerformed(evt);
+                btnB_FAQActionPerformed(evt);
+            }
+        });
+        btnB_FAQ.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnB_FAQKeyPressed(evt);
             }
         });
 
@@ -93,63 +115,57 @@ public class pnlBodega3 extends javax.swing.JPanel {
             }
         });
 
-        rSTableMetroCustom1.setModel(new javax.swing.table.DefaultTableModel(
+        tblBFAQ.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Nombre", "Candidad Maxima", "Cantidad Actual", "Tipo", "Estado"
             }
         ));
-        rSTableMetroCustom1.setBackgoundHead(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
-        rSTableMetroCustom1.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
-        rSTableMetroCustom1.setColorBorderHead(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setColorBorderRows(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setColorPrimaryText(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setColorSecondary(new java.awt.Color(143, 217, 116));
-        rSTableMetroCustom1.setGridColor(new java.awt.Color(91, 180, 98));
-        jScrollPane1.setViewportView(rSTableMetroCustom1);
+        tblBFAQ.setBackgoundHead(new java.awt.Color(91, 180, 98));
+        tblBFAQ.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
+        tblBFAQ.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
+        tblBFAQ.setColorBorderHead(new java.awt.Color(91, 180, 98));
+        tblBFAQ.setColorBorderRows(new java.awt.Color(91, 180, 98));
+        tblBFAQ.setColorPrimaryText(new java.awt.Color(91, 180, 98));
+        tblBFAQ.setColorSecondary(new java.awt.Color(143, 217, 116));
+        tblBFAQ.setGridColor(new java.awt.Color(91, 180, 98));
+        jScrollPane1.setViewportView(tblBFAQ);
 
         javax.swing.GroupLayout rSPanelOpacity1Layout = new javax.swing.GroupLayout(rSPanelOpacity1);
         rSPanelOpacity1.setLayout(rSPanelOpacity1Layout);
         rSPanelOpacity1Layout.setHorizontalGroup(
             rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
-                .addComponent(txtBuscarAgricultura, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnB_FAQ, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAEspecie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
-                        .addGroup(rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox1))
-                            .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rSDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rSDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckBox1))
+                    .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rSDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rSDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)))
+                .addContainerGap(262, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         rSPanelOpacity1Layout.setVerticalGroup(
             rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                 .addGroup(rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBuscarAgricultura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnB_FAQ, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,9 +185,9 @@ public class pnlBodega3 extends javax.swing.JPanel {
                     .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rSDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -213,9 +229,9 @@ public class pnlBodega3 extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtBuscarAgriculturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarAgriculturaActionPerformed
+    private void btnB_FAQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnB_FAQActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarAgriculturaActionPerformed
+    }//GEN-LAST:event_btnB_FAQActionPerformed
 
     private void btnAEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAEspecieActionPerformed
         // TODO add your handling code here:
@@ -225,9 +241,42 @@ public class pnlBodega3 extends javax.swing.JPanel {
         new yumsystem.frmBodega3().setVisible(true);
     }//GEN-LAST:event_btnAEspecieMouseClicked
 
+    private void btnB_FAQKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnB_FAQKeyPressed
+ String[] titulos = {"ID", "Nombre", "Cantidad Maxima","Cantidad Actual","Tipo","Estado"};
+        String[] registros = new String[200];
+        String sql = "SELECT * FROM B_FAQ WHERE id_BFAQ LIKE '%" + btnB_FAQ.getText() + "%' "
+        + "OR Nombre LIKE '%" + btnB_FAQ.getText() + "%'"
+        + "OR Tipo LIKE '%" + btnB_FAQ.getText() + "%'"        
+        ;
+        
+        model = new DefaultTableModel(null,titulos);
+        Connection conexion = con.getConexion();
+        
+        try
+        {
+            st = (Statement) conexion.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next())
+            {
+                registros[0] = rs.getString("id_BFAQ");
+                registros[1] = rs.getString("Nombre");
+                registros[2] = rs.getString("cantidad_Max");
+                registros[3] = rs.getString("cantidad_Actual");
+                registros[4] = rs.getString("Tipo");
+               registros[5] = rs.getString("Estado"); 
+                model.addRow(registros);
+            }
+           tblBFAQ.setModel(model);
+        } catch (SQLException ex)
+        {
+            System.out.println("ERROR AL BUSCAR LOS DATOS : " + ex.getMessage());
+        }            // TODO add your handling code here:
+    }//GEN-LAST:event_btnB_FAQKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private newscomponents.RSButtonFlat_new btnAEspecie;
+    private RSMaterialComponent.RSTextFieldOne btnB_FAQ;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -238,7 +287,6 @@ public class pnlBodega3 extends javax.swing.JPanel {
     private newscomponents.RSDateChooser rSDateChooser1;
     private newscomponents.RSDateChooser rSDateChooser2;
     private newscomponents.RSPanelOpacity rSPanelOpacity1;
-    private RSMaterialComponent.RSTableMetroCustom rSTableMetroCustom1;
-    private RSMaterialComponent.RSTextFieldOne txtBuscarAgricultura;
+    public static RSMaterialComponent.RSTableMetroCustom tblBFAQ;
     // End of variables declaration//GEN-END:variables
 }

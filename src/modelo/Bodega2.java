@@ -2,72 +2,74 @@ package modelo;
 
 public class Bodega2 {
 
-    private int idMaquinaria;
-    private String nombre;
-    private String marca;
-    private int cantidadMax;
+    private int id_BMa;
+    private String Nombre;
+    private String Marca;
+    private int cantidaMax;
     private int cantidadActual;
-    private int idEM;  
+    private String Estado;  
 
     /*Cambiar la tabla y campos en las consultas*/
-    public static String Listar = "select b.nombre,b.marca,b.cantidadMax,b.cantidadActual, e.estado from B_Maquinaria B INNER JOIN\n" +
-    "EstadoMaquinaria E ON (E.idEM = B.idEM)";
-    public static String Registar = "INSERT INTO B_Maquinaria VALUES(?, ?, ? , ?, 1)";
-    public static String Actualizar = "UPDATE B_Maquinaria SET nombre, marca, cantidadMax, cantidadActual WHERE idLabor=?";
-    public static String Elimidar = "DELETE from Labor WHERE idLabor=?";
+    public static String Listar = "SELECT * FROM B_Maquinaria";
+    public static String Registar = "INSERT INTO B_Maquinaria VALUES(?, ?, ? , ?,?)";
+    public static String Actualizar = "UPDATE B_Maquinaria SET Nombre, Marca, cantidaMax, cantidadActual WHERE id_BMa=?";
+    public static String Elimidar = "DELETE from B_Maquinaria WHERE id_BMa=?";
+   
 
     /*Crear metodos get y set de cada variable creada al inicio*/
     /*Solo dale click derecho > insertar codigo > getter y setter > todas las VARIABLES*/
     /*Solo las del inicio, las consultas no*/
-    
-        public int getIdMaquinaria() {
-        return idMaquinaria;
+
+    public int getId_BMa() {
+        return id_BMa;
     }
 
+    public void setId_BMa(int id_BMa) {
+        this.id_BMa = id_BMa;
+    }
+
+
     public String getNombre() {
-        return nombre;
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
     public String getMarca() {
-        return marca;
+        return Marca;
     }
 
-    public int getCantidadMax() {
-        return cantidadMax;
+    public void setMarca(String Marca) {
+        this.Marca = Marca;
+    }
+
+    public int getCantidaMax() {
+        return cantidaMax;
+    }
+
+    public void setCantidaMax(int cantidaMax) {
+        this.cantidaMax = cantidaMax;
     }
 
     public int getCantidadActual() {
         return cantidadActual;
     }
 
-    /*Crear TODOS los campos de la tabla*/
-    public int getIdEM() {
-        return idEM;
-    }
-
-    public void setIdMaquinaria(int idMaquinaria) {
-        this.idMaquinaria = idMaquinaria;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public void setCantidadMax(int cantidadMax) {
-        this.cantidadMax = cantidadMax;
-    }
-
     public void setCantidadActual(int cantidadActual) {
         this.cantidadActual = cantidadActual;
     }
 
-    public void setIdEM(int idEM) {
-        this.idEM = idEM;
+    public String getEstado() {
+        return Estado;
     }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
+    
+       
 
     
     

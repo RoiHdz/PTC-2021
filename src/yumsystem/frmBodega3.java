@@ -1,5 +1,8 @@
 package yumsystem;
 
+import javax.swing.JOptionPane;
+import modelo.B_FAQ;
+import controlador.B_FAQC;
 
 public class frmBodega3 extends javax.swing.JFrame {
 
@@ -8,6 +11,7 @@ public class frmBodega3 extends javax.swing.JFrame {
      */
     public frmBodega3() {
         initComponents();
+          setLocationRelativeTo(null);
     }
 
     /**
@@ -19,6 +23,8 @@ public class frmBodega3 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblFechaRiego = new javax.swing.JLabel();
@@ -26,12 +32,15 @@ public class frmBodega3 extends javax.swing.JFrame {
         lblHoraRiego = new javax.swing.JLabel();
         lblPersonalRiego = new javax.swing.JLabel();
         txtMax = new RSMaterialComponent.RSTextFieldMaterial();
-        btnAgregarRiego = new newscomponents.RSButtonFlat_new();
+        guardar = new newscomponents.RSButtonFlat_new();
         btnCancelarRiego1 = new newscomponents.RSButtonFlat_new();
         txtAct = new RSMaterialComponent.RSTextFieldMaterial();
         lblHoraRiego1 = new javax.swing.JLabel();
-        cmb_BFAQtipo = new RSMaterialComponent.RSComboBox();
-        cmb_BFAQtipo1 = new RSMaterialComponent.RSComboBox();
+        btnAGRO = new RSMaterialComponent.RSRadioButtonMaterial();
+        btnFER = new RSMaterialComponent.RSRadioButtonMaterial();
+        lblPersonalRiego1 = new javax.swing.JLabel();
+        btnActivo = new RSMaterialComponent.RSRadioButtonMaterial();
+        btnInactivo = new RSMaterialComponent.RSRadioButtonMaterial();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -53,6 +62,11 @@ public class frmBodega3 extends javax.swing.JFrame {
                 txtNombreActionPerformed(evt);
             }
         });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         lblHoraRiego.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblHoraRiego.setText("Cantidad maxima:");
@@ -67,12 +81,17 @@ public class frmBodega3 extends javax.swing.JFrame {
         txtMax.setPhColor(new java.awt.Color(102, 102, 102));
         txtMax.setPlaceholder("Maximo");
         txtMax.setSelectionColor(new java.awt.Color(0, 114, 81));
+        txtMax.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMaxKeyTyped(evt);
+            }
+        });
 
-        btnAgregarRiego.setBackground(new java.awt.Color(0, 114, 81));
-        btnAgregarRiego.setText("Agregar riego");
-        btnAgregarRiego.addMouseListener(new java.awt.event.MouseAdapter() {
+        guardar.setBackground(new java.awt.Color(0, 114, 81));
+        guardar.setText("Guardar");
+        guardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAgregarRiegoMouseClicked(evt);
+                guardarMouseClicked(evt);
             }
         });
 
@@ -91,21 +110,46 @@ public class frmBodega3 extends javax.swing.JFrame {
         txtAct.setPhColor(new java.awt.Color(102, 102, 102));
         txtAct.setPlaceholder("Actual");
         txtAct.setSelectionColor(new java.awt.Color(0, 114, 81));
+        txtAct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtActKeyTyped(evt);
+            }
+        });
 
         lblHoraRiego1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblHoraRiego1.setText("Cantidad Actual:");
 
-        cmb_BFAQtipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fertilizante", "Agroquimico" }));
-        cmb_BFAQtipo.setColorArrow(new java.awt.Color(0, 114, 81));
-        cmb_BFAQtipo.setColorFondo(new java.awt.Color(0, 114, 81));
-        cmb_BFAQtipo.setColorSeleccion(new java.awt.Color(0, 114, 81));
-        cmb_BFAQtipo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        buttonGroup1.add(btnAGRO);
+        btnAGRO.setForeground(new java.awt.Color(0, 114, 81));
+        btnAGRO.setText("Agroquimico");
+        btnAGRO.setColorCheck(new java.awt.Color(122, 201, 104));
+        btnAGRO.setColorUnCheck(new java.awt.Color(0, 114, 81));
+        btnAGRO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAGROActionPerformed(evt);
+            }
+        });
 
-        cmb_BFAQtipo1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
-        cmb_BFAQtipo1.setColorArrow(new java.awt.Color(0, 114, 81));
-        cmb_BFAQtipo1.setColorFondo(new java.awt.Color(0, 114, 81));
-        cmb_BFAQtipo1.setColorSeleccion(new java.awt.Color(0, 114, 81));
-        cmb_BFAQtipo1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        buttonGroup1.add(btnFER);
+        btnFER.setForeground(new java.awt.Color(0, 114, 81));
+        btnFER.setText("Fertilizante");
+        btnFER.setColorCheck(new java.awt.Color(122, 201, 104));
+        btnFER.setColorUnCheck(new java.awt.Color(0, 114, 81));
+
+        lblPersonalRiego1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPersonalRiego1.setText("Estado");
+
+        buttonGroup2.add(btnActivo);
+        btnActivo.setForeground(new java.awt.Color(0, 114, 81));
+        btnActivo.setText("Activo");
+        btnActivo.setColorCheck(new java.awt.Color(122, 201, 104));
+        btnActivo.setColorUnCheck(new java.awt.Color(0, 114, 81));
+
+        buttonGroup2.add(btnInactivo);
+        btnInactivo.setForeground(new java.awt.Color(0, 114, 81));
+        btnInactivo.setText("Inactivo");
+        btnInactivo.setColorCheck(new java.awt.Color(122, 201, 104));
+        btnInactivo.setColorUnCheck(new java.awt.Color(0, 114, 81));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -115,25 +159,39 @@ public class frmBodega3 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnAgregarRiego, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCancelarRiego1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblPersonalRiego)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFechaRiego)
+                                    .addComponent(lblHoraRiego))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblHoraRiego1)
+                                    .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnFER, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAGRO, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblPersonalRiego)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cmb_BFAQtipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                            .addComponent(txtMax, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                            .addComponent(lblFechaRiego, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblHoraRiego, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblHoraRiego1)
-                            .addComponent(txtAct, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                            .addComponent(cmb_BFAQtipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
-                .addContainerGap())
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCancelarRiego1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblPersonalRiego1)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnInactivo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,11 +212,17 @@ public class frmBodega3 extends javax.swing.JFrame {
                 .addComponent(lblPersonalRiego)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmb_BFAQtipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cmb_BFAQtipo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(59, 59, 59)
+                    .addComponent(btnFER, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAGRO, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblPersonalRiego1)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregarRiego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInactivo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarRiego1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -202,9 +266,59 @@ public class frmBodega3 extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCancelarRiego1MouseClicked
 
-    private void btnAgregarRiegoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarRiegoMouseClicked
-        
-    }//GEN-LAST:event_btnAgregarRiegoMouseClicked
+    private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
+ /*Cambiar el modelo*/
+        modelo.B_FAQ BF = new modelo.B_FAQ();
+        /*Aplicar los set correspondientes al modelo*/
+        BF.setNombre(this.txtNombre.getText());
+      BF.setCantidad_Actual(Double.parseDouble(this.txtAct.getText()));
+      BF.setCantidad_Max(Double.parseDouble(this.txtMax.getText()));
+         /*s.setPerimetro(Double.parseDouble(this.txtPerimetro1.getText()));*/
+
+             
+                     if (btnAGRO.isSelected() == true) {
+            BF.setTipo("Agroquimico");
+        }
+        else if (btnFER.isSelected()==true) {
+            BF.setTipo("Fertilizante");
+        }
+          if (btnActivo.isSelected() == true) {
+            BF.setEstado("Activo");
+        }
+        else if (btnInactivo.isSelected()==true) {
+            BF.setEstado("Inactivo");
+        }
+        /*Cambiar el controlador LaborC*/
+        if (controlador.B_FAQC.isRegister(BF )) {
+            /*Cambiar el controlador LaborC*/
+            controlador.B_FAQC.setListar("");
+            JOptionPane.showMessageDialog(this, "Exitoso");
+        }
+         else{
+            JOptionPane.showMessageDialog(this, "Error");
+        }
+ 
+           
+    }//GEN-LAST:event_guardarMouseClicked
+
+    private void btnAGROActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAGROActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAGROActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+            char c= evt.getKeyChar();
+            if((c<'a' ||c>'z') && (c<'A') |c>'Z')evt.consume(); 
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaxKeyTyped
+            char c= evt.getKeyChar();
+       if(c<'0' ||c>'9')evt.consume();
+    }//GEN-LAST:event_txtMaxKeyTyped
+
+    private void txtActKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtActKeyTyped
+            char c= evt.getKeyChar();
+       if(c<'0' ||c>'9')evt.consume();
+    }//GEN-LAST:event_txtActKeyTyped
 
     /**
      * @param args the command line arguments
@@ -242,16 +356,21 @@ public class frmBodega3 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private newscomponents.RSButtonFlat_new btnAgregarRiego;
+    private RSMaterialComponent.RSRadioButtonMaterial btnAGRO;
+    private RSMaterialComponent.RSRadioButtonMaterial btnActivo;
     private newscomponents.RSButtonFlat_new btnCancelarRiego1;
-    private RSMaterialComponent.RSComboBox cmb_BFAQtipo;
-    private RSMaterialComponent.RSComboBox cmb_BFAQtipo1;
+    private RSMaterialComponent.RSRadioButtonMaterial btnFER;
+    private RSMaterialComponent.RSRadioButtonMaterial btnInactivo;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private newscomponents.RSButtonFlat_new guardar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblFechaRiego;
     private javax.swing.JLabel lblHoraRiego;
     private javax.swing.JLabel lblHoraRiego1;
     private javax.swing.JLabel lblPersonalRiego;
+    private javax.swing.JLabel lblPersonalRiego1;
     private RSMaterialComponent.RSTextFieldMaterial txtAct;
     private RSMaterialComponent.RSTextFieldMaterial txtMax;
     private RSMaterialComponent.RSTextFieldMaterial txtNombre;

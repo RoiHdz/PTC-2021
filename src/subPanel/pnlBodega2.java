@@ -6,12 +6,24 @@
 package subPanel;
 
 import controlador.Bodega2C;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Rodri
  */
 public class pnlBodega2 extends javax.swing.JPanel {
+    private static modelo.Conexion con = new modelo.Conexion();
+    private static Connection conexion = con.getConexion();
+    DefaultTableModel model = new DefaultTableModel();  
+    PreparedStatement ps = null;
+    Statement st = null;
+    ResultSet rs = null; 
 
     /**
      * Creates new form pnlBodega2
@@ -33,7 +45,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         rSPanelOpacity1 = new newscomponents.RSPanelOpacity();
-        txtBuscarAgricultura = new RSMaterialComponent.RSTextFieldOne();
+        btn_BMA = new RSMaterialComponent.RSTextFieldOne();
         jLabel5 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
@@ -49,12 +61,17 @@ public class pnlBodega2 extends javax.swing.JPanel {
 
         rSPanelOpacity1.setBackground(new java.awt.Color(242, 242, 242));
 
-        txtBuscarAgricultura.setForeground(new java.awt.Color(0, 0, 0));
-        txtBuscarAgricultura.setBorderColor(new java.awt.Color(0, 204, 51));
-        txtBuscarAgricultura.setPlaceholder("Buscar...");
-        txtBuscarAgricultura.addActionListener(new java.awt.event.ActionListener() {
+        btn_BMA.setForeground(new java.awt.Color(0, 0, 0));
+        btn_BMA.setBorderColor(new java.awt.Color(0, 204, 51));
+        btn_BMA.setPlaceholder("Buscar...");
+        btn_BMA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarAgriculturaActionPerformed(evt);
+                btn_BMAActionPerformed(evt);
+            }
+        });
+        btn_BMA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btn_BMAKeyPressed(evt);
             }
         });
 
@@ -102,11 +119,11 @@ public class pnlBodega2 extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nombre", "Marca", "Candidad Maxima", "Cantidad Actual", "Estado"
+                "ID", "Nombre", "Marca", "Candidad Maxima", "Cantidad Actual", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, false, false, false
+                true, true, true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -128,7 +145,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
         rSPanelOpacity1Layout.setHorizontalGroup(
             rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
-                .addComponent(txtBuscarAgricultura, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_BMA, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMaquinaria, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
@@ -158,7 +175,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
             rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                 .addGroup(rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBuscarAgricultura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_BMA, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMaquinaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,9 +235,9 @@ public class pnlBodega2 extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtBuscarAgriculturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarAgriculturaActionPerformed
+    private void btn_BMAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BMAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarAgriculturaActionPerformed
+    }//GEN-LAST:event_btn_BMAActionPerformed
 
     private void btnMaquinariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaquinariaActionPerformed
         // TODO add your handling code here:
@@ -230,9 +247,44 @@ public class pnlBodega2 extends javax.swing.JPanel {
         new yumsystem.frmBodega2().setVisible(true);
     }//GEN-LAST:event_btnMaquinariaMouseClicked
 
+    private void btn_BMAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_BMAKeyPressed
+       
+        String[] titulos = {"ID", "Nombre","Marca", "Cantidad Maxima","Canitdad Actual","Estado"};
+        String[] registros = new String[200];
+        String sql = "SELECT * FROM B_Maquinaria WHERE id_BMa LIKE '%" + btn_BMA.getText() + "%' "
+        + "OR Nombre LIKE '%" + btn_BMA.getText() + "%'"
+        + "OR Marca LIKE '%" + btn_BMA.getText() + "%'"        
+        ;
+        
+        model = new DefaultTableModel(null,titulos);
+        Connection conexion = con.getConexion();
+        
+        try
+        {
+            st = (Statement) conexion.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next())
+            {
+                registros[0] = rs.getString("id_BMa");
+                registros[1] = rs.getString("Nombre");
+                registros[2] = rs.getString("Marca");
+                registros[3] = rs.getString("cantidaMax");
+                registros[4] = rs.getString("cantidadActual");
+                registros[5] = rs.getString("Estado");
+            
+                model.addRow(registros);
+            }
+           tblMaquinaria.setModel(model);
+        } catch (SQLException ex)
+        {
+            System.out.println("ERROR AL BUSCAR LOS DATOS : " + ex.getMessage());
+        }    
+    }//GEN-LAST:event_btn_BMAKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private newscomponents.RSButtonFlat_new btnMaquinaria;
+    private RSMaterialComponent.RSTextFieldOne btn_BMA;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -244,6 +296,5 @@ public class pnlBodega2 extends javax.swing.JPanel {
     private newscomponents.RSDateChooser rSDateChooser2;
     private newscomponents.RSPanelOpacity rSPanelOpacity1;
     public static RSMaterialComponent.RSTableMetroCustom tblMaquinaria;
-    private RSMaterialComponent.RSTextFieldOne txtBuscarAgricultura;
     // End of variables declaration//GEN-END:variables
 }

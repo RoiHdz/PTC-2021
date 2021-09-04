@@ -77,7 +77,11 @@ public class ParcelaC {
             sql = modelo.Parcela.Listar;
         } else {
             /*Cambiar la consulta*/
-            sql = "SELECT * FROM Labor WHERE labor LIKE '" + buscar + "%'";
+            sql = "SELECT *FROM Parcela WHERE ( "             
+                    + "Perimetro LIKE '" + buscar + "%' OR"  
+                    +"TipoTierra LIKE '" + buscar + "%' OR " 
+                    +"Estado LIKE '" + buscar + "%' " 
+                   + ")";
         }
         String datos[] = new String[4];
 
@@ -96,4 +100,28 @@ public class ParcelaC {
             Logger.getLogger(LaborC.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-}
+    public static String extraerIDMax(){
+        String sql ="SELECT MAX(codigoParcela)AS valor FROM Parcela";
+        int codigoParcela=0;
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){
+         codigoParcela=rs.getInt("valor");
+                     }
+            if(codigoParcela ==0){
+            
+           codigoParcela=1;     
+                }else {
+            codigoParcela= codigoParcela+1;
+            
+            }
+            return String.valueOf(codigoParcela);
+            
+        } catch (Exception ex) {
+            return null;
+            //Logger.getLogger(LaborC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    }

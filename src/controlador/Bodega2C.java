@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import subPanel.pnlBodega2;
+import modelo.Bodega2;
 
 public class Bodega2C {
 
@@ -27,8 +28,9 @@ public class Bodega2C {
             /*El orden que va de campo (No poner el setId porque es auto incrementable)*/
             ps.setString(1, l.getNombre());
             ps.setString(2, l.getMarca());
-            ps.setInt(3, l.getCantidadMax());
+            ps.setInt(3, l.getCantidaMax());
             ps.setInt(4, l.getCantidadActual());
+            ps.setString(5, l.getEstado());
             /**/
             ps.executeUpdate();
             return true;
@@ -46,11 +48,12 @@ public class Bodega2C {
         try {
             ps = conexion.prepareStatement(sql);
             /*Colocar todos los get en orden de la tabla y por ultimo el id*/
-            ps.setString(1, l.getNombre());
-            ps.setString(2, l.getMarca());
-            ps.setInt(3, l.getCantidadMax());
-            ps.setInt(4, l.getCantidadActual());
-            ps.setInt(5, l.getIdMaquinaria());
+             ps.setInt(1, l.getId_BMa());
+            ps.setString(2, l.getNombre());
+            ps.setString(3, l.getMarca());
+            ps.setInt(4, l.getCantidaMax());
+            ps.setInt(5, l.getCantidadActual());
+           
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -64,7 +67,7 @@ public class Bodega2C {
         String sql = modelo.Labor.Elimidar;
         try {
             ps = conexion.prepareStatement(sql);
-            ps.setInt(1, l.getIdMaquinaria());
+            ps.setInt(1, l.getId_BMa());
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -86,9 +89,9 @@ public class Bodega2C {
             sql = modelo.Bodega2.Listar;
         } else {
             /*Cambiar la consulta*/
-            sql = "SELECT * FROM Labor WHERE B_Maquinaria LIKE '" + buscar + "%'";
+            sql = "SELECT * FROM B_Maquinaria WHERE B_Maquinaria LIKE '" + buscar + "%'";
         }
-        String datos[] = new String[5];
+        String datos[] = new String[6];
 
         try {
             Statement st = conexion.createStatement();
@@ -96,11 +99,12 @@ public class Bodega2C {
             while(rs.next()){
                 /*Colocar los get en orden que se mostraran en la tabla*/
                 /*lo que va entre comillas es como se llama en la tabal SER EXACTOS*/
-                datos[0] = rs.getString("nombre");
-                datos[1] = rs.getString("marca");
-                datos[2] = rs.getString("cantidadMax");
-                datos[3] = rs.getString("cantidadActual");
-                datos[4] = rs.getString("estado");
+                datos[0] = rs.getString("id_BMa");
+                datos[1] = rs.getString("nombre");
+                datos[2] = rs.getString("marca");
+                datos[3] = rs.getString("cantidaMax");
+                datos[4] = rs.getString("cantidadActual");
+                datos[5] = rs.getString("estado");
                 model.addRow(datos);
             }
         } catch (SQLException ex) {

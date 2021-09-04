@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controlador;
 
 import java.sql.Connection;
@@ -8,24 +13,35 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import subPanel.pnlConfiguracion2;
+import subPanel.pnlBodega3;
+import modelo.B_FAQ;
 
-public class LaborC {
-
+/**
+ *
+ * @author danie
+ */
+public class B_FAQC {
+    
+    
     private static modelo.Conexion con = new modelo.Conexion();
     private static Connection conexion = con.getConexion();
     private static PreparedStatement ps = null;
     /*Cambiar el panel LaborC*/
-    private static pnlConfiguracion2 vista;
+    private static pnlBodega3 vista;
 
-    public static boolean isRegister(modelo.Labor l) {
+    public static boolean isRegister(modelo.B_FAQ l) {
         /*Cambiar el modelo labor*/
-        String sql = modelo.Labor.Registar;
+        String sql = modelo.B_FAQ.Registar;
         try {
             ps = conexion.prepareStatement(sql);
             /*Vas a poner todo los Set que hayas creado y el numero significa el orden */
             /*El orden que va de campo (No poner el setId porque es auto incrementable)*/
-            ps.setString(1, l.getLabor());
+             
+            ps.setString(1, l.getNombre());
+            ps.setDouble(2, l.getCantidad_Max());
+            ps.setDouble(3, l.getCantidad_Actual());
+            ps.setString(4, l.getTipo());
+             ps.setString(5, l.getEstado());
             /**/
             ps.executeUpdate();
             return true;
@@ -37,14 +53,19 @@ public class LaborC {
     }
     
     /*Cambiar el modelo Labor*/
-    public static boolean isUpdate(modelo.Labor l) {
+    public static boolean isUpdate(modelo.B_FAQ l) {
         /*Cambiar el modelo Labor*/
-        String sql = modelo.Labor.Actualizar;
+        String sql = modelo.B_FAQ.Actualizar;
         try {
             ps = conexion.prepareStatement(sql);
             /*Colocar todos los get en orden de la tabla y por ultimo el id*/
-            ps.setString(1, l.getLabor());
-            ps.setInt(2, l.getId());
+           
+            ps.setString(1, l.getNombre());
+            ps.setDouble(2, l.getCantidad_Max());
+            ps.setDouble(3, l.getCantidad_Actual());
+            ps.setString(4, l.getTipo());
+             ps.setString(5, l.getEstado());
+           
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -54,11 +75,11 @@ public class LaborC {
 
     }
 
-    public static boolean isDelete(modelo.Labor l) {
-        String sql = modelo.Labor.Elimidar;
+    public static boolean isDelete(modelo.B_FAQ l) {
+        String sql = modelo.B_FAQ.Elimidar;
         try {
             ps = conexion.prepareStatement(sql);
-            ps.setInt(1, l.getId());
+            ps.setInt(1, l.getId_BFAQ());
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -70,19 +91,19 @@ public class LaborC {
 
     public static void setListar(String buscar) {
         /*Cambiar el panel pnlConfiguracion2 y la tabla*/
-        DefaultTableModel model = (DefaultTableModel)pnlConfiguracion2.tblLabores.getModel();
+        DefaultTableModel model = (DefaultTableModel)pnlBodega3.tblBFAQ.getModel();
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
         String sql = "";
 
         if (buscar.equals("")) {
-            sql = modelo.Labor.Listar;
+            sql = modelo.B_FAQ.Listar;
         } else {
             /*Cambiar la consulta*/
-            sql = "SELECT * FROM Parcela WHERE labor LIKE '" + buscar + "%'";
+            sql = "SELECT * FROM B_FAQ WHERE id_BFAQ LIKE '" + buscar + "%'";
         }
-        String datos[] = new String[2];
+        String datos[] = new String[6];
 
         try {
             Statement st = conexion.createStatement();
@@ -90,19 +111,24 @@ public class LaborC {
             while(rs.next()){
                 /*Colocar los get en orden que se mostraran en la tabla*/
                 /*lo que va entre comillas es como se llama en la tabal SER EXACTOS*/
-                datos[0] = rs.getString("idLabor");
-                datos[1] = rs.getString("labor");
+                datos[0] = rs.getString("id_BFAQ");
+                datos[1] = rs.getString("Nombre");
+                datos[2] = rs.getString("cantidad_Max");
+                datos[3] = rs.getString("cantidad_Actual");
+                datos[4] = rs.getString("Tipo");
+                datos[5] = rs.getString("Estado");
                 model.addRow(datos);
             }
         } catch (SQLException ex) {
             /*Cambiar LaborC*/
-            Logger.getLogger(LaborC.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(B_FAQC.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }
-    
+    /*
     public static String extraerIdMax(){
-        /*Cambiar consulta*/
-        String sql="select max(idLabor) FROM Labor";
+      
+        String sql="select max(id_BFAQ) FROM B_FAQ";
         int id = 0;
         try {
             Statement st = conexion.createStatement();
@@ -122,4 +148,6 @@ public class LaborC {
 //            Logger.getLogger(LaborC.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+*/
+    
 }

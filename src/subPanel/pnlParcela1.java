@@ -1,13 +1,37 @@
 package subPanel;
 
 import controlador.ParcelaC;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
+import javax.swing.table.DefaultTableModel;
+import modelo.Conexion;
+
+import yumsystem.frmParcela;
 
 public class pnlParcela1 extends javax.swing.JPanel {
 
+    private static modelo.Conexion con = new modelo.Conexion();
+    private static Connection conexion = con.getConexion();
+    DefaultTableModel model = new DefaultTableModel();  
+    PreparedStatement ps = null;
+    Statement st = null;
+    ResultSet rs = null; 
+    
+    
     public pnlParcela1() {
         initComponents();
         ParcelaC c;
         ParcelaC.setListar("");
+        jPopupMenu1.add(menu);
+  
+   
+
+        
     }
 
     /**
@@ -19,6 +43,10 @@ public class pnlParcela1 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        menu = new javax.swing.JPanel();
+        btnDelete = new RSMaterialComponent.RSButtonMaterialIconOne();
+        btnEdit = new RSMaterialComponent.RSButtonMaterialIconOne();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -26,11 +54,35 @@ public class pnlParcela1 extends javax.swing.JPanel {
         rSTableMetroCustom2 = new RSMaterialComponent.RSTableMetroCustom();
         rSComboBox2 = new RSMaterialComponent.RSComboBox();
         jLabel7 = new javax.swing.JLabel();
-        txtBuscarAgricultura1 = new RSMaterialComponent.RSTextFieldOne();
-        btnAEspecie1 = new newscomponents.RSButtonFlat_new();
+        btnBuscarP = new RSMaterialComponent.RSTextFieldOne();
+        btnParcela = new newscomponents.RSButtonFlat_new();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblParcela = new RSMaterialComponent.RSTableMetroCustom();
         jSeparator1 = new javax.swing.JSeparator();
+
+        menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnDelete.setBackground(new java.awt.Color(0, 114, 81));
+        btnDelete.setText("Eliminar");
+        btnDelete.setComponentPopupMenu(jPopupMenu1);
+        btnDelete.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
+        menu.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 190, -1));
+
+        btnEdit.setBackground(new java.awt.Color(0, 114, 81));
+        btnEdit.setText("Editar");
+        btnEdit.setComponentPopupMenu(jPopupMenu1);
+        btnEdit.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
+        btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditMouseClicked(evt);
+            }
+        });
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+        menu.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, -1));
 
         jPanel2.setBackground(new java.awt.Color(225, 232, 193));
 
@@ -94,31 +146,34 @@ public class pnlParcela1 extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        txtBuscarAgricultura1.setForeground(new java.awt.Color(0, 0, 0));
-        txtBuscarAgricultura1.setBorderColor(new java.awt.Color(0, 204, 51));
-        txtBuscarAgricultura1.setPlaceholder("Buscar...");
-        txtBuscarAgricultura1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarP.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscarP.setBorderColor(new java.awt.Color(0, 204, 51));
+        btnBuscarP.setPlaceholder("Buscar...");
+        btnBuscarP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarAgricultura1ActionPerformed(evt);
+                btnBuscarPActionPerformed(evt);
             }
         });
-        txtBuscarAgricultura1.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnBuscarP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnBuscarPKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtBuscarAgricultura1KeyTyped(evt);
+                btnBuscarPKeyTyped(evt);
             }
         });
 
-        btnAEspecie1.setBackground(new java.awt.Color(0, 114, 81));
-        btnAEspecie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_joyent_30px_2.png"))); // NOI18N
-        btnAEspecie1.setText("Nueva Parcela");
-        btnAEspecie1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnParcela.setBackground(new java.awt.Color(0, 114, 81));
+        btnParcela.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_joyent_30px_2.png"))); // NOI18N
+        btnParcela.setText("Nueva Parcela");
+        btnParcela.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAEspecie1MouseClicked(evt);
+                btnParcelaMouseClicked(evt);
             }
         });
-        btnAEspecie1.addActionListener(new java.awt.event.ActionListener() {
+        btnParcela.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAEspecie1ActionPerformed(evt);
+                btnParcelaActionPerformed(evt);
             }
         });
 
@@ -127,7 +182,7 @@ public class pnlParcela1 extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Codigo Parcela", "Perimetro", "Tipo de tierra", "Estado"
+                "codigoParcela", "perimetro", "tipoTierra", "estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -145,8 +200,14 @@ public class pnlParcela1 extends javax.swing.JPanel {
         tblParcela.setColorBorderRows(new java.awt.Color(91, 180, 98));
         tblParcela.setColorPrimaryText(new java.awt.Color(91, 180, 98));
         tblParcela.setColorSecondary(new java.awt.Color(143, 217, 116));
+        tblParcela.setComponentPopupMenu(jPopupMenu1);
         tblParcela.setGridColor(new java.awt.Color(91, 180, 98));
         tblParcela.getTableHeader().setReorderingAllowed(false);
+        tblParcela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblParcelaMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblParcela);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -158,9 +219,9 @@ public class pnlParcela1 extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txtBuscarAgricultura1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscarP, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAEspecie1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                        .addComponent(btnParcela, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
                     .addComponent(jScrollPane3))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,8 +235,8 @@ public class pnlParcela1 extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBuscarAgricultura1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAEspecie1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscarP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnParcela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(92, 92, 92)
@@ -231,35 +292,91 @@ public class pnlParcela1 extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAEspecie1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAEspecie1ActionPerformed
+    private void btnParcelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnParcelaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAEspecie1ActionPerformed
+    }//GEN-LAST:event_btnParcelaActionPerformed
 
-    private void txtBuscarAgricultura1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarAgricultura1ActionPerformed
+    private void btnBuscarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarAgricultura1ActionPerformed
+    }//GEN-LAST:event_btnBuscarPActionPerformed
 
-    private void btnAEspecie1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAEspecie1MouseClicked
-        new yumsystem.frmParcela().setVisible(true);
-    }//GEN-LAST:event_btnAEspecie1MouseClicked
+    private void btnParcelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnParcelaMouseClicked
+        new yumsystem.frmParcela ().setVisible(true);
+    }//GEN-LAST:event_btnParcelaMouseClicked
 
-    private void txtBuscarAgricultura1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarAgricultura1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarAgricultura1KeyTyped
+    private void btnBuscarPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarPKeyTyped
+
+    }//GEN-LAST:event_btnBuscarPKeyTyped
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
+     
+        //int fila= tblParcela.getSelectedRow();
+        //yumsystem.frmParcelaUpdate Parcela = new yumsystem.frmParcelaUpdate();
+        
+       // Parcela.txtPerimetro1.setText(tblParcela.getValueAt(fila, 1).toString());               
+        //Parcela.txtTipot.setText(tblParcela.getValueAt(fila, 2).toString());//
+        
+        
+    }//GEN-LAST:event_btnEditMouseClicked
+
+    private void tblParcelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblParcelaMouseClicked
+       
+  
+    }//GEN-LAST:event_tblParcelaMouseClicked
+
+    private void btnBuscarPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBuscarPKeyPressed
+       
+    
+        String[] titulos = {"codigoParcela", "perimetro","tipoTierra", "Estado"};
+        String[] registros = new String[200];
+        String sql = "SELECT * FROM Parcela WHERE codigoParcela LIKE '%" + btnBuscarP.getText() + "%' "
+        + "OR tipoTierra LIKE '%" + btnBuscarP.getText() + "%'"
+        + "OR estado LIKE '%" + btnBuscarP.getText() + "%'";
+        
+        model = new DefaultTableModel(null,titulos);
+        Connection conexion = con.getConexion();
+        
+        try
+        {
+            st = (Statement) conexion.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next())
+            {
+                registros[0] = rs.getString("codigoParcela");
+                registros[1] = rs.getString("perimetro");
+                registros[2] = rs.getString("tipoTierra");
+                registros[3] = rs.getString("estado");
+                model.addRow(registros);
+            }
+            tblParcela.setModel(model);
+        } catch (SQLException ex)
+        {
+            System.out.println("ERROR AL BUSCAR LOS DATOS : " + ex.getMessage());
+        }    
+
+    }//GEN-LAST:event_btnBuscarPKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private newscomponents.RSButtonFlat_new btnAEspecie1;
+    private RSMaterialComponent.RSTextFieldOne btnBuscarP;
+    private RSMaterialComponent.RSButtonMaterialIconOne btnDelete;
+    private RSMaterialComponent.RSButtonMaterialIconOne btnEdit;
+    private newscomponents.RSButtonFlat_new btnParcela;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel menu;
     private RSMaterialComponent.RSComboBox rSComboBox2;
     private RSMaterialComponent.RSTableMetroCustom rSTableMetroCustom2;
     public static RSMaterialComponent.RSTableMetroCustom tblParcela;
-    private RSMaterialComponent.RSTextFieldOne txtBuscarAgricultura1;
     // End of variables declaration//GEN-END:variables
 }
