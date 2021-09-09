@@ -20,8 +20,7 @@ public class Bodega2C {
     private static pnlBodega2 vista;
 
     public static boolean isRegister(modelo.Bodega2 l) {
-        /*Cambiar el modelo labor*/
-        String sql = modelo.Bodega2.Registar;
+        String sql = Bodega2.Registar;
         try {
             ps = conexion.prepareStatement(sql);
             /*Vas a poner todo los Set que hayas creado y el numero significa el orden */
@@ -48,11 +47,12 @@ public class Bodega2C {
         try {
             ps = conexion.prepareStatement(sql);
             /*Colocar todos los get en orden de la tabla y por ultimo el id*/
-             ps.setInt(1, l.getId_BMa());
-            ps.setString(2, l.getNombre());
-            ps.setString(3, l.getMarca());
-            ps.setInt(4, l.getCantidaMax());
-            ps.setInt(5, l.getCantidadActual());
+            
+            ps.setString(1, l.getNombre());
+            ps.setString(2, l.getMarca());
+            ps.setInt(3, l.getCantidaMax());
+            ps.setInt(4, l.getCantidadActual());
+            ps.setInt(5, l.getId_BMa());
            
             ps.executeUpdate();
             return true;
@@ -86,12 +86,12 @@ public class Bodega2C {
         String sql = "";
 
         if (buscar.equals("")) {
-            sql = modelo.Bodega2.Listar;
+            sql = modelo.Bodega2 .Listar;
         } else {
             /*Cambiar la consulta*/
-            sql = "SELECT * FROM B_Maquinaria WHERE B_Maquinaria LIKE '" + buscar + "%'";
+            sql = "SELECT nombre,marca,cantidadMax, cantidadActual, estado FROM B_Maquinaria WHERE nombre LIKE '" + buscar + "%'";
         }
-        String datos[] = new String[6];
+        String datos[] = new String[5];
 
         try {
             Statement st = conexion.createStatement();
@@ -99,18 +99,16 @@ public class Bodega2C {
             while(rs.next()){
                 /*Colocar los get en orden que se mostraran en la tabla*/
                 /*lo que va entre comillas es como se llama en la tabal SER EXACTOS*/
-                datos[0] = rs.getString("id_BMa");
-                datos[1] = rs.getString("nombre");
-                datos[2] = rs.getString("marca");
-                datos[3] = rs.getString("cantidaMax");
-                datos[4] = rs.getString("cantidadActual");
-                datos[5] = rs.getString("estado");
+                datos[0] = rs.getString("nombre");
+                datos[1] = rs.getString("marca");
+                datos[2] = rs.getString("cantidadMax");
+                datos[3] = rs.getString("cantidadActual");
+                datos[4] = rs.getString("estado");
                 model.addRow(datos);
             }
         } catch (SQLException ex) {
             /*Cambiar LaborC*/
-            Logger.getLogger(Bodega2C.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(ex);
+            Logger.getLogger(Bodega2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

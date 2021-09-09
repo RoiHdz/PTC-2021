@@ -5,17 +5,24 @@
  */
 package subPanel;
 
+import controlador.UsuarioC;
+import yumsystem.frmUsuario;
+
 /**
  *
  * @author Rodri
  */
+
+
 public class pnlConfiguracion3 extends javax.swing.JPanel {
 
-    /**
-     * Creates new form pnlConfiguracion3
-     */
+    //Cambiar formulario
+    public static yumsystem.frmUsuario frm;
+    
     public pnlConfiguracion3() {
         initComponents();
+        UsuarioC c;
+        UsuarioC.setListar("");
     }
 
     /**
@@ -30,7 +37,7 @@ public class pnlConfiguracion3 extends javax.swing.JPanel {
         rSPanelOpacity1 = new newscomponents.RSPanelOpacity();
         rSTextFieldIconOne1 = new RSMaterialComponent.RSTextFieldIconOne();
         jScrollPane2 = new javax.swing.JScrollPane();
-        rSTableMetroCustom2 = new RSMaterialComponent.RSTableMetroCustom();
+        tblUsuario = new RSMaterialComponent.RSTableMetroCustom();
         rSButtonFlat_new1 = new newscomponents.RSButtonFlat_new();
 
         setBackground(new java.awt.Color(225, 232, 193));
@@ -47,30 +54,35 @@ public class pnlConfiguracion3 extends javax.swing.JPanel {
         rSTextFieldIconOne1.setPhColor(new java.awt.Color(166, 196, 126));
         rSTextFieldIconOne1.setPlaceholder("Buscar");
 
-        rSTableMetroCustom2.setBackground(new java.awt.Color(209, 226, 171));
-        rSTableMetroCustom2.setModel(new javax.swing.table.DefaultTableModel(
+        tblUsuario.setBackground(new java.awt.Color(209, 226, 171));
+        tblUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Username", "Email", "Rol"
             }
-        ));
-        rSTableMetroCustom2.setBackgoundHead(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom2.setBackgoundHover(new java.awt.Color(166, 196, 126));
-        rSTableMetroCustom2.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
-        rSTableMetroCustom2.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
-        rSTableMetroCustom2.setColorBorderHead(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom2.setColorBorderRows(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom2.setColorPrimaryText(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom2.setColorSecondary(new java.awt.Color(143, 217, 116));
-        rSTableMetroCustom2.setColorSecundaryText(new java.awt.Color(0, 102, 255));
-        rSTableMetroCustom2.setGridColor(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom2.setSelectionBackground(new java.awt.Color(166, 196, 126));
-        jScrollPane2.setViewportView(rSTableMetroCustom2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblUsuario.setBackgoundHead(new java.awt.Color(91, 180, 98));
+        tblUsuario.setBackgoundHover(new java.awt.Color(166, 196, 126));
+        tblUsuario.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
+        tblUsuario.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
+        tblUsuario.setColorBorderHead(new java.awt.Color(91, 180, 98));
+        tblUsuario.setColorBorderRows(new java.awt.Color(91, 180, 98));
+        tblUsuario.setColorPrimaryText(new java.awt.Color(91, 180, 98));
+        tblUsuario.setColorSecondary(new java.awt.Color(143, 217, 116));
+        tblUsuario.setColorSecundaryText(new java.awt.Color(0, 102, 255));
+        tblUsuario.setGridColor(new java.awt.Color(91, 180, 98));
+        tblUsuario.setSelectionBackground(new java.awt.Color(166, 196, 126));
+        jScrollPane2.setViewportView(tblUsuario);
 
         rSButtonFlat_new1.setBackground(new java.awt.Color(0, 114, 81));
         rSButtonFlat_new1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_joyent_30px_2.png"))); // NOI18N
@@ -99,7 +111,7 @@ public class pnlConfiguracion3 extends javax.swing.JPanel {
                     .addComponent(rSButtonFlat_new1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -119,9 +131,16 @@ public class pnlConfiguracion3 extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
     private void rSButtonFlat_new1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonFlat_new1MouseClicked
-        new yumsystem.frmUsuario().setVisible(true);
+        //new yumsystem.frmUsuario().setVisible(true);
+//        if (frm == null) {
+//            frm = new frmUsuario();
+//            frm.setVisible(true);
+//        }
+            frm = new frmUsuario();
+            frm.setVisible(true);
     }//GEN-LAST:event_rSButtonFlat_new1MouseClicked
 
 
@@ -129,7 +148,7 @@ public class pnlConfiguracion3 extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private newscomponents.RSButtonFlat_new rSButtonFlat_new1;
     private newscomponents.RSPanelOpacity rSPanelOpacity1;
-    private RSMaterialComponent.RSTableMetroCustom rSTableMetroCustom2;
     private RSMaterialComponent.RSTextFieldIconOne rSTextFieldIconOne1;
+    public static RSMaterialComponent.RSTableMetroCustom tblUsuario;
     // End of variables declaration//GEN-END:variables
 }

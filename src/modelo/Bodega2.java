@@ -10,9 +10,9 @@ public class Bodega2 {
     private String Estado;  
 
     /*Cambiar la tabla y campos en las consultas*/
-    public static String Listar = "SELECT * FROM B_Maquinaria";
-    public static String Registar = "INSERT INTO B_Maquinaria VALUES(?, ?, ? , ?,?)";
-    public static String Actualizar = "UPDATE B_Maquinaria SET Nombre, Marca, cantidaMax, cantidadActual WHERE id_BMa=?";
+    public static String Listar = "SELECT nombre,marca,cantidadMax,cantidadActual,estado from B_Maquinaria";
+    public static String Registar = "INSERT INTO B_Maquinaria VALUES(?,?,?,?,?)";
+    public static String Actualizar = "UPDATE B_Maquinaria SET Nombre=?, Marca=?, cantidaMax=?, cantidadActual=? WHERE id_BMa=?";
     public static String Elimidar = "DELETE from B_Maquinaria WHERE id_BMa=?";
    
 

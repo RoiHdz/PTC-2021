@@ -1,5 +1,6 @@
 package yumsystem;
 
+import javax.swing.JOptionPane;
 import subPanel.pnlConfiguracion2;
 
 public class frmMetodoAplicacion extends javax.swing.JFrame {
@@ -121,7 +122,16 @@ public class frmMetodoAplicacion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarMouseClicked
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
-        
+        modelo.MetodoConfig s = new modelo.MetodoConfig();
+        s.setMetodo(this.txtMetodo.getText());
+        if (controlador.MetodoConfigC.isRegister(s)) {
+            controlador.VariacionC.setListar("");
+            JOptionPane.showMessageDialog(this, "Exitoso");
+            txtMetodo.setText(null);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Error al ingresar los datos");
+        }
     }//GEN-LAST:event_btnGuardarMouseClicked
 
     /**

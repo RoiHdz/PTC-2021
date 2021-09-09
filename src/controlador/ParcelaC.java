@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import subPanel.pnlParcela1;
 
 public class ParcelaC {
-        private static modelo.Conexion con = new modelo.Conexion();
+    private static modelo.Conexion con = new modelo.Conexion();
     private static Connection conexion = con.getConexion();
     private static PreparedStatement ps = null;
     private static pnlParcela1 vista;
@@ -25,14 +25,14 @@ public class ParcelaC {
             ps.setString(3, l.getEstado());
             ps.executeUpdate();
             return true;
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex);
             return false;
 //            Logger.getLogger(LaborC.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-    
+
     public static boolean isUpdate(modelo.Parcela l) {
         /*Cambiar el modelo Labor*/
         String sql = modelo.Parcela.Actualizar;
@@ -50,7 +50,7 @@ public class ParcelaC {
         }
 
     }
-    
+
     public static boolean isDelete(modelo.Parcela l) {
         String sql = modelo.Parcela.Elimidar;
         try {
@@ -64,10 +64,10 @@ public class ParcelaC {
         }
 
     }
-    
+
     public static void setListar(String buscar) {
         /*Cambiar el panel pnlConfiguracion2 y la tabla*/
-        DefaultTableModel model = (DefaultTableModel)pnlParcela1.tblParcela.getModel();
+        DefaultTableModel model = (DefaultTableModel) pnlParcela1.tblParcela.getModel();
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
@@ -77,18 +77,18 @@ public class ParcelaC {
             sql = modelo.Parcela.Listar;
         } else {
             /*Cambiar la consulta*/
-            sql = "SELECT *FROM Parcela WHERE ( "             
-                    + "Perimetro LIKE '" + buscar + "%' OR"  
-                    +"TipoTierra LIKE '" + buscar + "%' OR " 
-                    +"Estado LIKE '" + buscar + "%' " 
-                   + ")";
+            sql = "SELECT *FROM Parcela WHERE ( "
+                    + "Perimetro LIKE '" + buscar + "%' OR"
+                    + "TipoTierra LIKE '" + buscar + "%' OR "
+                    + "Estado LIKE '" + buscar + "%' "
+                    + ")";
         }
         String datos[] = new String[4];
 
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 datos[0] = rs.getString("codigoParcela");
                 datos[1] = rs.getString("perimetro");
                 datos[2] = rs.getString("tipoTierra");
@@ -100,6 +100,7 @@ public class ParcelaC {
             Logger.getLogger(LaborC.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     public static String extraerIDMax(){
         String sql ="SELECT MAX(codigoParcela)AS valor FROM Parcela";
         int codigoParcela=0;

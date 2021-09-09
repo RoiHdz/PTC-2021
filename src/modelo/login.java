@@ -1,0 +1,29 @@
+package modelo;
+
+public class login {
+    private String user;
+    private String password;
+
+    public login() {
+        this.user = "";
+        this.password = "";
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
+}

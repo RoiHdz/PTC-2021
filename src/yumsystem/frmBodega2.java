@@ -267,7 +267,7 @@ public class frmBodega2 extends javax.swing.JFrame {
         s.setCantidaMax(Integer.parseInt(this.txtMax.getText()));
         s.setCantidadActual(Integer.parseInt(this.txtAct.getText()));
         
-          if (btnActivo.isSelected() == true) {
+        if (btnActivo.isSelected() == true) {
             s.setEstado("Activo");
         }
         else if (btnInactivo.isSelected()==true) {
@@ -280,28 +280,25 @@ public class frmBodega2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Exitoso");
         }
          else{
-            JOptionPane.showMessageDialog(this, "Error");
+            JOptionPane.showMessageDialog(this, "Error al intentar guardar los datos");
         }
         txtNombre.setText(null);
         txtMarca.setText(null);
         txtAct.setText(null);
-         txtMax.setText(null);
+        txtMax.setText(null);
                                   
     }//GEN-LAST:event_guardarMouseClicked
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-             char c= evt.getKeyChar();
-            if((c<'a' ||c>'z') && (c<'A') |c>'Z')evt.consume(); 
+         
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaxKeyTyped
-          char c= evt.getKeyChar();
-       if(c<'0' ||c>'9')evt.consume();
+        
     }//GEN-LAST:event_txtMaxKeyTyped
 
     private void txtActKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtActKeyTyped
-           char c= evt.getKeyChar();
-       if(c<'0' ||c>'9')evt.consume();
+        
     }//GEN-LAST:event_txtActKeyTyped
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed

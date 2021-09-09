@@ -5,6 +5,8 @@
  */
 package subPanel;
 
+import controlador.PersonalC;
+
 /**
  *
  * @author Rodri
@@ -16,6 +18,8 @@ public class pnlPersonal1 extends javax.swing.JPanel {
      */
     public pnlPersonal1() {
         initComponents();
+        PersonalC c;
+        PersonalC.setListar("");
     }
 
     /**
@@ -38,7 +42,7 @@ public class pnlPersonal1 extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         btnAEspecie = new newscomponents.RSButtonFlat_new();
         jScrollPane1 = new javax.swing.JScrollPane();
-        rSTableMetroCustom1 = new RSMaterialComponent.RSTableMetroCustom();
+        tblPersonal = new RSMaterialComponent.RSTableMetroCustom();
 
         setBackground(new java.awt.Color(225, 232, 193));
 
@@ -92,26 +96,31 @@ public class pnlPersonal1 extends javax.swing.JPanel {
             }
         });
 
-        rSTableMetroCustom1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPersonal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Edad", "DUI", "NIT", "Genero", "Personal", "Estado"
             }
-        ));
-        rSTableMetroCustom1.setBackgoundHead(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
-        rSTableMetroCustom1.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
-        rSTableMetroCustom1.setColorBorderHead(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setColorBorderRows(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setColorPrimaryText(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setColorSecondary(new java.awt.Color(143, 217, 116));
-        rSTableMetroCustom1.setGridColor(new java.awt.Color(91, 180, 98));
-        jScrollPane1.setViewportView(rSTableMetroCustom1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblPersonal.setBackgoundHead(new java.awt.Color(91, 180, 98));
+        tblPersonal.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
+        tblPersonal.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
+        tblPersonal.setColorBorderHead(new java.awt.Color(91, 180, 98));
+        tblPersonal.setColorBorderRows(new java.awt.Color(91, 180, 98));
+        tblPersonal.setColorPrimaryText(new java.awt.Color(91, 180, 98));
+        tblPersonal.setColorSecondary(new java.awt.Color(143, 217, 116));
+        tblPersonal.setGridColor(new java.awt.Color(91, 180, 98));
+        jScrollPane1.setViewportView(tblPersonal);
 
         javax.swing.GroupLayout rSPanelOpacity1Layout = new javax.swing.GroupLayout(rSPanelOpacity1);
         rSPanelOpacity1.setLayout(rSPanelOpacity1Layout);
@@ -120,7 +129,7 @@ public class pnlPersonal1 extends javax.swing.JPanel {
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                 .addComponent(txtBuscarAgricultura, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnAEspecie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +150,7 @@ public class pnlPersonal1 extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel6)))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE))
                 .addContainerGap())
         );
         rSPanelOpacity1Layout.setVerticalGroup(
@@ -149,7 +158,7 @@ public class pnlPersonal1 extends javax.swing.JPanel {
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                 .addGroup(rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscarAgricultura, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAEspecie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,7 +178,7 @@ public class pnlPersonal1 extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rSDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -186,7 +195,7 @@ public class pnlPersonal1 extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rSPanelOpacity1, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                .addComponent(rSPanelOpacity1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -215,7 +224,7 @@ public class pnlPersonal1 extends javax.swing.JPanel {
     private newscomponents.RSDateChooser rSDateChooser1;
     private newscomponents.RSDateChooser rSDateChooser2;
     private newscomponents.RSPanelOpacity rSPanelOpacity1;
-    private RSMaterialComponent.RSTableMetroCustom rSTableMetroCustom1;
+    public static RSMaterialComponent.RSTableMetroCustom tblPersonal;
     private RSMaterialComponent.RSTextFieldOne txtBuscarAgricultura;
     // End of variables declaration//GEN-END:variables
 }

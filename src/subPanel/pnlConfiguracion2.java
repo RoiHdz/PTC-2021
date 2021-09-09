@@ -1,8 +1,8 @@
 package subPanel;
 
 import controlador.LaborC;
+import controlador.MetodoConfigC;
 import yumsystem.frmLabor;
-import yumsystem.frmMetodoAplicacion;
 
 public class pnlConfiguracion2 extends javax.swing.JPanel {
 
@@ -14,6 +14,8 @@ public class pnlConfiguracion2 extends javax.swing.JPanel {
         /*Cambiar el controlador LaborC*/
         LaborC c;
         LaborC.setListar("");
+        MetodoConfigC d;
+        MetodoConfigC.setListar("");
         Pop.add(menu);
         
     }
@@ -139,15 +141,20 @@ public class pnlConfiguracion2 extends javax.swing.JPanel {
 
         tblMetodo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "id", "Metodo aplicacion"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblMetodo.setBackgoundHead(new java.awt.Color(91, 180, 98));
         tblMetodo.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
         tblMetodo.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
@@ -272,6 +279,6 @@ public class pnlConfiguracion2 extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPanel menu;
     public static RSMaterialComponent.RSTableMetroCustom tblLabores;
-    public RSMaterialComponent.RSTableMetroCustom tblMetodo;
+    public static RSMaterialComponent.RSTableMetroCustom tblMetodo;
     // End of variables declaration//GEN-END:variables
 }

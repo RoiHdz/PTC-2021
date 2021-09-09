@@ -80,7 +80,7 @@ public class LaborC {
             sql = modelo.Labor.Listar;
         } else {
             /*Cambiar la consulta*/
-            sql = "SELECT * FROM Parcela WHERE labor LIKE '" + buscar + "%'";
+            sql = "SELECT * FROM Labor WHERE labor LIKE '" + buscar + "%'";
         }
         String datos[] = new String[2];
 

@@ -1,5 +1,7 @@
 package yumsystem;
 
+import javax.swing.JOptionPane;
+
 public class frmVariacion extends javax.swing.JFrame {
 
     /**
@@ -22,11 +24,11 @@ public class frmVariacion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtFNuevaEsp = new RSMaterialComponent.RSTextFieldMaterial();
+        txtVariacion = new RSMaterialComponent.RSTextFieldMaterial();
         rSButtonMaterialOne2 = new RSMaterialComponent.RSButtonMaterialOne();
         rSButtonMaterialOne3 = new RSMaterialComponent.RSButtonMaterialOne();
         jLabel2 = new javax.swing.JLabel();
-        rSComboBox2 = new RSMaterialComponent.RSComboBox();
+        cmbEspecie = new RSMaterialComponent.RSComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -38,12 +40,12 @@ public class frmVariacion extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Agregar nueva variacion:");
 
-        txtFNuevaEsp.setBackground(new java.awt.Color(240, 240, 240));
-        txtFNuevaEsp.setForeground(new java.awt.Color(0, 0, 0));
-        txtFNuevaEsp.setColorMaterial(new java.awt.Color(0, 114, 81));
-        txtFNuevaEsp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtFNuevaEsp.setPhColor(new java.awt.Color(102, 102, 102));
-        txtFNuevaEsp.setPlaceholder("Agregar variacion");
+        txtVariacion.setBackground(new java.awt.Color(240, 240, 240));
+        txtVariacion.setForeground(new java.awt.Color(0, 0, 0));
+        txtVariacion.setColorMaterial(new java.awt.Color(0, 114, 81));
+        txtVariacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtVariacion.setPhColor(new java.awt.Color(102, 102, 102));
+        txtVariacion.setPlaceholder("Agregar variacion");
 
         rSButtonMaterialOne2.setBackground(new java.awt.Color(0, 114, 81));
         rSButtonMaterialOne2.setText("Guardar");
@@ -66,11 +68,11 @@ public class frmVariacion extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Escoger especie:");
 
-        rSComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "invierno" }));
-        rSComboBox2.setColorArrow(new java.awt.Color(0, 114, 81));
-        rSComboBox2.setColorFondo(new java.awt.Color(0, 114, 81));
-        rSComboBox2.setColorSeleccion(new java.awt.Color(0, 114, 81));
-        rSComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cmbEspecie.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "invierno" }));
+        cmbEspecie.setColorArrow(new java.awt.Color(0, 114, 81));
+        cmbEspecie.setColorFondo(new java.awt.Color(0, 114, 81));
+        cmbEspecie.setColorSeleccion(new java.awt.Color(0, 114, 81));
+        cmbEspecie.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -79,7 +81,7 @@ public class frmVariacion extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtFNuevaEsp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtVariacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(rSButtonMaterialOne2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -89,7 +91,7 @@ public class frmVariacion extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(rSComboBox2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cmbEspecie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -98,11 +100,11 @@ public class frmVariacion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFNuevaEsp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtVariacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rSComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rSButtonMaterialOne2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,7 +148,18 @@ public class frmVariacion extends javax.swing.JFrame {
     }//GEN-LAST:event_rSButtonMaterialOne3MouseClicked
 
     private void rSButtonMaterialOne2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonMaterialOne2MouseClicked
-        
+
+        modelo.Variacion s = new modelo.Variacion();
+        s.setVariacion(this.txtVariacion.getText());
+        s.setIdEspecie(1);
+        if (controlador.VariacionC.isRegister(s)) {
+            controlador.VariacionC.setListar("");
+            JOptionPane.showMessageDialog(this, "Exitoso");
+            txtVariacion.setText(null);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Error al ingresar los datos");
+        }
     }//GEN-LAST:event_rSButtonMaterialOne2MouseClicked
 
     /**
@@ -185,13 +198,13 @@ public class frmVariacion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private RSMaterialComponent.RSComboBox cmbEspecie;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private RSMaterialComponent.RSButtonMaterialOne rSButtonMaterialOne2;
     private RSMaterialComponent.RSButtonMaterialOne rSButtonMaterialOne3;
-    private RSMaterialComponent.RSComboBox rSComboBox2;
-    private RSMaterialComponent.RSTextFieldMaterial txtFNuevaEsp;
+    private RSMaterialComponent.RSTextFieldMaterial txtVariacion;
     // End of variables declaration//GEN-END:variables
 }

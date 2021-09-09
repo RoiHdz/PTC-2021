@@ -79,7 +79,7 @@ public class pnlConfiguracion4 extends javax.swing.JPanel {
         rSPanelOpacity1.setBackground(new java.awt.Color(242, 242, 242));
 
         rSPanelOpacity2.setBackground(new java.awt.Color(242, 242, 242));
-        rSPanelOpacity2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2), "Personalizar rol de usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(35, 35, 35))); // NOI18N
+        rSPanelOpacity2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2), "Personalizar rol de usuario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14), new java.awt.Color(0, 0, 0))); // NOI18N
 
         rSButtonFlat_new1.setBackground(new java.awt.Color(76, 164, 86));
         rSButtonFlat_new1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_joyent_30px_2.png"))); // NOI18N
@@ -193,7 +193,7 @@ public class pnlConfiguracion4 extends javax.swing.JPanel {
                 .addGroup(rSPanelOpacity3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox14)
                     .addComponent(jCheckBox15))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         rSComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "RSItem 2", "RSItem 3", "RSItem 4" }));
@@ -293,7 +293,7 @@ public class pnlConfiguracion4 extends javax.swing.JPanel {
                 .addGroup(rSPanelOpacity4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox13)
                     .addComponent(jCheckBox12))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         rSPanelOpacity5.setBackground(new java.awt.Color(242, 242, 242));
@@ -460,7 +460,7 @@ public class pnlConfiguracion4 extends javax.swing.JPanel {
                     .addComponent(jCheckBox20))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox22)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         rSPanelOpacity7.setBackground(new java.awt.Color(242, 242, 242));
@@ -505,7 +505,7 @@ public class pnlConfiguracion4 extends javax.swing.JPanel {
             .addGroup(rSPanelOpacity7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jCheckBox29)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(rSPanelOpacity7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox31)
                     .addComponent(jCheckBox30))
@@ -526,11 +526,11 @@ public class pnlConfiguracion4 extends javax.swing.JPanel {
                         .addComponent(rSComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rSButtonFlat_new1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(rSPanelOpacity4, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                    .addComponent(rSPanelOpacity5, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                    .addComponent(rSPanelOpacity6, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                    .addComponent(rSPanelOpacity7, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-                    .addComponent(rSPanelOpacity3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE))
+                    .addComponent(rSPanelOpacity4, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+                    .addComponent(rSPanelOpacity5, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+                    .addComponent(rSPanelOpacity6, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+                    .addComponent(rSPanelOpacity7, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+                    .addComponent(rSPanelOpacity3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE))
                 .addContainerGap())
         );
         rSPanelOpacity2Layout.setVerticalGroup(
@@ -560,14 +560,14 @@ public class pnlConfiguracion4 extends javax.swing.JPanel {
             rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rSPanelOpacity2, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                .addComponent(rSPanelOpacity2, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
                 .addContainerGap())
         );
         rSPanelOpacity1Layout.setVerticalGroup(
             rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rSPanelOpacity2, javax.swing.GroupLayout.DEFAULT_SIZE, 943, Short.MAX_VALUE)
+                .addComponent(rSPanelOpacity2, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
