@@ -39,7 +39,7 @@ public class pnlPersonal2 extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         btnAEspecie = new newscomponents.RSButtonFlat_new();
         jScrollPane1 = new javax.swing.JScrollPane();
-        rSTableMetroCustom1 = new RSMaterialComponent.RSTableMetroCustom();
+        tblRegistro = new RSMaterialComponent.RSTableMetroCustom();
 
         setBackground(new java.awt.Color(225, 232, 193));
 
@@ -90,26 +90,31 @@ public class pnlPersonal2 extends javax.swing.JPanel {
             }
         });
 
-        rSTableMetroCustom1.setModel(new javax.swing.table.DefaultTableModel(
+        tblRegistro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Labor", "Personal", "Hora"
             }
-        ));
-        rSTableMetroCustom1.setBackgoundHead(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
-        rSTableMetroCustom1.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
-        rSTableMetroCustom1.setColorBorderHead(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setColorBorderRows(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setColorPrimaryText(new java.awt.Color(91, 180, 98));
-        rSTableMetroCustom1.setColorSecondary(new java.awt.Color(143, 217, 116));
-        rSTableMetroCustom1.setGridColor(new java.awt.Color(91, 180, 98));
-        jScrollPane1.setViewportView(rSTableMetroCustom1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblRegistro.setBackgoundHead(new java.awt.Color(91, 180, 98));
+        tblRegistro.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
+        tblRegistro.setBorderRows(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
+        tblRegistro.setColorBorderHead(new java.awt.Color(91, 180, 98));
+        tblRegistro.setColorBorderRows(new java.awt.Color(91, 180, 98));
+        tblRegistro.setColorPrimaryText(new java.awt.Color(91, 180, 98));
+        tblRegistro.setColorSecondary(new java.awt.Color(143, 217, 116));
+        tblRegistro.setGridColor(new java.awt.Color(91, 180, 98));
+        jScrollPane1.setViewportView(tblRegistro);
 
         javax.swing.GroupLayout rSPanelOpacity1Layout = new javax.swing.GroupLayout(rSPanelOpacity1);
         rSPanelOpacity1.setLayout(rSPanelOpacity1Layout);
@@ -231,7 +236,7 @@ public class pnlPersonal2 extends javax.swing.JPanel {
     private newscomponents.RSDateChooser rSDateChooser1;
     private newscomponents.RSDateChooser rSDateChooser2;
     private newscomponents.RSPanelOpacity rSPanelOpacity1;
-    private RSMaterialComponent.RSTableMetroCustom rSTableMetroCustom1;
+    public static RSMaterialComponent.RSTableMetroCustom tblRegistro;
     private RSMaterialComponent.RSTextFieldOne txtBuscarAgricultura;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +18,7 @@ public class UsuarioC {
     private static PreparedStatement ps = null;
     private static pnlConfiguracion3 vista;
     private static ResultSet rs = null;
+    private static Statement st;
     
     public static boolean isRegister(modelo.Usuario l) {
         String sql = modelo.Usuario.Registar;
@@ -145,5 +147,22 @@ public class UsuarioC {
             Logger.getLogger(UsuarioC.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+    }
+    
+    public ArrayList<modelo.Usuario> getUsuario(){
+        ArrayList<modelo.Usuario> lista = new ArrayList<>();
+        try {
+            st = conexion.createStatement();
+            rs = st.executeQuery("SELECT * FROM Rol");
+            while(rs.next()){
+                modelo.Usuario usuario = new modelo.Usuario();
+                usuario.setIdRl(rs.getInt("idRol"));
+                usuario.setRol(rs.getString("rol"));
+                lista.add(usuario);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
     }
 }

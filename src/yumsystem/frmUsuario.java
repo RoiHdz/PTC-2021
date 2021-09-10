@@ -1,6 +1,7 @@
 package yumsystem;
 
 import controlador.UsuarioC;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.hash;
 import subPanel.pnlConfiguracion3;
@@ -10,8 +11,18 @@ public class frmUsuario extends javax.swing.JFrame {
     public frmUsuario() {
         initComponents();
         setLocationRelativeTo(null);
+        rol();
     }
-
+    
+    public void rol(){
+        UsuarioC ctl = new UsuarioC();
+        ArrayList<modelo.Usuario>lista = ctl.getUsuario();
+        cmbRol.removeAllItems();
+        for (int i = 0; i < lista.size(); i++) {
+            cmbRol.addItem(new modelo.Usuario(lista.get(i).getIdRl(), lista.get(i).getRol()));
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,7 +52,6 @@ public class frmUsuario extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(242, 242, 242));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre:");
 
         txtNombre.setBackground(new java.awt.Color(240, 240, 240));
@@ -70,7 +80,6 @@ public class frmUsuario extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Correo electronico:");
 
         txtApellido.setBackground(new java.awt.Color(240, 240, 240));
@@ -81,11 +90,9 @@ public class frmUsuario extends javax.swing.JFrame {
         txtApellido.setPlaceholder("Agregar apellido");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Apellido:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Rol del usuario:");
 
         cmbRol.setColorArrow(new java.awt.Color(0, 114, 81));
@@ -106,7 +113,6 @@ public class frmUsuario extends javax.swing.JFrame {
         txtEmail.setPlaceholder("correoelectronico@ejemplo.com");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Username:");
 
         txtUser.setBackground(new java.awt.Color(240, 240, 240));
@@ -117,7 +123,6 @@ public class frmUsuario extends javax.swing.JFrame {
         txtUser.setPlaceholder("Nombre de usuario");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Contraseña:");
 
         txtPass.setBackground(new java.awt.Color(240, 240, 240));
@@ -235,6 +240,7 @@ public class frmUsuario extends javax.swing.JFrame {
         s.setNombre(this.txtNombre.getText());
         s.setApellido(this.txtApellido.getText());
         s.setEmail(this.txtEmail.getText());
+        int rol =  cmbRol.getSelectedIndex();
         s.setIdRol(1);
         s.setUsername(this.txtUser.getText());
         s.setPassword(hash.sh1(txtPass.getText()));
@@ -244,14 +250,13 @@ public class frmUsuario extends javax.swing.JFrame {
                 || txtEmail.getText().equals("")
                 || txtUser.getText().equals("")
                 || txtPass.getText().equals("")) {
-
             JOptionPane.showMessageDialog(this, "Ningun campo puede estar vacio");
+            JOptionPane.showMessageDialog(this, rol);
 
         } else {
             if (UsuarioC.existe(txtUser.getText()) == 0) {
                 
                 if (controlador.UsuarioC.isRegister(s)) {
-                    /*Cambiar el controlador LaborC*/
                     controlador.UsuarioC.setListar("");
                     JOptionPane.showMessageDialog(this, "Exitoso");
                     limpiar();

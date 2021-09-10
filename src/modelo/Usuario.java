@@ -1,20 +1,34 @@
 package modelo;
 
 public class Usuario {
+
     private int idUsuario;
     private String username;
     private String nombre;
     private String apellido;
     private String email;
-    private String password;    
-    private String pass;
+    private String password;
     private int idRol;
-    
+    private int idRl;
+    private String rol;
+
     public static String Listar = "SELECT CONCAT(nombre, ' ' , apellido) AS 'Nombre', username, email, idRol FROM Usuarios";
     public static String Registar = "INSERT INTO Usuarios VALUES (?,?,?,?,?,?)";
     public static String Actualizar = "UPDATE Usuarios SET username = ?, nombre=?, apellido = ?, email = ?, contrasenia = ?, idRol=? WHERE idUsuario= ?";
     public static String Eliminar = "DELETE FROM Usuarios WHERE idUsuario=?";
+
+    public Usuario() {
+    }
+
+    public Usuario(int idRl, String rol) {
+        this.idRl = idRl;
+        this.rol = rol;
+    }
+
     
+
+    
+
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -71,13 +85,23 @@ public class Usuario {
         this.idRol = idRol;
     }
 
-    public String getPass() {
-        return pass;
+    public int getIdRl() {
+        return idRl;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setIdRl(int idRl) {
+        this.idRl = idRl;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
     
-    
+    public String toString(){
+        return rol;
+    }
 }
