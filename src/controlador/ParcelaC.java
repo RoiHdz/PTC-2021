@@ -79,9 +79,7 @@ public class ParcelaC {
             /*Cambiar la consulta*/
             sql = "SELECT *FROM Parcela WHERE ( "
                     + "Perimetro LIKE '" + buscar + "%' OR"
-                    + "TipoTierra LIKE '" + buscar + "%' OR "
-                    + "Estado LIKE '" + buscar + "%' "
-                    + ")";
+                    + "codigoParcela LIKE '" + buscar + "%' ";
         }
         String datos[] = new String[4];
 
