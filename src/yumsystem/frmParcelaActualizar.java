@@ -3,12 +3,14 @@ package yumsystem;
 import javax.swing.JOptionPane;
 import modelo.Parcela;
 
+
 public class frmParcelaActualizar extends javax.swing.JFrame {
 
     public frmParcelaActualizar() {
         initComponents();
         setLocationRelativeTo(null);
-
+       
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -235,29 +237,33 @@ public class frmParcelaActualizar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
-
+         
         if (txtPerimetro1.getText().equals("") || txtTipot.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Porfavor llene todos los datos");
-
-        } else {
-            /*Cambiar el modelo*/
-            modelo.Parcela act = new modelo.Parcela();
-            /*Aplicar los set correspondientes al modelo*/
-            act.setCodigoParcela(Integer.parseInt(this.lbID.getText()));
-            act.setPerimetro(Double.parseDouble(this.txtPerimetro1.getText()));
-            act.setTipoTierra(this.txtTipot.getText());
-            act.setEstado(this.cmbEstado.getSelectedItem().toString());
-            /*Cambiar el controlador LaborC*/
-            if (controlador.ParcelaC.isUpdate(act)) {
-                /*Cambiar el controlador LaborC*/
-                controlador.ParcelaC.setListar("");
-                JOptionPane.showMessageDialog(this, "Datos Actualizados con Exito");
-            } else {
-                JOptionPane.showMessageDialog(this, "Error al Actualizar Porfavor llene todos los datos");
-            }
-
+          JOptionPane.showMessageDialog(this, "Porfavor llene todos los datos");  
+        
+        
         }
-
+        else{
+          /*Cambiar el modelo*/
+        modelo.Parcela act = new modelo.Parcela();
+        /*Aplicar los set correspondientes al modelo*/
+        act.setCodigoParcela(Integer.parseInt(this.lbID.getText()));
+        act.setPerimetro(Double.parseDouble(this.txtPerimetro1.getText()));
+        act.setTipoTierra(this.txtTipot.getText());
+        act.setEstado(this.cmbEstado.getSelectedItem().toString());
+        /*Cambiar el controlador LaborC*/
+        if (controlador.ParcelaC.isUpdate(act)) {
+            /*Cambiar el controlador LaborC*/
+            controlador.ParcelaC.setListar("");
+            JOptionPane.showMessageDialog(this, "Datos Actualizados con Exito");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Error al Actualizar Porfavor llene todos los datos");
+        }
+     
+        
+        }
+       
     }//GEN-LAST:event_btnGuardarMouseClicked
 
     private void txtTipotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipotActionPerformed
@@ -271,23 +277,27 @@ public class frmParcelaActualizar extends javax.swing.JFrame {
 
     private void txtPerimetro1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPerimetro1KeyTyped
         // validacion solo numeros
-
-        if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
-
+        
+        if (!Character.isDigit(evt.getKeyChar())&& evt.getKeyChar()!='.') {
+            
             evt.consume();
         }
-
+      
+        
+        
+        
+        
+       
         /*char c= evt.getKeyChar();
        if(c<'0' ||c>'9')  evt.consume(); */
-
+           
+        
     }//GEN-LAST:event_txtPerimetro1KeyTyped
 
     private void txtTipotKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipotKeyTyped
-        char c = evt.getKeyChar();
-        if ((c < 'a' || c > 'z') && (c < 'A') | c > 'Z') {
-            evt.consume();
-        }
-
+            char c= evt.getKeyChar();
+            if((c<'a' ||c>'z') && (c<'A') |c>'Z')evt.consume(); 
+       
     }//GEN-LAST:event_txtTipotKeyTyped
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -323,6 +333,8 @@ public class frmParcelaActualizar extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(frmParcelaActualizar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

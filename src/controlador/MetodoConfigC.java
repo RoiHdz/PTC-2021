@@ -83,7 +83,7 @@ public class MetodoConfigC {
             }
         } catch (SQLException ex) {
             /*Cambiar LaborC*/
-            Logger.getLogger(LaborC.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MetodoConfigC.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

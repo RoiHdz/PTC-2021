@@ -125,7 +125,7 @@ public class frmMetodoAplicacion extends javax.swing.JFrame {
         modelo.MetodoConfig s = new modelo.MetodoConfig();
         s.setMetodo(this.txtMetodo.getText());
         if (controlador.MetodoConfigC.isRegister(s)) {
-            controlador.VariacionC.setListar("");
+            controlador.MetodoConfigC.setListar("");
             JOptionPane.showMessageDialog(this, "Exitoso");
             txtMetodo.setText(null);
         }

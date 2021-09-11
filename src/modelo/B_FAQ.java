@@ -5,32 +5,28 @@
  */
 package modelo;
 
-/**
- *
- * @author danie
- */
+   
 public class B_FAQ {
-
-    private int id_BFAQ;
+    private int idFAQ;
     private String Nombre;
-    private double cantidad_Max;
-    private double cantidad_Actual;
-    private String Tipo;
-    private String Estado;
-
+    private double cantidadMax;
+    private double cantidadActual;
+     private String Tipo;     
+    private String Estado;  
+     
 
     /*Cambiar la tabla y campos en las consultas*/
-    public static String Listar = "SELECT nombre, cantidadMax, cantidadActual, tipo, Estado FROM B_FAQ";
+    public static String Listar = "SELECT * FROM B_FAQ";
     public static String Registar = "INSERT INTO B_FAQ VALUES(?,?,?,?,?)";
-    public static String Actualizar = "UPDATE B_FAQ SET Nombre,  cantidad_Max, cantidad_Actual,Estado,Tipo WHERE id_FAQ=?";
+    public static String Actualizar = "UPDATE B_FAQ SET Nombre=?,  cantidadMax=?, cantidadActual=?,Estado=?,Tipo=? WHERE idFAQ=?";
     public static String Elimidar = "DELETE from B_Maquinaria WHERE id_BMa=?";
 
-    public int getId_BFAQ() {
-        return id_BFAQ;
+    public int getidFAQ() {
+        return idFAQ;
     }
 
-    public void setId_BFAQ(int id_BFAQ) {
-        this.id_BFAQ = id_BFAQ;
+    public void setidFAQ(int idFAQ) {
+        this.idFAQ = idFAQ;
     }
 
     public String getNombre() {
@@ -41,25 +37,28 @@ public class B_FAQ {
         this.Nombre = Nombre;
     }
 
-    public double getCantidad_Max() {
-        return cantidad_Max;
+    public double getCantidadMax() {
+        return cantidadMax;
     }
 
-    public void setCantidad_Max(double cantidad_Max) {
-        this.cantidad_Max = cantidad_Max;
+    public void setCantidadMax(double cantidadMax) {
+        this.cantidadMax = cantidadMax;
     }
 
-    public double getCantidad_Actual() {
-        return cantidad_Actual;
+    public double getCantidadActual() {
+        return cantidadActual;
     }
 
-    public void setCantidad_Actual(double cantidad_Actual) {
-        this.cantidad_Actual = cantidad_Actual;
+    public void setCantidadActual(double cantidadActual) {
+        this.cantidadActual = cantidadActual;
     }
 
-    public void setCantidad_Actual(int cantidad_Actual) {
-        this.cantidad_Actual = cantidad_Actual;
+
+
+    public void setCantidadActual(int cantidadActual) {
+        this.cantidadActual = cantidadActual;
     }
+
 
     public String getTipo() {
         return Tipo;
@@ -76,5 +75,6 @@ public class B_FAQ {
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
+
 
 }

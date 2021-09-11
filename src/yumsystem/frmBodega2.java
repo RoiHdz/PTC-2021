@@ -2,6 +2,8 @@ package yumsystem;
 
 import javax.swing.JOptionPane;
 import modelo.Bodega2;
+import static yumsystem.frmBodega2.lbID;
+
 
 /**
  *
@@ -15,6 +17,7 @@ public class frmBodega2 extends javax.swing.JFrame {
     public frmBodega2() {
         initComponents();
         setLocationRelativeTo(null);
+        this.lbID.setText(controlador.Bodega2C.extraerIDMax());
     }
 
     /**
@@ -40,8 +43,10 @@ public class frmBodega2 extends javax.swing.JFrame {
         txtMax = new RSMaterialComponent.RSTextFieldMaterial();
         jLabel4 = new javax.swing.JLabel();
         txtAct = new RSMaterialComponent.RSTextFieldMaterial();
-        btnActivo = new RSMaterialComponent.RSRadioButtonMaterial();
-        btnInactivo = new RSMaterialComponent.RSRadioButtonMaterial();
+        cmbEstado = new RSMaterialComponent.RSComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        lbID = new javax.swing.JLabel();
+        lblRegistro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -87,7 +92,7 @@ public class frmBodega2 extends javax.swing.JFrame {
         });
 
         guardar.setBackground(new java.awt.Color(0, 114, 81));
-        guardar.setText("Guardar");
+        guardar.setText("Registrar");
         guardar.setBackgroundHover(new java.awt.Color(0, 114, 81));
         guardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -140,17 +145,22 @@ public class frmBodega2 extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(btnActivo);
-        btnActivo.setForeground(new java.awt.Color(0, 114, 81));
-        btnActivo.setText("Activo");
-        btnActivo.setColorCheck(new java.awt.Color(122, 201, 104));
-        btnActivo.setColorUnCheck(new java.awt.Color(0, 114, 81));
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
+        cmbEstado.setColorArrow(new java.awt.Color(0, 114, 81));
+        cmbEstado.setColorFondo(new java.awt.Color(0, 114, 81));
+        cmbEstado.setColorSeleccion(new java.awt.Color(0, 114, 81));
+        cmbEstado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        buttonGroup1.add(btnInactivo);
-        btnInactivo.setForeground(new java.awt.Color(0, 114, 81));
-        btnInactivo.setText("Inactivo");
-        btnInactivo.setColorCheck(new java.awt.Color(122, 201, 104));
-        btnInactivo.setColorUnCheck(new java.awt.Color(0, 114, 81));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("ID Maquinaria:");
+
+        lbID.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        lbID.setForeground(new java.awt.Color(0, 114, 81));
+        lbID.setText("ID");
+
+        lblRegistro.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        lblRegistro.setForeground(new java.awt.Color(0, 114, 81));
+        lblRegistro.setText("REGISTRAR MAQUINARIA");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -164,55 +174,70 @@ public class frmBodega2 extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnexit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
-                                .addComponent(btnInactivo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel7)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
+                                .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel5)
+                                .addGap(24, 24, 24)
+                                .addComponent(lbID)))
+                        .addGap(0, 80, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(jLabel3)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addComponent(lblRegistro)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(lblRegistro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4))
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInactivo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(lbID))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnexit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -259,20 +284,26 @@ public class frmBodega2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnexitMouseClicked
 
     private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
-        /*Cambiar el modelo*/
+   
+          if (txtNombre.getText().equals("") || txtMarca.getText().equals("")
+          || txtAct.getText().equals("")  || txtMax.getText().equals("")      
+                             
+                  ) {
+          JOptionPane.showMessageDialog(this, "Porfavor llene todos los datos");  
+        
+        
+        }
+        else{    
+        
         modelo.Bodega2 s = new modelo.Bodega2();
         /*Aplicar los set correspondientes al modelo*/
         s.setNombre(this.txtNombre.getText());
         s.setMarca(this.txtMarca.getText());
-        s.setCantidaMax(Integer.parseInt(this.txtMax.getText()));
+        s.setCantidadMax(Integer.parseInt(this.txtMax.getText()));
         s.setCantidadActual(Integer.parseInt(this.txtAct.getText()));
+        s.setEstado(this.cmbEstado.getSelectedItem().toString());
         
-        if (btnActivo.isSelected() == true) {
-            s.setEstado("Activo");
-        }
-        else if (btnInactivo.isSelected()==true) {
-            s.setEstado("Inactivo");
-        }
+     
         /*Cambiar el controlador LaborC*/
         if (controlador.Bodega2C.isRegister(s)) {
             /*Cambiar el controlador LaborC*/
@@ -280,25 +311,28 @@ public class frmBodega2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Exitoso");
         }
          else{
-            JOptionPane.showMessageDialog(this, "Error al intentar guardar los datos");
+            JOptionPane.showMessageDialog(this, "Error");
         }
         txtNombre.setText(null);
         txtMarca.setText(null);
         txtAct.setText(null);
-        txtMax.setText(null);
-                                  
+         txtMax.setText(null);
+       }                             
     }//GEN-LAST:event_guardarMouseClicked
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-         
+             char c= evt.getKeyChar();
+            if((c<'a' ||c>'z') && (c<'A') |c>'Z')evt.consume(); 
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaxKeyTyped
-        
+          char c= evt.getKeyChar();
+       if(c<'0' ||c>'9')evt.consume();
     }//GEN-LAST:event_txtMaxKeyTyped
 
     private void txtActKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtActKeyTyped
-        
+           char c= evt.getKeyChar();
+       if(c<'0' ||c>'9')evt.consume();
     }//GEN-LAST:event_txtActKeyTyped
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
@@ -331,6 +365,7 @@ public class frmBodega2 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(frmBodega2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -341,21 +376,23 @@ public class frmBodega2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private RSMaterialComponent.RSRadioButtonMaterial btnActivo;
-    private RSMaterialComponent.RSRadioButtonMaterial btnInactivo;
     private RSMaterialComponent.RSButtonMaterialOne btnexit;
     private javax.swing.ButtonGroup buttonGroup1;
+    public static RSMaterialComponent.RSComboBox cmbEstado;
     private RSMaterialComponent.RSButtonMaterialOne guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private RSMaterialComponent.RSTextFieldMaterial txtAct;
-    private RSMaterialComponent.RSTextFieldMaterial txtMarca;
-    private RSMaterialComponent.RSTextFieldMaterial txtMax;
-    private RSMaterialComponent.RSTextFieldMaterial txtNombre;
+    public static javax.swing.JLabel lbID;
+    private javax.swing.JLabel lblRegistro;
+    public static RSMaterialComponent.RSTextFieldMaterial txtAct;
+    public static RSMaterialComponent.RSTextFieldMaterial txtMarca;
+    public static RSMaterialComponent.RSTextFieldMaterial txtMax;
+    public static RSMaterialComponent.RSTextFieldMaterial txtNombre;
     // End of variables declaration//GEN-END:variables
 }

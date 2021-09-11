@@ -77,51 +77,63 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblPersonalRiego" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtMax" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
-                                          <Component id="lblFechaRiego" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblHoraRiego" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblHoraRiego1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtAct" min="-2" pref="144" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
+                              <Component id="txtFER" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="btnFER" min="-2" pref="122" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnAGRO" min="-2" pref="128" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="guardar" min="-2" pref="156" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnCancelarRiego1" min="-2" pref="163" max="-2" attributes="0"/>
+                                      <Component id="txtMax" min="-2" pref="144" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="txtAct" min="-2" pref="144" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="lblPersonalRiego1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="btnActivo" min="-2" pref="107" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="btnInactivo" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="guardar" min="-2" pref="156" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btnCancelarRiego1" min="-2" pref="163" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="cmbFer" alignment="0" min="-2" pref="183" max="-2" attributes="0"/>
+                                                  <Component id="lblPersonalRiego" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="lblPersonalRiego1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cmbEstado" min="-2" pref="103" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblHoraRiego" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="lblHoraRiego2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="lblFechaRiego" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblHoraRiego1" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="lbID3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="279" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="lblRegistro" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -129,34 +141,37 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblFechaRiego" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblRegistro" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblHoraRiego1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbID3" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtNombre" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="lblFechaRiego" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="txtFER" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblHoraRiego" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblHoraRiego1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblHoraRiego2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtMax" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtAct" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblPersonalRiego" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnFER" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="btnAGRO" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="lblPersonalRiego" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPersonalRiego1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblPersonalRiego1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnInactivo" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                          <Component id="btnActivo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="cmbFer" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="guardar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnCancelarRiego1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -175,7 +190,7 @@
                 <Property name="text" type="java.lang.String" value="Nombre:"/>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSTextFieldMaterial" name="txtNombre">
+            <Component class="RSMaterialComponent.RSTextFieldMaterial" name="txtFER">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="f2" green="f2" red="f2" type="rgb"/>
@@ -198,8 +213,8 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreActionPerformed"/>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreKeyTyped"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFERActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFERKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblHoraRiego">
@@ -249,7 +264,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="51" green="72" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Guardar"/>
+                <Property name="text" type="java.lang.String" value="Registrar"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="guardarMouseClicked"/>
@@ -295,46 +310,9 @@
             <Component class="javax.swing.JLabel" name="lblHoraRiego1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
+                  <Font name="Segoe UI" size="14" style="3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Cantidad Actual:"/>
-              </Properties>
-            </Component>
-            <Component class="RSMaterialComponent.RSRadioButtonMaterial" name="btnAGRO">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="51" green="72" red="0" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Agroquimico"/>
-                <Property name="colorCheck" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="68" green="c9" red="7a" type="rgb"/>
-                </Property>
-                <Property name="colorUnCheck" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="51" green="72" red="0" type="rgb"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAGROActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="RSMaterialComponent.RSRadioButtonMaterial" name="btnFER">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="51" green="72" red="0" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Fertilizante"/>
-                <Property name="colorCheck" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="68" green="c9" red="7a" type="rgb"/>
-                </Property>
-                <Property name="colorUnCheck" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="51" green="72" red="0" type="rgb"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="ID"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblPersonalRiego1">
@@ -345,39 +323,105 @@
                 <Property name="text" type="java.lang.String" value="Estado"/>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSRadioButtonMaterial" name="btnActivo">
+            <Component class="RSMaterialComponent.RSComboBox" name="cmbFer">
               <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup2"/>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="3">
+                    <StringItem index="0" value="Fertilizante "/>
+                    <StringItem index="1" value="Agroquimico"/>
+                    <StringItem index="2" value=" "/>
+                  </StringArray>
                 </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="51" green="72" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Activo"/>
-                <Property name="colorCheck" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="68" green="c9" red="7a" type="rgb"/>
-                </Property>
-                <Property name="colorUnCheck" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                <Property name="colorFondo" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="51" green="72" red="0" type="rgb"/>
                 </Property>
+                <Property name="colorSeleccion" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="51" green="72" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
+            </Component>
+            <Component class="RSMaterialComponent.RSComboBox" name="cmbEstado">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="2">
+                    <StringItem index="0" value="Activo"/>
+                    <StringItem index="1" value="Inactivo"/>
+                  </StringArray>
+                </Property>
+                <Property name="colorArrow" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="51" green="72" red="0" type="rgb"/>
+                </Property>
+                <Property name="colorFondo" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="51" green="72" red="0" type="rgb"/>
+                </Property>
+                <Property name="colorSeleccion" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="51" green="72" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblHoraRiego2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cantidad Actual:"/>
               </Properties>
             </Component>
-            <Component class="RSMaterialComponent.RSRadioButtonMaterial" name="btnInactivo">
+            <Component class="javax.swing.JLabel" name="lblRegistro">
               <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="buttonGroup2"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="18" style="3"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="51" green="72" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Inactivo"/>
-                <Property name="colorCheck" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="68" green="c9" red="7a" type="rgb"/>
+                <Property name="text" type="java.lang.String" value="Registrar FAQ"/>
+              </Properties>
+            </Component>
+            <Component class="RSMaterialComponent.RSTextFieldMaterial" name="lbID3">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f2" green="f2" red="f2" type="rgb"/>
                 </Property>
-                <Property name="colorUnCheck" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="51" green="72" red="0" type="rgb"/>
+                </Property>
+                <Property name="colorMaterial" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="51" green="72" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="phColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="66" red="66" type="rgb"/>
+                </Property>
+                <Property name="placeholder" type="java.lang.String" value="ID"/>
+                <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="51" green="72" red="0" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lbID3ActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

@@ -3,6 +3,8 @@ package yumsystem;
 import javax.swing.JOptionPane;
 import modelo.B_FAQ;
 import controlador.B_FAQC;
+import static yumsystem.frmParcela.lbID;
+import static yumsystem.frmParcela.txtPerimetro1;
 
 public class frmBodega3 extends javax.swing.JFrame {
 
@@ -11,7 +13,8 @@ public class frmBodega3 extends javax.swing.JFrame {
      */
     public frmBodega3() {
         initComponents();
-        setLocationRelativeTo(null);
+          setLocationRelativeTo(null);
+          this.lbID3.setText(controlador.B_FAQC.extraerIDMax());
     }
 
     /**
@@ -28,7 +31,7 @@ public class frmBodega3 extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblFechaRiego = new javax.swing.JLabel();
-        txtNombre = new RSMaterialComponent.RSTextFieldMaterial();
+        txtFER = new RSMaterialComponent.RSTextFieldMaterial();
         lblHoraRiego = new javax.swing.JLabel();
         lblPersonalRiego = new javax.swing.JLabel();
         txtMax = new RSMaterialComponent.RSTextFieldMaterial();
@@ -36,11 +39,12 @@ public class frmBodega3 extends javax.swing.JFrame {
         btnCancelarRiego1 = new newscomponents.RSButtonFlat_new();
         txtAct = new RSMaterialComponent.RSTextFieldMaterial();
         lblHoraRiego1 = new javax.swing.JLabel();
-        btnAGRO = new RSMaterialComponent.RSRadioButtonMaterial();
-        btnFER = new RSMaterialComponent.RSRadioButtonMaterial();
         lblPersonalRiego1 = new javax.swing.JLabel();
-        btnActivo = new RSMaterialComponent.RSRadioButtonMaterial();
-        btnInactivo = new RSMaterialComponent.RSRadioButtonMaterial();
+        cmbFer = new RSMaterialComponent.RSComboBox();
+        cmbEstado = new RSMaterialComponent.RSComboBox();
+        lblHoraRiego2 = new javax.swing.JLabel();
+        lblRegistro = new javax.swing.JLabel();
+        lbID3 = new RSMaterialComponent.RSTextFieldMaterial();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -50,21 +54,21 @@ public class frmBodega3 extends javax.swing.JFrame {
         lblFechaRiego.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblFechaRiego.setText("Nombre:");
 
-        txtNombre.setBackground(new java.awt.Color(242, 242, 242));
-        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
-        txtNombre.setColorMaterial(new java.awt.Color(0, 114, 81));
-        txtNombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtNombre.setPhColor(new java.awt.Color(102, 102, 102));
-        txtNombre.setPlaceholder("Fertilizante y agroquimico");
-        txtNombre.setSelectionColor(new java.awt.Color(0, 114, 81));
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+        txtFER.setBackground(new java.awt.Color(242, 242, 242));
+        txtFER.setForeground(new java.awt.Color(0, 0, 0));
+        txtFER.setColorMaterial(new java.awt.Color(0, 114, 81));
+        txtFER.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtFER.setPhColor(new java.awt.Color(102, 102, 102));
+        txtFER.setPlaceholder("Fertilizante y agroquimico");
+        txtFER.setSelectionColor(new java.awt.Color(0, 114, 81));
+        txtFER.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
+                txtFERActionPerformed(evt);
             }
         });
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtFER.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
+                txtFERKeyTyped(evt);
             }
         });
 
@@ -88,7 +92,7 @@ public class frmBodega3 extends javax.swing.JFrame {
         });
 
         guardar.setBackground(new java.awt.Color(0, 114, 81));
-        guardar.setText("Guardar");
+        guardar.setText("Registrar");
         guardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 guardarMouseClicked(evt);
@@ -116,40 +120,44 @@ public class frmBodega3 extends javax.swing.JFrame {
             }
         });
 
-        lblHoraRiego1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblHoraRiego1.setText("Cantidad Actual:");
-
-        buttonGroup1.add(btnAGRO);
-        btnAGRO.setForeground(new java.awt.Color(0, 114, 81));
-        btnAGRO.setText("Agroquimico");
-        btnAGRO.setColorCheck(new java.awt.Color(122, 201, 104));
-        btnAGRO.setColorUnCheck(new java.awt.Color(0, 114, 81));
-        btnAGRO.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAGROActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(btnFER);
-        btnFER.setForeground(new java.awt.Color(0, 114, 81));
-        btnFER.setText("Fertilizante");
-        btnFER.setColorCheck(new java.awt.Color(122, 201, 104));
-        btnFER.setColorUnCheck(new java.awt.Color(0, 114, 81));
+        lblHoraRiego1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        lblHoraRiego1.setText("ID");
 
         lblPersonalRiego1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblPersonalRiego1.setText("Estado");
 
-        buttonGroup2.add(btnActivo);
-        btnActivo.setForeground(new java.awt.Color(0, 114, 81));
-        btnActivo.setText("Activo");
-        btnActivo.setColorCheck(new java.awt.Color(122, 201, 104));
-        btnActivo.setColorUnCheck(new java.awt.Color(0, 114, 81));
+        cmbFer.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fertilizante ", "Agroquimico", " " }));
+        cmbFer.setColorArrow(new java.awt.Color(0, 114, 81));
+        cmbFer.setColorFondo(new java.awt.Color(0, 114, 81));
+        cmbFer.setColorSeleccion(new java.awt.Color(0, 114, 81));
+        cmbFer.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        buttonGroup2.add(btnInactivo);
-        btnInactivo.setForeground(new java.awt.Color(0, 114, 81));
-        btnInactivo.setText("Inactivo");
-        btnInactivo.setColorCheck(new java.awt.Color(122, 201, 104));
-        btnInactivo.setColorUnCheck(new java.awt.Color(0, 114, 81));
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
+        cmbEstado.setColorArrow(new java.awt.Color(0, 114, 81));
+        cmbEstado.setColorFondo(new java.awt.Color(0, 114, 81));
+        cmbEstado.setColorSeleccion(new java.awt.Color(0, 114, 81));
+        cmbEstado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        lblHoraRiego2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblHoraRiego2.setText("Cantidad Actual:");
+
+        lblRegistro.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        lblRegistro.setForeground(new java.awt.Color(0, 114, 81));
+        lblRegistro.setText("Registrar FAQ");
+
+        lbID3.setEditable(false);
+        lbID3.setBackground(new java.awt.Color(242, 242, 242));
+        lbID3.setForeground(new java.awt.Color(0, 114, 81));
+        lbID3.setColorMaterial(new java.awt.Color(0, 114, 81));
+        lbID3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbID3.setPhColor(new java.awt.Color(102, 102, 102));
+        lbID3.setPlaceholder("ID");
+        lbID3.setSelectionColor(new java.awt.Color(0, 114, 81));
+        lbID3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lbID3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,68 +167,78 @@ public class frmBodega3 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblPersonalRiego)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblFechaRiego)
-                                    .addComponent(lblHoraRiego))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblHoraRiego1)
-                                    .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txtFER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnFER, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAGRO, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCancelarRiego1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblPersonalRiego1)
+                                .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnInactivo, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnCancelarRiego1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cmbFer, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblPersonalRiego))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblPersonalRiego1)
+                                            .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 10, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblHoraRiego)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblHoraRiego2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblFechaRiego)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblHoraRiego1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lbID3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 279, Short.MAX_VALUE))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(lblRegistro)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblFechaRiego)
+                .addComponent(lblRegistro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblHoraRiego1)
+                    .addComponent(lbID3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
+                .addComponent(lblFechaRiego)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtFER, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblHoraRiego)
-                    .addComponent(lblHoraRiego1))
+                    .addComponent(lblHoraRiego2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblPersonalRiego)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFER, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAGRO, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblPersonalRiego1)
-                .addGap(9, 9, 9)
+                    .addComponent(lblPersonalRiego)
+                    .addComponent(lblPersonalRiego1))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInactivo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActivo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                    .addComponent(cmbFer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarRiego1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -258,9 +276,9 @@ public class frmBodega3 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+    private void txtFERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFERActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
+    }//GEN-LAST:event_txtFERActionPerformed
 
     private void btnCancelarRiego1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarRiego1MouseClicked
         this.dispose();
@@ -268,59 +286,63 @@ public class frmBodega3 extends javax.swing.JFrame {
 
     private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
         /*Cambiar el modelo*/
+        
+            if (txtFER.getText().equals("") || txtAct.getText().equals("")
+            || txtMax.getText().equals("")        
+                    ) {
+          JOptionPane.showMessageDialog(this, "Porfavor llene todos los datos");  
+        
+        
+        }
+        else{
+        
         modelo.B_FAQ BF = new modelo.B_FAQ();
         /*Aplicar los set correspondientes al modelo*/
-        BF.setNombre(this.txtNombre.getText());
-        BF.setCantidad_Actual(Double.parseDouble(this.txtAct.getText()));
-        BF.setCantidad_Max(Double.parseDouble(this.txtMax.getText()));
-        /*s.setPerimetro(Double.parseDouble(this.txtPerimetro1.getText()));*/
-
-        if (btnAGRO.isSelected() == true) {
-            BF.setTipo("Agroquimico");
-        } else if (btnFER.isSelected() == true) {
-            BF.setTipo("Fertilizante");
-        }
-        if (btnActivo.isSelected() == true) {
-            BF.setEstado("Activo");
-        } else if (btnInactivo.isSelected() == true) {
-            BF.setEstado("Inactivo");
-        }
+        BF.setNombre(this.txtFER.getText());
+        BF.setCantidadMax(Integer.parseInt(this.txtMax.getText()));
+        BF.setCantidadActual(Integer.parseInt(this.txtAct.getText()));
+        BF.setTipo(this.cmbFer.getSelectedItem().toString());
+        BF.setEstado(this.cmbEstado.getSelectedItem().toString());
+        
+        
+     
         /*Cambiar el controlador LaborC*/
         if (controlador.B_FAQC.isRegister(BF)) {
             /*Cambiar el controlador LaborC*/
             controlador.B_FAQC.setListar("");
             JOptionPane.showMessageDialog(this, "Exitoso");
-        } else {
+        }
+         else{
             JOptionPane.showMessageDialog(this, "Error");
         }
+        txtFER.setText(null);
 
-
+        txtAct.setText(null);
+         txtMax.setText(null);
+                                  
+    
+ }   
+           
     }//GEN-LAST:event_guardarMouseClicked
 
-    private void btnAGROActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAGROActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAGROActionPerformed
-
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        char c = evt.getKeyChar();
-        if ((c < 'a' || c > 'z') && (c < 'A') | c > 'Z') {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtNombreKeyTyped
+    private void txtFERKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFERKeyTyped
+            char c= evt.getKeyChar();
+            if((c<'a' ||c>'z') && (c<'A') |c>'Z')evt.consume(); 
+    }//GEN-LAST:event_txtFERKeyTyped
 
     private void txtMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaxKeyTyped
-        char c = evt.getKeyChar();
-        if (c < '0' || c > '9') {
-            evt.consume();
-        }
+            char c= evt.getKeyChar();
+       if(c<'0' ||c>'9')evt.consume();
     }//GEN-LAST:event_txtMaxKeyTyped
 
     private void txtActKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtActKeyTyped
-        char c = evt.getKeyChar();
-        if (c < '0' || c > '9') {
-            evt.consume();
-        }
+            char c= evt.getKeyChar();
+       if(c<'0' ||c>'9')evt.consume();
     }//GEN-LAST:event_txtActKeyTyped
+
+    private void lbID3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbID3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbID3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,6 +370,7 @@ public class frmBodega3 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(frmBodega3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -358,23 +381,24 @@ public class frmBodega3 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private RSMaterialComponent.RSRadioButtonMaterial btnAGRO;
-    private RSMaterialComponent.RSRadioButtonMaterial btnActivo;
     private newscomponents.RSButtonFlat_new btnCancelarRiego1;
-    private RSMaterialComponent.RSRadioButtonMaterial btnFER;
-    private RSMaterialComponent.RSRadioButtonMaterial btnInactivo;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    public static RSMaterialComponent.RSComboBox cmbEstado;
+    public static RSMaterialComponent.RSComboBox cmbFer;
     private newscomponents.RSButtonFlat_new guardar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    public static RSMaterialComponent.RSTextFieldMaterial lbID3;
     private javax.swing.JLabel lblFechaRiego;
     private javax.swing.JLabel lblHoraRiego;
     private javax.swing.JLabel lblHoraRiego1;
+    private javax.swing.JLabel lblHoraRiego2;
     private javax.swing.JLabel lblPersonalRiego;
     private javax.swing.JLabel lblPersonalRiego1;
+    private javax.swing.JLabel lblRegistro;
     private RSMaterialComponent.RSTextFieldMaterial txtAct;
+    private RSMaterialComponent.RSTextFieldMaterial txtFER;
     private RSMaterialComponent.RSTextFieldMaterial txtMax;
-    private RSMaterialComponent.RSTextFieldMaterial txtNombre;
     // End of variables declaration//GEN-END:variables
 }

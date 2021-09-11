@@ -1,21 +1,33 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package subPanel;
 
 import controlador.Bodega2C;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ *
+ * @author Rodri
+ */
 public class pnlBodega2 extends javax.swing.JPanel {
-
     private static modelo.Conexion con = new modelo.Conexion();
     private static Connection conexion = con.getConexion();
-    DefaultTableModel model = new DefaultTableModel();
+    DefaultTableModel model = new DefaultTableModel();  
     PreparedStatement ps = null;
     Statement st = null;
-    ResultSet rs = null;
+    ResultSet rs = null; 
 
+    /**
+     * Creates new form pnlBodega2
+     */
     public pnlBodega2() {
         initComponents();
         Bodega2C c;
@@ -37,7 +49,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         rSPanelOpacity1 = new newscomponents.RSPanelOpacity();
-        txtBuscar = new RSMaterialComponent.RSTextFieldOne();
+        btn_BMA = new RSMaterialComponent.RSTextFieldOne();
         jLabel5 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
@@ -49,6 +61,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMaquinaria = new RSMaterialComponent.RSTableMetroCustom();
 
+        menu.setComponentPopupMenu(jPopupMenu1);
         menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnEdit.setBackground(new java.awt.Color(0, 114, 81));
@@ -65,17 +78,17 @@ public class pnlBodega2 extends javax.swing.JPanel {
 
         rSPanelOpacity1.setBackground(new java.awt.Color(242, 242, 242));
 
-        txtBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        txtBuscar.setBorderColor(new java.awt.Color(0, 204, 51));
-        txtBuscar.setPlaceholder("Buscar...");
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btn_BMA.setForeground(new java.awt.Color(0, 0, 0));
+        btn_BMA.setBorderColor(new java.awt.Color(0, 204, 51));
+        btn_BMA.setPlaceholder("Buscar...");
+        btn_BMA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
+                btn_BMAActionPerformed(evt);
             }
         });
-        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+        btn_BMA.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtBuscarKeyPressed(evt);
+                btn_BMAKeyPressed(evt);
             }
         });
 
@@ -123,11 +136,11 @@ public class pnlBodega2 extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nombre", "Marca", "Candidad Maxima", "Cantidad Actual", "Estado"
+                "ID", "Nombre", "Marca", "Candidad Maxima", "Cantidad Actual", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, true, true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -150,7 +163,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
         rSPanelOpacity1Layout.setHorizontalGroup(
             rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_BMA, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMaquinaria, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
@@ -172,7 +185,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
                                 .addComponent(rSDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel6)))
-                        .addGap(0, 272, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
@@ -180,7 +193,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
             rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                 .addGroup(rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_BMA, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMaquinaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(rSPanelOpacity1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,8 +213,9 @@ public class pnlBodega2 extends javax.swing.JPanel {
                     .addGroup(rSPanelOpacity1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rSDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -239,9 +253,9 @@ public class pnlBodega2 extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+    private void btn_BMAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BMAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
+    }//GEN-LAST:event_btn_BMAActionPerformed
 
     private void btnMaquinariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaquinariaActionPerformed
         // TODO add your handling code here:
@@ -251,18 +265,50 @@ public class pnlBodega2 extends javax.swing.JPanel {
         new yumsystem.frmBodega2().setVisible(true);
     }//GEN-LAST:event_btnMaquinariaMouseClicked
 
-    private void txtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyPressed
-        Bodega2C.setListar(txtBuscar.getText());
-    }//GEN-LAST:event_txtBuscarKeyPressed
+    private void btn_BMAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_BMAKeyPressed
+       
+        String[] titulos = {"ID", "Nombre","Marca", "Cantidad Maxima","Canitdad Actual","Estado"};
+        String[] registros = new String[200];
+        String sql = "SELECT * FROM B_Maquinaria WHERE estado LIKE '" + btn_BMA.getText() + "%' "
+      ;
+    
+              
+        ;
+        
+        model = new DefaultTableModel(null,titulos);
+        Connection conexion = con.getConexion();
+        
+        try
+        {
+            st = (Statement) conexion.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next())
+            {
+                registros[0] = rs.getString("id_BMa");
+                registros[1] = rs.getString("Nombre");
+                registros[2] = rs.getString("Marca");
+                registros[3] = rs.getString("cantidaMax");
+                registros[4] = rs.getString("cantidadActual");
+                registros[5] = rs.getString("Estado");
+            
+                model.addRow(registros);
+            }
+           tblMaquinaria.setModel(model);
+        } catch (SQLException ex)
+        {
+            System.out.println("ERROR AL BUSCAR LOS DATOS : " + ex.getMessage());
+        }    
+    }//GEN-LAST:event_btn_BMAKeyPressed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        int fila = tblMaquinaria.getSelectedRow();
+        int fila=tblMaquinaria.getSelectedRow();
         yumsystem.frmBodega2Update FB2 = new yumsystem.frmBodega2Update();
-        FB2.txtNombre.setText(tblMaquinaria.getValueAt(fila, 0).toString());
-        FB2.txtMarca.setText(tblMaquinaria.getValueAt(fila, 1).toString());
-        FB2.txtMax.setText(tblMaquinaria.getValueAt(fila, 2).toString());
-        FB2.txtAct.setText(tblMaquinaria.getValueAt(fila, 3).toString());
-        FB2.cmbEstado.setSelectedItem(tblMaquinaria.getValueAt(fila, 4).toString());
+        FB2.lbID.setText(tblMaquinaria.getValueAt(fila, 0).toString());
+        FB2.txtNombre.setText(tblMaquinaria.getValueAt(fila, 1).toString());
+        FB2.txtMarca.setText(tblMaquinaria.getValueAt(fila, 2).toString());
+        FB2.txtMax.setText(tblMaquinaria.getValueAt(fila, 3).toString());
+        FB2.txtAct.setText(tblMaquinaria.getValueAt(fila, 4).toString());
+        FB2.cmbEstado.setSelectedItem(tblMaquinaria.getValueAt(fila, 5).toString());
         FB2.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -270,6 +316,7 @@ public class pnlBodega2 extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSButtonMaterialIconOne btnEdit;
     private newscomponents.RSButtonFlat_new btnMaquinaria;
+    private RSMaterialComponent.RSTextFieldOne btn_BMA;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -283,6 +330,5 @@ public class pnlBodega2 extends javax.swing.JPanel {
     private newscomponents.RSDateChooser rSDateChooser2;
     private newscomponents.RSPanelOpacity rSPanelOpacity1;
     public static RSMaterialComponent.RSTableMetroCustom tblMaquinaria;
-    public RSMaterialComponent.RSTextFieldOne txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

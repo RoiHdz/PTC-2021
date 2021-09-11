@@ -32,6 +32,7 @@ public class frmBodega2Update extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new RSMaterialComponent.RSTextFieldMaterial();
+        jLabel3 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btnexit = new RSMaterialComponent.RSButtonMaterialOne();
         guardar = new RSMaterialComponent.RSButtonMaterialOne();
@@ -42,6 +43,7 @@ public class frmBodega2Update extends javax.swing.JFrame {
         txtAct = new RSMaterialComponent.RSTextFieldMaterial();
         cmbEstado = new RSMaterialComponent.RSComboBox();
         lblRegistro = new javax.swing.JLabel();
+        lbID = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,6 +68,9 @@ public class frmBodega2Update extends javax.swing.JFrame {
                 txtNombreKeyTyped(evt);
             }
         });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("ID Maquinaria:");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("Estado :");
@@ -148,6 +153,10 @@ public class frmBodega2Update extends javax.swing.JFrame {
         lblRegistro.setForeground(new java.awt.Color(0, 114, 81));
         lblRegistro.setText("ACTUALIZAR MAQUINARIA");
 
+        lbID.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        lbID.setForeground(new java.awt.Color(0, 114, 81));
+        lbID.setText("ID");
+
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Marca:");
 
@@ -171,7 +180,11 @@ public class frmBodega2Update extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
-                                    .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtAct, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lbID))))
                             .addComponent(jLabel1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,7 +225,11 @@ public class frmBodega2Update extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(lbID)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,78 +282,83 @@ public class frmBodega2Update extends javax.swing.JFrame {
     }//GEN-LAST:event_btnexitMouseClicked
 
     private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
-
-        if (txtNombre.getText().equals("") || txtMarca.getText().equals("")
-                || txtAct.getText().equals("") || txtMax.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Porfavor llene todos los datos");
-
-        } else {
-            modelo.Bodega2 s = new modelo.Bodega2();
-            /*Aplicar los set correspondientes al modelo*/
-            s.setNombre(this.txtNombre.getText());
-            s.setMarca(this.txtMarca.getText());
-            s.setCantidaMax(Integer.parseInt(this.txtMax.getText()));
-            s.setCantidadActual(Integer.parseInt(this.txtAct.getText()));
-
-            /*Cambiar el controlador LaborC*/
-            if (controlador.Bodega2C.isRegister(s)) {
-                /*Cambiar el controlador LaborC*/
-                controlador.Bodega2C.setListar("");
-                JOptionPane.showMessageDialog(this, "Exitoso");
-            } else {
-                JOptionPane.showMessageDialog(this, "Error");
-            }
-            txtNombre.setText(null);
-            txtMarca.setText(null);
-            txtAct.setText(null);
-            txtMax.setText(null);
+    
+          if (txtNombre.getText().equals("") || txtMarca.getText().equals("")
+          || txtAct.getText().equals("")  || txtMax.getText().equals("")      
+                             
+                  ) {
+          JOptionPane.showMessageDialog(this, "Porfavor llene todos los datos");  
+        
+        
         }
+        else{ 
+        modelo.Bodega2 s = new modelo.Bodega2();
+        /*Aplicar los set correspondientes al modelo*/
+        s.setNombre(this.txtNombre.getText());
+        s.setMarca(this.txtMarca.getText());
+        s.setCantidadMax(Integer.parseInt(this.txtMax.getText()));
+        s.setCantidadActual(Integer.parseInt(this.txtAct.getText()));
+    
+        /*Cambiar el controlador LaborC*/
+        if (controlador.Bodega2C.isRegister(s)) {
+            /*Cambiar el controlador LaborC*/
+            controlador.Bodega2C.setListar("");
+            JOptionPane.showMessageDialog(this, "Exitoso");
+        }
+         else{
+            JOptionPane.showMessageDialog(this, "Error");
+        }
+        txtNombre.setText(null);
+        txtMarca.setText(null);
+        txtAct.setText(null);
+         txtMax.setText(null);
+      }                             
     }//GEN-LAST:event_guardarMouseClicked
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        char c = evt.getKeyChar();
-        if ((c < 'a' || c > 'z') && (c < 'A') | c > 'Z') {
-            evt.consume();
-        }
+             char c= evt.getKeyChar();
+            if((c<'a' ||c>'z') && (c<'A') |c>'Z')evt.consume(); 
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaxKeyTyped
-        char c = evt.getKeyChar();
-        if (c < '0' || c > '9') {
-            evt.consume();
-        }
+          char c= evt.getKeyChar();
+       if(c<'0' ||c>'9')evt.consume();
     }//GEN-LAST:event_txtMaxKeyTyped
 
     private void txtActKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtActKeyTyped
-        char c = evt.getKeyChar();
-        if (c < '0' || c > '9') {
-            evt.consume();
-        }
+           char c= evt.getKeyChar();
+       if(c<'0' ||c>'9')evt.consume();
     }//GEN-LAST:event_txtActKeyTyped
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        if (txtNombre.getText().equals("") || txtMarca.getText().equals("")
-                || (txtMax.getText().equals("") || (txtAct.getText().equals("")))) {
-            JOptionPane.showMessageDialog(this, "Porfavor llene todos los datos");
-
-        } else {
-            /*Cambiar el modelo*/
-            modelo.Bodega2 b2 = new modelo.Bodega2();
-            /*Aplicar los set correspondientes al modelo*/
-            b2.setNombre(this.txtNombre.getText());
-            b2.setMarca(this.txtMarca.getText());
-            b2.setCantidaMax(Integer.parseInt(this.txtMax.getText()));
-            b2.setCantidadActual(Integer.parseInt(this.txtAct.getText()));
-            b2.setEstado(this.cmbEstado.getSelectedItem().toString());
+             if (txtNombre.getText().equals("") || txtMarca.getText().equals("")
+                     ||(txtMax.getText().equals("")||(txtAct.getText().equals("")
+                     ))) {
+          JOptionPane.showMessageDialog(this, "Porfavor llene todos los datos");  
+        
+        
+        }
+        else{
+          /*Cambiar el modelo*/
+        modelo.Bodega2 b2 = new modelo.Bodega2();
+        /*Aplicar los set correspondientes al modelo*/
+        b2.setId_BMa(Integer.parseInt(this.lbID.getText()));
+        b2.setNombre(this.txtNombre.getText());
+        b2.setMarca(this.txtMarca.getText());   
+        b2.setCantidadMax(Integer.parseInt(this.txtMax.getText()));
+        b2.setCantidadActual(Integer.parseInt(this.txtAct.getText()));
+        b2.setEstado(this.cmbEstado.getSelectedItem().toString());
+        /*Cambiar el controlador LaborC*/
+        if (controlador.Bodega2C.isUpdate(b2)) {
             /*Cambiar el controlador LaborC*/
-            if (controlador.Bodega2C.isUpdate(b2)) {
-                /*Cambiar el controlador LaborC*/
-                controlador.Bodega2C.setListar("");
-                JOptionPane.showMessageDialog(this, "Datos Actualizados con Exito");
-            } else {
-                JOptionPane.showMessageDialog(this, "Error al Actualizar Porfavor llene todos los datos");
-            }
-
+            controlador.Bodega2C.setListar("");
+            JOptionPane.showMessageDialog(this, "Datos Actualizados con Exito");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Error al Actualizar Porfavor llene todos los datos");
+        }
+     
+        
         }
     }//GEN-LAST:event_guardarActionPerformed
 
@@ -367,6 +389,8 @@ public class frmBodega2Update extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -384,11 +408,13 @@ public class frmBodega2Update extends javax.swing.JFrame {
     private RSMaterialComponent.RSButtonMaterialOne guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    public static javax.swing.JLabel lbID;
     private javax.swing.JLabel lblRegistro;
     public static RSMaterialComponent.RSTextFieldMaterial txtAct;
     public static RSMaterialComponent.RSTextFieldMaterial txtMarca;

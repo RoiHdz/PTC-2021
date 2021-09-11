@@ -38,8 +38,8 @@ public class B_FAQC {
             /*El orden que va de campo (No poner el setId porque es auto incrementable)*/
              
             ps.setString(1, l.getNombre());
-            ps.setDouble(2, l.getCantidad_Max());
-            ps.setDouble(3, l.getCantidad_Actual());
+            ps.setDouble(2, l.getCantidadMax());
+            ps.setDouble(3, l.getCantidadActual());
             ps.setString(4, l.getTipo());
              ps.setString(5, l.getEstado());
             /**/
@@ -61,10 +61,11 @@ public class B_FAQC {
             /*Colocar todos los get en orden de la tabla y por ultimo el id*/
            
             ps.setString(1, l.getNombre());
-            ps.setDouble(2, l.getCantidad_Max());
-            ps.setDouble(3, l.getCantidad_Actual());
-            ps.setString(4, l.getTipo());
-             ps.setString(5, l.getEstado());
+            ps.setDouble(2, l.getCantidadMax());
+            ps.setDouble(3, l.getCantidadActual());
+            ps.setString(4, l.getEstado());
+             ps.setString(5, l.getTipo());
+              ps.setInt(6, l.getidFAQ());
            
             ps.executeUpdate();
             return true;
@@ -79,7 +80,7 @@ public class B_FAQC {
         String sql = modelo.B_FAQ.Elimidar;
         try {
             ps = conexion.prepareStatement(sql);
-            ps.setInt(1, l.getId_BFAQ());
+            ps.setInt(1, l.getidFAQ());
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -101,9 +102,9 @@ public class B_FAQC {
             sql = modelo.B_FAQ.Listar;
         } else {
             /*Cambiar la consulta*/
-            sql = "SELECT * FROM B_FAQ WHERE id_BFAQ LIKE '" + buscar + "%'";
+            sql = "SELECT * FROM B_FAQ WHERE idFAQ LIKE '" + buscar + "%'";
         }
-        String datos[] = new String[5];
+        String datos[] = new String[6];
 
         try {
             Statement st = conexion.createStatement();
@@ -111,11 +112,12 @@ public class B_FAQC {
             while(rs.next()){
                 /*Colocar los get en orden que se mostraran en la tabla*/
                 /*lo que va entre comillas es como se llama en la tabal SER EXACTOS*/
-                datos[0] = rs.getString("nombre");
-                datos[1] = rs.getString("cantidadMax");
-                datos[2] = rs.getString("cantidadActual");
-                datos[3] = rs.getString("tipo");
-                datos[4] = rs.getString("estado");
+                datos[0] = rs.getString("idFAQ");
+                datos[1] = rs.getString("Nombre");
+                datos[2] = rs.getString("cantidadMax");
+                datos[3] = rs.getString("cantidadActual");
+                datos[4] = rs.getString("Tipo");
+                datos[5] = rs.getString("Estado");
                 model.addRow(datos);
             }
         } catch (SQLException ex) {
@@ -124,10 +126,11 @@ public class B_FAQC {
             System.out.println(ex);
         }
     }
-    /*
-    public static String extraerIdMax(){
+
+    public static String extraerIDMax(){
       
-        String sql="select max(id_BFAQ) FROM B_FAQ";
+        String sql= "SELECT MAX(idFAQ)AS valor FROM B_FAQ";      
+        
         int id = 0;
         try {
             Statement st = conexion.createStatement();
@@ -147,6 +150,8 @@ public class B_FAQC {
 //            Logger.getLogger(LaborC.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-*/
+
     
+
+
 }

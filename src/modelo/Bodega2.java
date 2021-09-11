@@ -2,17 +2,18 @@ package modelo;
 
 public class Bodega2 {
 
-    private int id_BMa;
+    private int idMaquinaria;
     private String Nombre;
     private String Marca;
-    private int cantidaMax;
+    private int cantidadMax;
     private int cantidadActual;
     private String Estado;  
 
     /*Cambiar la tabla y campos en las consultas*/
-    public static String Listar = "SELECT nombre,marca,cantidadMax,cantidadActual,estado from B_Maquinaria";
-    public static String Registar = "INSERT INTO B_Maquinaria VALUES(?,?,?,?,?)";
-    public static String Actualizar = "UPDATE B_Maquinaria SET Nombre=?, Marca=?, cantidaMax=?, cantidadActual=? WHERE id_BMa=?";
+    public static String Listar = "SELECT * FROM B_Maquinaria";
+    public static String Registar = "INSERT INTO B_Maquinaria VALUES(?, ?, ? , ?,?)";
+    public static String Actualizar = "UPDATE B_Maquinaria SET Nombre=?, Marca=?, cantidadMax=?, cantidadActual=? ,Estado=? WHERE idMaquinaria=?";
+    
     public static String Elimidar = "DELETE from B_Maquinaria WHERE id_BMa=?";
    
 
@@ -20,12 +21,12 @@ public class Bodega2 {
     /*Solo dale click derecho > insertar codigo > getter y setter > todas las VARIABLES*/
     /*Solo las del inicio, las consultas no*/
 
-    public int getId_BMa() {
-        return id_BMa;
+    public int getidMaquinaria() {
+        return idMaquinaria;
     }
 
-    public void setId_BMa(int id_BMa) {
-        this.id_BMa = id_BMa;
+    public void setId_BMa(int idMaquinaria) {
+        this.idMaquinaria = idMaquinaria;
     }
 
 
@@ -45,12 +46,12 @@ public class Bodega2 {
         this.Marca = Marca;
     }
 
-    public int getCantidaMax() {
-        return cantidaMax;
+    public int getCantidadMax() {
+        return cantidadMax;
     }
 
-    public void setCantidaMax(int cantidaMax) {
-        this.cantidaMax = cantidaMax;
+    public void setCantidadMax(int cantidaMax) {
+        this.cantidadMax = cantidaMax;
     }
 
     public int getCantidadActual() {

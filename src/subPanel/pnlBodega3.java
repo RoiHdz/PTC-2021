@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package subPanel;
-
 import controlador.Bodega2C;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,22 +18,22 @@ import controlador.B_FAQC;
  * @author Rodri
  */
 public class pnlBodega3 extends javax.swing.JPanel {
-
-    private static modelo.Conexion con = new modelo.Conexion();
+     private static modelo.Conexion con = new modelo.Conexion();
     private static Connection conexion = con.getConexion();
-    DefaultTableModel model = new DefaultTableModel();
+    DefaultTableModel model = new DefaultTableModel();  
     PreparedStatement ps = null;
     Statement st = null;
-    ResultSet rs = null;
+    ResultSet rs = null; 
 
     /**
      * Creates new form pnlBodega3
      */
     public pnlBodega3() {
         initComponents();
-        B_FAQC BF;
+            B_FAQC BF;
         B_FAQC.setListar("");
-
+        jPopupMenu1.add(menu);
+               
     }
 
     /**
@@ -46,6 +45,9 @@ public class pnlBodega3 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        menu = new javax.swing.JPanel();
+        btnEdit = new RSMaterialComponent.RSButtonMaterialIconOne();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         rSPanelOpacity1 = new newscomponents.RSPanelOpacity();
         btnB_FAQ = new RSMaterialComponent.RSTextFieldOne();
@@ -59,6 +61,18 @@ public class pnlBodega3 extends javax.swing.JPanel {
         btnAEspecie = new newscomponents.RSButtonFlat_new();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblBFAQ = new RSMaterialComponent.RSTableMetroCustom();
+
+        menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnEdit.setBackground(new java.awt.Color(0, 114, 81));
+        btnEdit.setText("Editar");
+        btnEdit.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+        menu.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, -1));
 
         jPanel1.setBackground(new java.awt.Color(225, 232, 193));
 
@@ -122,7 +136,7 @@ public class pnlBodega3 extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Nombre", "Candidad Maxima", "Cantidad Actual", "Tipo", "Estado"
+                "ID", "Nombre", "Candidad Maxima", "Cantidad Actual", "Tipo", "Estado"
             }
         ));
         tblBFAQ.setBackgoundHead(new java.awt.Color(91, 180, 98));
@@ -132,6 +146,7 @@ public class pnlBodega3 extends javax.swing.JPanel {
         tblBFAQ.setColorBorderRows(new java.awt.Color(91, 180, 98));
         tblBFAQ.setColorPrimaryText(new java.awt.Color(91, 180, 98));
         tblBFAQ.setColorSecondary(new java.awt.Color(143, 217, 116));
+        tblBFAQ.setComponentPopupMenu(jPopupMenu1);
         tblBFAQ.setGridColor(new java.awt.Color(91, 180, 98));
         jScrollPane1.setViewportView(tblBFAQ);
 
@@ -244,44 +259,67 @@ public class pnlBodega3 extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAEspecieMouseClicked
 
     private void btnB_FAQKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnB_FAQKeyPressed
-        String[] titulos = {"ID", "Nombre", "Cantidad Maxima", "Cantidad Actual", "Tipo", "Estado"};
+ String[] titulos = {"ID", "Nombre", "Cantidad Maxima","Cantidad Actual","Tipo","Estado"};
         String[] registros = new String[200];
-        String sql = "SELECT * FROM B_FAQ WHERE id_BFAQ LIKE '%" + btnB_FAQ.getText() + "%' "
-                + "OR Nombre LIKE '%" + btnB_FAQ.getText() + "%'"
-                + "OR Tipo LIKE '%" + btnB_FAQ.getText() + "%'";
-
-        model = new DefaultTableModel(null, titulos);
+     String sql = "SELECT * FROM B_FAQ WHERE estado LIKE '" +btnB_FAQ.getText() + "%' "
+      ;
+   
+             
+        
+        model = new DefaultTableModel(null,titulos);
         Connection conexion = con.getConexion();
-
-        try {
+        
+        try
+        {
             st = (Statement) conexion.createStatement();
             rs = st.executeQuery(sql);
-            while (rs.next()) {
+            while (rs.next())
+            {
                 registros[0] = rs.getString("id_BFAQ");
                 registros[1] = rs.getString("Nombre");
                 registros[2] = rs.getString("cantidad_Max");
                 registros[3] = rs.getString("cantidad_Actual");
                 registros[4] = rs.getString("Tipo");
-                registros[5] = rs.getString("Estado");
+               registros[5] = rs.getString("Estado"); 
                 model.addRow(registros);
             }
-            tblBFAQ.setModel(model);
-        } catch (SQLException ex) {
+           tblBFAQ.setModel(model);
+        } catch (SQLException ex)
+        {
             System.out.println("ERROR AL BUSCAR LOS DATOS : " + ex.getMessage());
         }            // TODO add your handling code here:
     }//GEN-LAST:event_btnB_FAQKeyPressed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        int fila=tblBFAQ.getSelectedRow();
+        yumsystem.frmBodega3Update FB3 = new yumsystem.frmBodega3Update();
+        FB3.lbID.setText(tblBFAQ.getValueAt(fila, 0).toString());
+        FB3.txtFER.setText(tblBFAQ.getValueAt(fila, 1).toString());
+        FB3.txtMax.setText(tblBFAQ.getValueAt(fila, 2).toString());
+        FB3.txtAct.setText(tblBFAQ.getValueAt(fila, 3).toString());
+        FB3.cmbFer.setSelectedItem(tblBFAQ.getValueAt(fila, 4).toString());
+        FB3.cmbEstado.setSelectedItem(tblBFAQ.getValueAt(fila, 5).toString());
+        
+        FB3.setVisible(true);
+        
+
+        
+    }//GEN-LAST:event_btnEditActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private newscomponents.RSButtonFlat_new btnAEspecie;
     private RSMaterialComponent.RSTextFieldOne btnB_FAQ;
+    private RSMaterialComponent.RSButtonMaterialIconOne btnEdit;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel menu;
     private newscomponents.RSDateChooser rSDateChooser1;
     private newscomponents.RSDateChooser rSDateChooser2;
     private newscomponents.RSPanelOpacity rSPanelOpacity1;

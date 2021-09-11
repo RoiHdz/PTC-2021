@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import yumsystem.frmParcelaActualizar;
 
 import javax.swing.table.DefaultTableModel;
 import modelo.Conexion;
@@ -43,10 +45,9 @@ public class pnlParcela1 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
         menu = new javax.swing.JPanel();
-        btnDelete = new RSMaterialComponent.RSButtonMaterialIconOne();
         btnEdit = new RSMaterialComponent.RSButtonMaterialIconOne();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -62,27 +63,17 @@ public class pnlParcela1 extends javax.swing.JPanel {
 
         menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnDelete.setBackground(new java.awt.Color(0, 114, 81));
-        btnDelete.setText("Eliminar");
-        btnDelete.setComponentPopupMenu(jPopupMenu1);
-        btnDelete.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
-        menu.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 190, -1));
-
         btnEdit.setBackground(new java.awt.Color(0, 114, 81));
         btnEdit.setText("Editar");
-        btnEdit.setComponentPopupMenu(jPopupMenu1);
         btnEdit.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
-        btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEditMouseClicked(evt);
-            }
-        });
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditActionPerformed(evt);
             }
         });
         menu.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, -1));
+
+        jPopupMenu1.setComponentPopupMenu(jPopupMenu1);
 
         jPanel2.setBackground(new java.awt.Color(225, 232, 193));
 
@@ -308,21 +299,6 @@ public class pnlParcela1 extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnBuscarPKeyTyped
 
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-
-    }//GEN-LAST:event_btnEditActionPerformed
-
-    private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
-     
-        //int fila= tblParcela.getSelectedRow();
-        //yumsystem.frmParcelaUpdate Parcela = new yumsystem.frmParcelaUpdate();
-        
-       // Parcela.txtPerimetro1.setText(tblParcela.getValueAt(fila, 1).toString());               
-        //Parcela.txtTipot.setText(tblParcela.getValueAt(fila, 2).toString());//
-        
-        
-    }//GEN-LAST:event_btnEditMouseClicked
-
     private void tblParcelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblParcelaMouseClicked
        
   
@@ -333,9 +309,8 @@ public class pnlParcela1 extends javax.swing.JPanel {
     
         String[] titulos = {"codigoParcela", "perimetro","tipoTierra", "Estado"};
         String[] registros = new String[200];
-        String sql = "SELECT * FROM Parcela WHERE codigoParcela LIKE '%" + btnBuscarP.getText() + "%' "
-        + "OR tipoTierra LIKE '%" + btnBuscarP.getText() + "%'"
-        + "OR estado LIKE '%" + btnBuscarP.getText() + "%'";
+        String sql = "SELECT * FROM Parcela WHERE estado LIKE '" + btnBuscarP.getText() + "%' "
+      ;
         
         model = new DefaultTableModel(null,titulos);
         Connection conexion = con.getConexion();
@@ -360,10 +335,19 @@ public class pnlParcela1 extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnBuscarPKeyPressed
 
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+      int fila=tblParcela.getSelectedRow();
+     yumsystem.frmParcelaActualizar act = new yumsystem.frmParcelaActualizar();
+     act.lbID.setText(tblParcela.getValueAt(fila, 0).toString());
+     act.txtPerimetro1.setText(tblParcela.getValueAt(fila, 1).toString());
+     act.txtTipot.setText(tblParcela.getValueAt(fila, 2).toString());
+     act.cmbEstado.setSelectedItem(tblParcela.getValueAt(fila, 3).toString());
+     act.setVisible(true);
+    }//GEN-LAST:event_btnEditActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private RSMaterialComponent.RSTextFieldOne btnBuscarP;
-    private RSMaterialComponent.RSButtonMaterialIconOne btnDelete;
     private RSMaterialComponent.RSButtonMaterialIconOne btnEdit;
     private newscomponents.RSButtonFlat_new btnParcela;
     private javax.swing.JLabel jLabel7;

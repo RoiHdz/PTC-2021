@@ -11,7 +11,7 @@ public class Parcela {
     // Consultas
     public static String Listar = "SELECT * FROM Parcela";
     public static String Registar = "INSERT INTO Parcela VALUES(?,?,?)";
-    public static String Actualizar = "UPDATE Labor SET labor WHERE idLabor=?";
+    public static String Actualizar = "UPDATE Parcela SET perimetro = ?, tipoTierra = ?, estado = ? WHERE codigoParcela = ?"; 
     public static String Elimidar = "DELETE from Labor WHERE idLabor=?";
 
     // Getter y Setter
