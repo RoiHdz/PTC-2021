@@ -103,7 +103,7 @@ public class B_FAQC {
             /*Cambiar la consulta*/
             sql = "SELECT * FROM B_FAQ WHERE id_BFAQ LIKE '" + buscar + "%'";
         }
-        String datos[] = new String[6];
+        String datos[] = new String[5];
 
         try {
             Statement st = conexion.createStatement();
@@ -111,12 +111,11 @@ public class B_FAQC {
             while(rs.next()){
                 /*Colocar los get en orden que se mostraran en la tabla*/
                 /*lo que va entre comillas es como se llama en la tabal SER EXACTOS*/
-                datos[0] = rs.getString("id_BFAQ");
-                datos[1] = rs.getString("Nombre");
-                datos[2] = rs.getString("cantidad_Max");
-                datos[3] = rs.getString("cantidad_Actual");
-                datos[4] = rs.getString("Tipo");
-                datos[5] = rs.getString("Estado");
+                datos[0] = rs.getString("nombre");
+                datos[1] = rs.getString("cantidadMax");
+                datos[2] = rs.getString("cantidadActual");
+                datos[3] = rs.getString("tipo");
+                datos[4] = rs.getString("estado");
                 model.addRow(datos);
             }
         } catch (SQLException ex) {

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package subPanel;
+
 import controlador.Bodega2C;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,21 +19,22 @@ import controlador.B_FAQC;
  * @author Rodri
  */
 public class pnlBodega3 extends javax.swing.JPanel {
-     private static modelo.Conexion con = new modelo.Conexion();
+
+    private static modelo.Conexion con = new modelo.Conexion();
     private static Connection conexion = con.getConexion();
-    DefaultTableModel model = new DefaultTableModel();  
+    DefaultTableModel model = new DefaultTableModel();
     PreparedStatement ps = null;
     Statement st = null;
-    ResultSet rs = null; 
+    ResultSet rs = null;
 
     /**
      * Creates new form pnlBodega3
      */
     public pnlBodega3() {
         initComponents();
-            B_FAQC BF;
+        B_FAQC BF;
         B_FAQC.setListar("");
-               
+
     }
 
     /**
@@ -120,7 +122,7 @@ public class pnlBodega3 extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Nombre", "Candidad Maxima", "Cantidad Actual", "Tipo", "Estado"
+                "Nombre", "Candidad Maxima", "Cantidad Actual", "Tipo", "Estado"
             }
         ));
         tblBFAQ.setBackgoundHead(new java.awt.Color(91, 180, 98));
@@ -242,33 +244,29 @@ public class pnlBodega3 extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAEspecieMouseClicked
 
     private void btnB_FAQKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnB_FAQKeyPressed
- String[] titulos = {"ID", "Nombre", "Cantidad Maxima","Cantidad Actual","Tipo","Estado"};
+        String[] titulos = {"ID", "Nombre", "Cantidad Maxima", "Cantidad Actual", "Tipo", "Estado"};
         String[] registros = new String[200];
         String sql = "SELECT * FROM B_FAQ WHERE id_BFAQ LIKE '%" + btnB_FAQ.getText() + "%' "
-        + "OR Nombre LIKE '%" + btnB_FAQ.getText() + "%'"
-        + "OR Tipo LIKE '%" + btnB_FAQ.getText() + "%'"        
-        ;
-        
-        model = new DefaultTableModel(null,titulos);
+                + "OR Nombre LIKE '%" + btnB_FAQ.getText() + "%'"
+                + "OR Tipo LIKE '%" + btnB_FAQ.getText() + "%'";
+
+        model = new DefaultTableModel(null, titulos);
         Connection conexion = con.getConexion();
-        
-        try
-        {
+
+        try {
             st = (Statement) conexion.createStatement();
             rs = st.executeQuery(sql);
-            while (rs.next())
-            {
+            while (rs.next()) {
                 registros[0] = rs.getString("id_BFAQ");
                 registros[1] = rs.getString("Nombre");
                 registros[2] = rs.getString("cantidad_Max");
                 registros[3] = rs.getString("cantidad_Actual");
                 registros[4] = rs.getString("Tipo");
-               registros[5] = rs.getString("Estado"); 
+                registros[5] = rs.getString("Estado");
                 model.addRow(registros);
             }
-           tblBFAQ.setModel(model);
-        } catch (SQLException ex)
-        {
+            tblBFAQ.setModel(model);
+        } catch (SQLException ex) {
             System.out.println("ERROR AL BUSCAR LOS DATOS : " + ex.getMessage());
         }            // TODO add your handling code here:
     }//GEN-LAST:event_btnB_FAQKeyPressed

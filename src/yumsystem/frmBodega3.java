@@ -11,7 +11,7 @@ public class frmBodega3 extends javax.swing.JFrame {
      */
     public frmBodega3() {
         initComponents();
-          setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -267,38 +267,34 @@ public class frmBodega3 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarRiego1MouseClicked
 
     private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
- /*Cambiar el modelo*/
+        /*Cambiar el modelo*/
         modelo.B_FAQ BF = new modelo.B_FAQ();
         /*Aplicar los set correspondientes al modelo*/
         BF.setNombre(this.txtNombre.getText());
-      BF.setCantidad_Actual(Double.parseDouble(this.txtAct.getText()));
-      BF.setCantidad_Max(Double.parseDouble(this.txtMax.getText()));
-         /*s.setPerimetro(Double.parseDouble(this.txtPerimetro1.getText()));*/
+        BF.setCantidad_Actual(Double.parseDouble(this.txtAct.getText()));
+        BF.setCantidad_Max(Double.parseDouble(this.txtMax.getText()));
+        /*s.setPerimetro(Double.parseDouble(this.txtPerimetro1.getText()));*/
 
-             
-                     if (btnAGRO.isSelected() == true) {
+        if (btnAGRO.isSelected() == true) {
             BF.setTipo("Agroquimico");
-        }
-        else if (btnFER.isSelected()==true) {
+        } else if (btnFER.isSelected() == true) {
             BF.setTipo("Fertilizante");
         }
-          if (btnActivo.isSelected() == true) {
+        if (btnActivo.isSelected() == true) {
             BF.setEstado("Activo");
-        }
-        else if (btnInactivo.isSelected()==true) {
+        } else if (btnInactivo.isSelected() == true) {
             BF.setEstado("Inactivo");
         }
         /*Cambiar el controlador LaborC*/
-        if (controlador.B_FAQC.isRegister(BF )) {
+        if (controlador.B_FAQC.isRegister(BF)) {
             /*Cambiar el controlador LaborC*/
             controlador.B_FAQC.setListar("");
             JOptionPane.showMessageDialog(this, "Exitoso");
-        }
-         else{
+        } else {
             JOptionPane.showMessageDialog(this, "Error");
         }
- 
-           
+
+
     }//GEN-LAST:event_guardarMouseClicked
 
     private void btnAGROActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAGROActionPerformed
@@ -306,18 +302,24 @@ public class frmBodega3 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAGROActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-            char c= evt.getKeyChar();
-            if((c<'a' ||c>'z') && (c<'A') |c>'Z')evt.consume(); 
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A') | c > 'Z') {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMaxKeyTyped
-            char c= evt.getKeyChar();
-       if(c<'0' ||c>'9')evt.consume();
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtMaxKeyTyped
 
     private void txtActKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtActKeyTyped
-            char c= evt.getKeyChar();
-       if(c<'0' ||c>'9')evt.consume();
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtActKeyTyped
 
     /**
