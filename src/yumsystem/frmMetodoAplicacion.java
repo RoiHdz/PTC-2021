@@ -7,6 +7,7 @@ public class frmMetodoAplicacion extends javax.swing.JFrame {
 
     public frmMetodoAplicacion() {
         initComponents();
+       this.lbID.setText(controlador.MetodoConfigC.extraerIDMax());
     }
 
     @SuppressWarnings("unchecked")
@@ -19,6 +20,8 @@ public class frmMetodoAplicacion extends javax.swing.JFrame {
         txtMetodo = new RSMaterialComponent.RSTextFieldMaterial();
         btnGuardar = new RSMaterialComponent.RSButtonMaterialOne();
         btnCerrar = new RSMaterialComponent.RSButtonMaterialOne();
+        jLabel2 = new javax.swing.JLabel();
+        lbID = new RSMaterialComponent.RSTextFieldMaterial();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -28,7 +31,6 @@ public class frmMetodoAplicacion extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(242, 242, 242));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Agregar nuevo metodo de aplicacion:");
 
         txtMetodo.setBackground(new java.awt.Color(240, 240, 240));
@@ -56,6 +58,24 @@ public class frmMetodoAplicacion extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("ID");
+
+        lbID.setEditable(false);
+        lbID.setBackground(new java.awt.Color(242, 242, 242));
+        lbID.setForeground(new java.awt.Color(0, 114, 81));
+        lbID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        lbID.setColorMaterial(new java.awt.Color(0, 114, 81));
+        lbID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbID.setPhColor(new java.awt.Color(102, 102, 102));
+        lbID.setPlaceholder("ID");
+        lbID.setSelectionColor(new java.awt.Color(0, 114, 81));
+        lbID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lbIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -69,7 +89,11 @@ public class frmMetodoAplicacion extends javax.swing.JFrame {
                             .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                             .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lbID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -79,7 +103,11 @@ public class frmMetodoAplicacion extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtMetodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lbID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -123,7 +151,7 @@ public class frmMetodoAplicacion extends javax.swing.JFrame {
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
         modelo.MetodoConfig s = new modelo.MetodoConfig();
-        s.setMetodo(this.txtMetodo.getText());
+        s.setMetodoAplicacion(this.txtMetodo.getText());
         if (controlador.MetodoConfigC.isRegister(s)) {
             controlador.MetodoConfigC.setListar("");
             JOptionPane.showMessageDialog(this, "Exitoso");
@@ -133,6 +161,10 @@ public class frmMetodoAplicacion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al ingresar los datos");
         }
     }//GEN-LAST:event_btnGuardarMouseClicked
+
+    private void lbIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,8 +206,10 @@ public class frmMetodoAplicacion extends javax.swing.JFrame {
     private RSMaterialComponent.RSButtonMaterialOne btnCerrar;
     public RSMaterialComponent.RSButtonMaterialOne btnGuardar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    public RSMaterialComponent.RSTextFieldMaterial txtMetodo;
+    public static RSMaterialComponent.RSTextFieldMaterial lbID;
+    public static RSMaterialComponent.RSTextFieldMaterial txtMetodo;
     // End of variables declaration//GEN-END:variables
 }

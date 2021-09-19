@@ -2,21 +2,40 @@ package subPanel;
 
 import controlador.EspecieConfigC;
 import controlador.VariacionC;
-
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+import yumsystem.frmEspecieUpdate;
+import yumsystem.frmVariacionUpdate;
 public class pnlConfiguracion1 extends javax.swing.JPanel {
-
+    private static modelo.Conexion con = new modelo.Conexion();
+    private static Connection conexion = con.getConexion();
+    DefaultTableModel model = new DefaultTableModel();  
+    PreparedStatement ps = null;
+    Statement st = null;
+    ResultSet rs = null; 
     public pnlConfiguracion1() {
         initComponents();
         EspecieConfigC c;
         EspecieConfigC.setListar("");
         VariacionC d;
         VariacionC.setListar("");
+        jPopupMenu1.add(menuES);
+         jPopupMenu2.add(menva);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        menuES = new javax.swing.JPanel();
+        btnEdit = new RSMaterialComponent.RSButtonMaterialIconOne();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        menva = new javax.swing.JPanel();
+        btnEdit1 = new RSMaterialComponent.RSButtonMaterialIconOne();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -26,6 +45,31 @@ public class pnlConfiguracion1 extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVariacion = new RSMaterialComponent.RSTableMetroCustom();
         btnAVariacion = new newscomponents.RSButtonFlat_new();
+
+        menuES.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnEdit.setBackground(new java.awt.Color(0, 114, 81));
+        btnEdit.setText("Editar");
+        btnEdit.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+        menuES.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, -1));
+
+        menva.setComponentPopupMenu(jPopupMenu2);
+        menva.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnEdit1.setBackground(new java.awt.Color(0, 114, 81));
+        btnEdit1.setText("Editar");
+        btnEdit1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
+        btnEdit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEdit1ActionPerformed(evt);
+            }
+        });
+        menva.add(btnEdit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, -1));
 
         setBackground(new java.awt.Color(225, 232, 193));
 
@@ -41,17 +85,9 @@ public class pnlConfiguracion1 extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Especie", "Dias Germinacion", "Dias de Cosecha", "Dias de riego", "Estado"
+                "ID", "Especie", "Dias Germinacion", "Dias  Cosecha", "Dias de Riego", "Estado", "Temporada", "MarcoPlantacion", "Variacion"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         tblEspecies.setBackgoundHead(new java.awt.Color(91, 180, 98));
         tblEspecies.setBackgoundHover(new java.awt.Color(166, 196, 126));
         tblEspecies.setBorderHead(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(91, 180, 98)));
@@ -61,6 +97,7 @@ public class pnlConfiguracion1 extends javax.swing.JPanel {
         tblEspecies.setColorPrimaryText(new java.awt.Color(91, 180, 98));
         tblEspecies.setColorSecondary(new java.awt.Color(143, 217, 116));
         tblEspecies.setColorSecundaryText(new java.awt.Color(0, 102, 255));
+        tblEspecies.setComponentPopupMenu(jPopupMenu1);
         tblEspecies.setGridColor(new java.awt.Color(91, 180, 98));
         tblEspecies.setSelectionBackground(new java.awt.Color(166, 196, 126));
         jScrollPane2.setViewportView(tblEspecies);
@@ -124,6 +161,7 @@ public class pnlConfiguracion1 extends javax.swing.JPanel {
         tblVariacion.setColorBorderRows(new java.awt.Color(91, 180, 98));
         tblVariacion.setColorPrimaryText(new java.awt.Color(91, 180, 98));
         tblVariacion.setColorSecondary(new java.awt.Color(143, 217, 116));
+        tblVariacion.setComponentPopupMenu(jPopupMenu2);
         tblVariacion.setGridColor(new java.awt.Color(91, 180, 98));
         jScrollPane1.setViewportView(tblVariacion);
 
@@ -209,15 +247,56 @@ public class pnlConfiguracion1 extends javax.swing.JPanel {
         new yumsystem.frmVariacion().setVisible(true);
     }//GEN-LAST:event_btnAVariacionMouseClicked
 
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        int fila=tblEspecies.getSelectedRow();
+        yumsystem.frmEspecieUpdate act = new yumsystem.frmEspecieUpdate();
+        act.lbID.setText(tblEspecies.getValueAt(fila, 0).toString());
+        act.txtEspecie.setText(tblEspecies.getValueAt(fila, 1).toString());
+        act.txtGerminacion.setText(tblEspecies.getValueAt(fila, 2).toString());
+        act.txtCosecha.setText(tblEspecies.getValueAt(fila, 3).toString());
+        act.txtRiego.setText(tblEspecies.getValueAt(fila, 4).toString());
+        act.cmbEstado.setSelectedItem(tblEspecies.getValueAt(fila, 5).toString());
+        act.cmbTemporada.setSelectedItem(tblEspecies.getValueAt(fila, 6).toString());
+        act.txtPlantacion.setText(tblEspecies.getValueAt(fila, 7).toString());
+         act.txtVariacion.setText(tblEspecies.getValueAt(fila, 8).toString());
+         
+        
+       
+        
+        
+        act.setVisible(true);
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
+        int fila=tblVariacion.getSelectedRow();
+        yumsystem.frmVariacionUpdate act = new yumsystem.frmVariacionUpdate();
+        act.txtVariacion.setText(tblVariacion.getValueAt(fila, 0).toString());  
+        act.cmbVar.setSelectedItem(tblVariacion.getValueAt(fila, 1).toString());
+        act.setVisible(true);
+    }//GEN-LAST:event_btnEdit1ActionPerformed
+           /*      s.setEspecie(this.txtEspecie.getText());
+            s.setGerminacion(Integer.parseInt(this.txtGerminacion.getText()));
+            s.setDiasCosecha(Integer.parseInt(this.txtCosecha.getText()));
+            s.setMarcoPlantacion(Integer.parseInt(this.txtPlantacion.getText()));
+            s.setDiasRiego(Integer.parseInt(this.txtRiego.getText()));
+            s.setFoto("Sin foto");
+            s.setEstado(this.cmbEstado.getSelectedItem().toString());
+            s.setEstado(this.cmbTemp.getSelectedItem().toString());;*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private newscomponents.RSButtonFlat_new btnAEspecie;
     private newscomponents.RSButtonFlat_new btnAVariacion;
+    private RSMaterialComponent.RSButtonMaterialIconOne btnEdit;
+    private RSMaterialComponent.RSButtonMaterialIconOne btnEdit1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel menuES;
+    private javax.swing.JPanel menva;
     public static RSMaterialComponent.RSTableMetroCustom tblEspecies;
     public static RSMaterialComponent.RSTableMetroCustom tblVariacion;
     // End of variables declaration//GEN-END:variables

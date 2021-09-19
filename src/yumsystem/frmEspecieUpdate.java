@@ -6,14 +6,15 @@ import javax.swing.JOptionPane;
  *
  * @author Rodri
  */
-public class frmEspecie extends javax.swing.JFrame {
+public class frmEspecieUpdate extends javax.swing.JFrame {
 
     /**
      * Creates new form frmEspecie
      */
-    public frmEspecie() {
+    public frmEspecieUpdate() {
         initComponents();
         setLocationRelativeTo(null);
+        this.lbID.setText(controlador.EspecieConfigC.extraerIDMax());
     }
 
     @SuppressWarnings("unchecked")
@@ -44,8 +45,9 @@ public class frmEspecie extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         cmbTemporada = new RSMaterialComponent.RSComboBox();
         cmbEstado = new RSMaterialComponent.RSComboBox();
-        txtVariacion = new RSMaterialComponent.RSTextFieldMaterial();
+        lbID = new RSMaterialComponent.RSTextFieldMaterial();
         jLabel2 = new javax.swing.JLabel();
+        txtVariacion = new RSMaterialComponent.RSTextFieldMaterial();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -170,6 +172,24 @@ public class frmEspecie extends javax.swing.JFrame {
         cmbEstado.setColorSeleccion(new java.awt.Color(0, 114, 81));
         cmbEstado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
+        lbID.setEditable(false);
+        lbID.setBackground(new java.awt.Color(242, 242, 242));
+        lbID.setForeground(new java.awt.Color(0, 114, 81));
+        lbID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        lbID.setColorMaterial(new java.awt.Color(0, 114, 81));
+        lbID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbID.setPhColor(new java.awt.Color(102, 102, 102));
+        lbID.setPlaceholder("ID");
+        lbID.setSelectionColor(new java.awt.Color(0, 114, 81));
+        lbID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lbIDActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Variacion:");
+
         txtVariacion.setBackground(new java.awt.Color(242, 242, 242));
         txtVariacion.setForeground(new java.awt.Color(0, 0, 0));
         txtVariacion.setColorMaterial(new java.awt.Color(0, 114, 81));
@@ -177,9 +197,6 @@ public class frmEspecie extends javax.swing.JFrame {
         txtVariacion.setPhColor(new java.awt.Color(102, 102, 102));
         txtVariacion.setPlaceholder("Variacion");
         txtVariacion.setSelectionColor(new java.awt.Color(0, 114, 81));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Variacion:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -190,7 +207,9 @@ public class frmEspecie extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel1)
-                        .addGap(266, 266, 266)
+                        .addGap(189, 189, 189)
+                        .addComponent(lbID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
                         .addComponent(jLabel8))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -201,7 +220,7 @@ public class frmEspecie extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -221,19 +240,19 @@ public class frmEspecie extends javax.swing.JFrame {
                                                 .addGap(12, 12, 12)
                                                 .addComponent(txtGerminacion, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(12, 12, 12)
-                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(txtCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel2)
+                                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(txtCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                         .addGap(8, 8, 8)
-                                        .addComponent(jLabel9)
-                                        .addGap(52, 52, 52))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel9))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(txtVariacion, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(64, 64, 64)))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtVariacion, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(52, 52, 52)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(rSPanelMaterialImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(rSButtonMaterialOne3, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)))
@@ -246,18 +265,17 @@ public class frmEspecie extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jLabel1))
-                            .addComponent(jLabel8))
-                        .addGap(6, 6, 6))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)))
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(lbID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -351,39 +369,38 @@ public class frmEspecie extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Porfavor llene todos los datos");
 
         } else {
-            modelo.EspecieConfig s = new modelo.EspecieConfig();
+            modelo.EspecieConfig s1 = new modelo.EspecieConfig();
             /*Aplicar los set correspondientes al modelo*/
-            s.setEspecie(this.txtEspecie.getText());
-            s.setGerminacion(Integer.parseInt(this.txtGerminacion.getText()));
-            s.setDiasCosecha(Integer.parseInt(this.txtCosecha.getText()));
-            s.setMarcoPlantacion(Integer.parseInt(this.txtPlantacion.getText()));
-            s.setDiasRiego(Integer.parseInt(this.txtRiego.getText()));
-            s.setFoto("Sin foto");
-            s.setEstado(this.cmbEstado.getSelectedItem().toString());
-            s.setTemporada(this.cmbTemporada.getSelectedItem().toString());
-            s.setVariacion(this.txtVariacion.getText());
-            if (controlador.EspecieConfigC.isRegister(s)) {
+            s1.setId(Integer.parseInt(this.lbID.getText()));
+            s1.setEspecie(this.txtEspecie.getText());
+            s1.setGerminacion(Integer.parseInt(this.txtGerminacion.getText()));
+            s1.setDiasCosecha(Integer.parseInt(this.txtCosecha.getText()));
+            s1.setMarcoPlantacion(Integer.parseInt(this.txtPlantacion.getText()));
+            s1.setDiasRiego(Integer.parseInt(this.txtRiego.getText()));
+            s1.setFoto("Sin foto");
+            s1.setEstado(this.cmbEstado.getSelectedItem().toString());
+            s1.setTemporada(this.cmbTemporada.getSelectedItem().toString());
+            s1.setVariacion(this.txtVariacion.getText());
+            if (controlador.EspecieConfigC.isUpdate(s1)) {
                 controlador.EspecieConfigC.setListar("");
                 JOptionPane.showMessageDialog(this, "Se ingresaron los datos con exito");
-                limpiar();
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Hubo un error");
             }
         }
     }//GEN-LAST:event_rSButtonMaterialOne2MouseClicked
     
-    public void limpiar(){
-        txtEspecie.setText(null);
-        txtGerminacion.setText(null);
-        txtCosecha.setText(null);
-        txtPlantacion.setText(null); 
-        txtRiego.setText(null);
-        txtVariacion.setText(null);
-    }
+
+  
     
     private void txtRiegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRiegoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRiegoActionPerformed
+
+    private void lbIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,20 +419,21 @@ public class frmEspecie extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmEspecie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmEspecieUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmEspecie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmEspecieUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmEspecie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmEspecieUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmEspecie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmEspecieUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmEspecie().setVisible(true);
+                new frmEspecieUpdate().setVisible(true);
             }
         });
     }
@@ -437,15 +455,16 @@ public class frmEspecie extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    public static RSMaterialComponent.RSTextFieldMaterial lbID;
     private RSMaterialComponent.RSButtonMaterialOne rSButtonMaterialOne1;
     private RSMaterialComponent.RSButtonMaterialOne rSButtonMaterialOne2;
     private RSMaterialComponent.RSButtonMaterialOne rSButtonMaterialOne3;
     private RSMaterialComponent.RSPanelMaterialImage rSPanelMaterialImage1;
-    private RSMaterialComponent.RSTextFieldMaterial txtCosecha;
-    private RSMaterialComponent.RSTextFieldMaterial txtEspecie;
-    private RSMaterialComponent.RSTextFieldMaterial txtGerminacion;
-    private RSMaterialComponent.RSTextFieldMaterial txtPlantacion;
-    private RSMaterialComponent.RSTextFieldMaterial txtRiego;
+    public static RSMaterialComponent.RSTextFieldMaterial txtCosecha;
+    public static RSMaterialComponent.RSTextFieldMaterial txtEspecie;
+    public static RSMaterialComponent.RSTextFieldMaterial txtGerminacion;
+    public static RSMaterialComponent.RSTextFieldMaterial txtPlantacion;
+    public static RSMaterialComponent.RSTextFieldMaterial txtRiego;
     public static RSMaterialComponent.RSTextFieldMaterial txtVariacion;
     // End of variables declaration//GEN-END:variables
 }

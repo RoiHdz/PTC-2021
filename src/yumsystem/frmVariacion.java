@@ -68,7 +68,7 @@ public class frmVariacion extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Escoger especie:");
 
-        cmbEspecie.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "invierno" }));
+        cmbEspecie.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Invierno", "Verano" }));
         cmbEspecie.setColorArrow(new java.awt.Color(0, 114, 81));
         cmbEspecie.setColorFondo(new java.awt.Color(0, 114, 81));
         cmbEspecie.setColorSeleccion(new java.awt.Color(0, 114, 81));

@@ -16,13 +16,13 @@ public class MetodoConfigC {
     private static modelo.Conexion con = new modelo.Conexion();
     private static Connection conexion = con.getConexion();
     private static PreparedStatement ps = null;
-    private static pnlConfiguracion1 vista;
+    private static pnlConfiguracion2 vista;
 
     public static boolean isRegister(modelo.MetodoConfig l) {
         String sql = modelo.MetodoConfig.Registar;
         try {
             ps = conexion.prepareStatement(sql);
-            ps.setString(1, l.getMetodo());
+            ps.setString(1, l.getMetodoAplicacion());
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -35,8 +35,8 @@ public class MetodoConfigC {
         String sql = modelo.MetodoConfig.Actualizar;
         try {
             ps = conexion.prepareStatement(sql);
-            ps.setString(1, l.getMetodo());
-            ps.setInt(2, l.getId());
+            ps.setString(1, l.getMetodoAplicacion());
+            ps.setInt(2, l.getIdMetodo());
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -49,7 +49,7 @@ public class MetodoConfigC {
         String sql = modelo.MetodoConfig.Elimidar;
         try {
             ps = conexion.prepareStatement(sql);
-            ps.setInt(1, l.getId());
+            ps.setInt(1, l.getIdMetodo());
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -84,6 +84,30 @@ public class MetodoConfigC {
         } catch (SQLException ex) {
             /*Cambiar LaborC*/
             Logger.getLogger(MetodoConfigC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         }
+           
+        public static String extraerIDMax(){
+        String sql ="SELECT MAX(idMetodo)AS valor FROM metodoAplicacion";
+        int idMetodo=0;
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){
+         idMetodo=rs.getInt("valor");
+                     }
+            if(idMetodo ==0){
+            
+           idMetodo=1;     
+                }else {
+          idMetodo= idMetodo+1;
+            
+            }
+            return String.valueOf(idMetodo);
+            
+        } catch (Exception ex) {
+            return null;
+            //Logger.getLogger(LaborC.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

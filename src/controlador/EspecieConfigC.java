@@ -30,6 +30,8 @@ public class EspecieConfigC {
             ps.setInt   (6, l.getDiasRiego());
             ps.setString(7, l.getEstado());
             ps.setString(8, l.getFoto());
+            ps.setString(9, l.getVariacion());
+            
             /**/
             ps.executeUpdate();
             return true;
@@ -45,16 +47,20 @@ public class EspecieConfigC {
         /*Cambiar el modelo Labor*/
         String sql = modelo.EspecieConfig.Actualizar;
         try {
+            /* especie=?, germinacion=?, diasCosecha=?,diasRiego=?,estado=?,temporada=?,marcoPlantacion=?*/
             ps = conexion.prepareStatement(sql);
             ps.setString(1, l.getEspecie());
             ps.setInt   (2, l.getGerminacion());
             ps.setInt   (3, l.getDiasCosecha());
-            ps.setString(4, l.getTemporada());
-            ps.setInt   (5, l.getMarcoPlantacion());
-            ps.setInt   (6, l.getDiasRiego());
-            ps.setString(7, l.getEstado());
-            ps.setString(8, l.getFoto());
-            ps.setInt(9, l.getId());
+            ps.setInt   (4, l.getDiasRiego());
+            ps.setString(5, l.getEstado());
+            ps.setString(6, l.getTemporada());
+            ps.setInt   (7, l.getMarcoPlantacion());
+            ps.setString(8, l.getVariacion());
+            ps.setString(9, l.getFoto());
+            
+            
+            ps.setInt(10, l.getId());
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -90,22 +96,55 @@ public class EspecieConfigC {
             /*Cambiar la consulta*/
             sql = "SELECT especie, diasGerminacion, diasCosecha, diasRiego, estado FROM Especie WHERE especie LIKE '" + buscar + "%'";
         }
-        String datos[] = new String[5];
+        String datos[] = new String[9];
 
         try {
             Statement st = conexion.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
-                datos[0] = rs.getString("especie");
-                datos[1] = rs.getString("germinacion");
-                datos[2] = rs.getString("diasCosecha");
-                datos[3] = rs.getString("diasRiego");
-                datos[4] = rs.getString("estado");
+                datos[0] = rs.getString("idEspecie");
+                datos[1] = rs.getString("especie");
+                datos[2] = rs.getString("germinacion");
+                datos[3] = rs.getString("diasCosecha");
+                datos[4] = rs.getString("diasRiego");
+                 datos[5] = rs.getString("estado");
+                 datos[6] = rs.getString("temporada");
+                  datos[7] = rs.getString("marcoPlantacion");
+                  datos[8] = rs.getString("variacion");
+                 
+               
+
                 model.addRow(datos);
             }
         } catch (SQLException ex) {
             /*Cambiar LaborC*/
-            Logger.getLogger(LaborC.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EspecieConfigC.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    
+        public static String extraerIDMax(){
+        String sql ="SELECT MAX(idEspecie)AS valor FROM Especie";
+        int idEspecie=0;
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){
+        idEspecie=rs.getInt("valor");
+                     }
+            if(idEspecie ==0){
+            
+           idEspecie=1;     
+                }else {
+           idEspecie= idEspecie+1;
+            
+            }
+            return String.valueOf(idEspecie);
+            
+        } catch (Exception ex) {
+            return null;
+            //Logger.getLogger(LaborC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

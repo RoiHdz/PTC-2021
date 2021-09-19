@@ -66,7 +66,7 @@ public class Bodega2C {
     }
 
     public static boolean isDelete(modelo.Bodega2 l) {
-        String sql = modelo.Labor.Elimidar;
+        String sql = modelo.Bodega2.Elimidar;
         try {
             ps = conexion.prepareStatement(sql);
             ps.setInt(1, l.getidMaquinaria());

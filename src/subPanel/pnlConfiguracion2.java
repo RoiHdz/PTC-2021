@@ -2,10 +2,22 @@ package subPanel;
 
 import controlador.LaborC;
 import controlador.MetodoConfigC;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 import yumsystem.frmLabor;
 
-public class pnlConfiguracion2 extends javax.swing.JPanel {
 
+public class pnlConfiguracion2 extends javax.swing.JPanel {
+    private static modelo.Conexion con = new modelo.Conexion();
+    private static Connection conexion = con.getConexion();
+    DefaultTableModel model = new DefaultTableModel();  
+    PreparedStatement ps = null;
+    Statement st = null;
+    ResultSet rs = null; 
+    
     /**
      * Creates new form pnlConfiguracion2
      */
@@ -14,9 +26,14 @@ public class pnlConfiguracion2 extends javax.swing.JPanel {
         /*Cambiar el controlador LaborC*/
         LaborC c;
         LaborC.setListar("");
+        jPopupMenu1.add(menu);
+        
+      
+        
         MetodoConfigC d;
         MetodoConfigC.setListar("");
-        Pop.add(menu);
+        jPopupMenu2.add(menu1);
+        
         
     }
 
@@ -30,9 +47,11 @@ public class pnlConfiguracion2 extends javax.swing.JPanel {
     private void initComponents() {
 
         menu = new javax.swing.JPanel();
-        btnDelete = new RSMaterialComponent.RSButtonMaterialIconOne();
         btnEdit = new RSMaterialComponent.RSButtonMaterialIconOne();
-        Pop = new javax.swing.JPopupMenu();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        menu1 = new javax.swing.JPanel();
+        btnEdit1 = new RSMaterialComponent.RSButtonMaterialIconOne();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -46,13 +65,9 @@ public class pnlConfiguracion2 extends javax.swing.JPanel {
 
         menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnDelete.setBackground(new java.awt.Color(0, 114, 81));
-        btnDelete.setText("Eliminar");
-        btnDelete.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.DELETE);
-        menu.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 190, -1));
-
         btnEdit.setBackground(new java.awt.Color(0, 114, 81));
         btnEdit.setText("Editar");
+        btnEdit.setComponentPopupMenu(jPopupMenu1);
         btnEdit.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +75,20 @@ public class pnlConfiguracion2 extends javax.swing.JPanel {
             }
         });
         menu.add(btnEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, -1));
+
+        menu1.setComponentPopupMenu(jPopupMenu2);
+        menu1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnEdit1.setBackground(new java.awt.Color(0, 114, 81));
+        btnEdit1.setText("Editar");
+        btnEdit1.setComponentPopupMenu(jPopupMenu1);
+        btnEdit1.setIcons(rojeru_san.efectos.ValoresEnum.ICONS.EDIT);
+        btnEdit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEdit1ActionPerformed(evt);
+            }
+        });
+        menu1.add(btnEdit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, -1));
 
         setBackground(new java.awt.Color(225, 232, 193));
 
@@ -93,7 +122,7 @@ public class pnlConfiguracion2 extends javax.swing.JPanel {
         tblLabores.setColorPrimaryText(new java.awt.Color(91, 180, 98));
         tblLabores.setColorSecondary(new java.awt.Color(143, 217, 116));
         tblLabores.setColorSecundaryText(new java.awt.Color(0, 102, 255));
-        tblLabores.setComponentPopupMenu(Pop);
+        tblLabores.setComponentPopupMenu(jPopupMenu1);
         tblLabores.setGridColor(new java.awt.Color(91, 180, 98));
         tblLabores.setSelectionBackground(new java.awt.Color(166, 196, 126));
         tblLabores.getTableHeader().setReorderingAllowed(false);
@@ -162,6 +191,7 @@ public class pnlConfiguracion2 extends javax.swing.JPanel {
         tblMetodo.setColorBorderRows(new java.awt.Color(91, 180, 98));
         tblMetodo.setColorPrimaryText(new java.awt.Color(91, 180, 98));
         tblMetodo.setColorSecondary(new java.awt.Color(143, 217, 116));
+        tblMetodo.setComponentPopupMenu(jPopupMenu2);
         tblMetodo.setGridColor(new java.awt.Color(91, 180, 98));
         jScrollPane1.setViewportView(tblMetodo);
 
@@ -245,7 +275,7 @@ public class pnlConfiguracion2 extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAEspecie2ActionPerformed
 
     private void btnAEspecie2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAEspecie2MouseClicked
-        new yumsystem.frmLaborUpdate().setVisible(true);
+        new yumsystem.frmLabor().setVisible(true);
     }//GEN-LAST:event_btnAEspecie2MouseClicked
 
     private void btnMetodoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMetodoMouseClicked
@@ -257,27 +287,40 @@ public class pnlConfiguracion2 extends javax.swing.JPanel {
     }//GEN-LAST:event_btnListarMouseClicked
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        int fila = tblLabores.getSelectedRow();
+        int fila=tblLabores.getSelectedRow();
+        yumsystem.frmLaborUpdate act = new yumsystem.frmLaborUpdate();
+        act.lbID.setText(tblLabores.getValueAt(fila, 0).toString());
+        act.txtLabor.setText(tblLabores.getValueAt(fila, 1).toString());
         
-        new yumsystem.frmLabor().setVisible(true);
-        frmLabor f = new yumsystem.frmLabor();
-        f.txtLabor.setText(tblLabores.getValueAt(fila, 2).toString());
+        
+        act.setVisible(true);
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
+        int fila=tblMetodo.getSelectedRow();
+        yumsystem.frmMetodoAplicacionUpdate act = new yumsystem.frmMetodoAplicacionUpdate();
+        act.txtMetodo.setText(tblMetodo.getValueAt(fila, 1).toString());
+        act.lbID.setText(tblMetodo.getValueAt(fila, 0).toString());
+        
+        act.setVisible(true);
+    }//GEN-LAST:event_btnEdit1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPopupMenu Pop;
     public newscomponents.RSButtonFlat_new btnAEspecie2;
-    private RSMaterialComponent.RSButtonMaterialIconOne btnDelete;
-    private RSMaterialComponent.RSButtonMaterialIconOne btnEdit;
+    public static RSMaterialComponent.RSButtonMaterialIconOne btnEdit;
+    public static RSMaterialComponent.RSButtonMaterialIconOne btnEdit1;
     public newscomponents.RSButtonFlat_new btnListar;
     private newscomponents.RSButtonFlat_new btnMetodo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JPanel menu;
+    private javax.swing.JPanel menu1;
     public static RSMaterialComponent.RSTableMetroCustom tblLabores;
     public static RSMaterialComponent.RSTableMetroCustom tblMetodo;
     // End of variables declaration//GEN-END:variables

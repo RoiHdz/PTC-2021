@@ -11,10 +11,11 @@ public class EspecieConfig {
     private int diasRiego;
     private String estado;
     private String foto;
+    private String variacion;
 
-    public static String Listar = "SELECT especie, germinacion, diasCosecha, diasRiego, estado FROM Especie";
-    public static String Registar = "INSERT INTO Especie VALUES(?,?,?,?,?,?,?,?)";
-    public static String Actualizar = "UPDATE Especie SET especie=?, germinacion=?, diasCosecha=?, temporada=?, marcoPlantacion=?, diasRiego=?, estado=?, foto=? WHERE idEspecie=?";
+    public static String Listar = "SELECT   idEspecie, especie, germinacion, diasCosecha,diasRiego,estado,temporada,marcoPlantacion,variacion     FROM Especie";
+    public static String Registar = "INSERT INTO Especie VALUES(?,?,?,?,?,?,?,?,?)";
+    public static String Actualizar = "UPDATE Especie SET  especie=?, germinacion=?, diasCosecha=?,diasRiego=?,estado=?,temporada=?,marcoPlantacion=?, variacion=?,foto=? WHERE idEspecie=?";
     public static String Elimidar = "DELETE FROM especie WHERE idEspecie=?";
 
     public EspecieConfig() {
@@ -91,5 +92,16 @@ public class EspecieConfig {
     public void setFoto(String foto) {
         this.foto = foto;
     }
+
+    public String getVariacion() {
+        return variacion;
+    }
+
+    public void setVariacion(String variacion) {
+        this.variacion = variacion;
+    }
+    
+    
+            
 
 }

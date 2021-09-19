@@ -36,7 +36,7 @@ public class VariacionC {
             ps = conexion.prepareStatement(sql);
             ps.setString(1, l.getVariacion());
             ps.setInt(2, l.getIdEspecie());
-            ps.setInt(3, l.getId());
+            ps.setInt(3, l.getIdVariacion());
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -49,7 +49,7 @@ public class VariacionC {
         String sql = modelo.Variacion.Elimidar;
         try {
             ps = conexion.prepareStatement(sql);
-            ps.setInt(1, l.getId());
+            ps.setInt(1, l.getIdVariacion());
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {

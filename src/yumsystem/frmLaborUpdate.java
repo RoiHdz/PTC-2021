@@ -1,21 +1,17 @@
 package yumsystem;
-
-import controlador.LaborC;
+import modelo.Labor;
 import javax.swing.JOptionPane;
-import subPanel.pnlConfiguracion2;
 
-/**
- *
- * @author Rodri
- */
 public class frmLaborUpdate extends javax.swing.JFrame {
 
     /**
-     * Creates new form frmLaborUpdate
+     * Creates new form frmLabor
      */
     public frmLaborUpdate() {
+        
         initComponents();
         setLocationRelativeTo(null);
+         this.lbID.setText(controlador.LaborC.extraerIDMAX());
     }
 
     /**
@@ -34,17 +30,17 @@ public class frmLaborUpdate extends javax.swing.JFrame {
         btnGuardar = new RSMaterialComponent.RSButtonMaterialOne();
         rSButtonMaterialOne3 = new RSMaterialComponent.RSButtonMaterialOne();
         lblId = new javax.swing.JLabel();
+        lblcodigoParcela = new javax.swing.JLabel();
+        lbID = new RSMaterialComponent.RSTextFieldMaterial();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(149, 160, 95));
 
         jPanel2.setBackground(new java.awt.Color(242, 242, 242));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Agregar nuevo labor:");
+        jLabel1.setText("Actualizar Labores");
 
         txtLabor.setBackground(new java.awt.Color(240, 240, 240));
         txtLabor.setForeground(new java.awt.Color(0, 0, 0));
@@ -71,8 +67,24 @@ public class frmLaborUpdate extends javax.swing.JFrame {
             }
         });
 
-        lblId.setForeground(new java.awt.Color(0, 0, 0));
         lblId.setText(".");
+
+        lblcodigoParcela.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblcodigoParcela.setText("ID");
+
+        lbID.setEditable(false);
+        lbID.setBackground(new java.awt.Color(242, 242, 242));
+        lbID.setForeground(new java.awt.Color(0, 114, 81));
+        lbID.setColorMaterial(new java.awt.Color(0, 114, 81));
+        lbID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbID.setPhColor(new java.awt.Color(102, 102, 102));
+        lbID.setPlaceholder("ID");
+        lbID.setSelectionColor(new java.awt.Color(0, 114, 81));
+        lbID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lbIDActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -81,7 +93,7 @@ public class frmLaborUpdate extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtLabor, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                    .addComponent(txtLabor, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -89,7 +101,12 @@ public class frmLaborUpdate extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(lblId))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lblcodigoParcela)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblId)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -101,8 +118,12 @@ public class frmLaborUpdate extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtLabor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblId)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblId)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblcodigoParcela)
+                        .addComponent(lbID, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rSButtonMaterialOne3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -140,22 +161,27 @@ public class frmLaborUpdate extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
+        /*Cambiar el modelo*/
+        modelo.Labor c = new modelo.Labor();
+        /*Aplicar los set correspondientes al modelo*/
+        c.setIdLabor(Integer.parseInt(this.lbID.getText()));
+        c.setLabor(this.txtLabor.getText());
+        /*Cambiar el controlador LaborC*/
+        if (controlador.LaborC.isUpdate(c)) {
+            /*Cambiar el controlador LaborC*/
+            controlador.LaborC.setListar("");
+            JOptionPane.showMessageDialog(this, "Actualizado");
+        }
+    }//GEN-LAST:event_btnGuardarMouseClicked
+
     private void rSButtonMaterialOne3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSButtonMaterialOne3MouseClicked
         this.dispose();
     }//GEN-LAST:event_rSButtonMaterialOne3MouseClicked
 
-    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
-        /*Cambiar el modelo*/
-        modelo.Labor s = new modelo.Labor();
-        /*Aplicar los set correspondientes al modelo*/
-        s.setLabor(this.txtLabor.getText());
-        /*Cambiar el controlador LaborC*/
-        if (controlador.LaborC.isRegister(s)) {
-            /*Cambiar el controlador LaborC*/
-            controlador.LaborC.setListar("");
-            JOptionPane.showMessageDialog(this, "Exitoso");
-        }
-    }//GEN-LAST:event_btnGuardarMouseClicked
+    private void lbIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,21 +210,13 @@ public class frmLaborUpdate extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new frmLaborUpdate().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -206,8 +224,10 @@ public class frmLaborUpdate extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    public static RSMaterialComponent.RSTextFieldMaterial lbID;
     private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblcodigoParcela;
     public RSMaterialComponent.RSButtonMaterialOne rSButtonMaterialOne3;
-    public RSMaterialComponent.RSTextFieldMaterial txtLabor;
+    public static RSMaterialComponent.RSTextFieldMaterial txtLabor;
     // End of variables declaration//GEN-END:variables
 }

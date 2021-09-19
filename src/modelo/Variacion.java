@@ -1,7 +1,7 @@
 package modelo;
 
 public class Variacion {
-    private int id;
+    private int idVariacion;
     private String variacion;
     private int idEspecie;
     
@@ -13,13 +13,15 @@ public class Variacion {
     public Variacion() {
     }
 
-    public int getId() {
-        return id;
+    public int getIdVariacion() {
+        return idVariacion;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdVariacion(int idVariacion) {
+        this.idVariacion = idVariacion;
     }
+
+
 
     public String getVariacion() {
         return variacion;
