@@ -752,7 +752,7 @@ public class menuPrincipal extends javax.swing.JFrame {
     
     /* btnReportes */
     private void lblReportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblReportesMouseClicked
-        // Todo aqui:
+       new yumsystem.Reportes().setVisible(true);
     }//GEN-LAST:event_lblReportesMouseClicked
 
     private void lblReportesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblReportesMouseExited
