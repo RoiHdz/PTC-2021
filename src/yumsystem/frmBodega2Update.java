@@ -143,7 +143,7 @@ public class frmBodega2Update extends javax.swing.JFrame {
             }
         });
 
-        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo" }));
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Inactivo", "Mantenimiento" }));
         cmbEstado.setColorArrow(new java.awt.Color(0, 114, 81));
         cmbEstado.setColorFondo(new java.awt.Color(0, 114, 81));
         cmbEstado.setColorSeleccion(new java.awt.Color(0, 114, 81));
@@ -282,37 +282,7 @@ public class frmBodega2Update extends javax.swing.JFrame {
     }//GEN-LAST:event_btnexitMouseClicked
 
     private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
-    
-          if (txtNombre.getText().equals("") || txtMarca.getText().equals("")
-          || txtAct.getText().equals("")  || txtMax.getText().equals("")      
-                             
-                  ) {
-          JOptionPane.showMessageDialog(this, "Porfavor llene todos los datos");  
-        
-        
-        }
-        else{ 
-        modelo.Bodega2 s = new modelo.Bodega2();
-        /*Aplicar los set correspondientes al modelo*/
-        s.setNombre(this.txtNombre.getText());
-        s.setMarca(this.txtMarca.getText());
-        s.setCantidadMax(Integer.parseInt(this.txtMax.getText()));
-        s.setCantidadActual(Integer.parseInt(this.txtAct.getText()));
-    
-        /*Cambiar el controlador LaborC*/
-        if (controlador.Bodega2C.isRegister(s)) {
-            /*Cambiar el controlador LaborC*/
-            controlador.Bodega2C.setListar("");
-            JOptionPane.showMessageDialog(this, "Exitoso");
-        }
-         else{
-            JOptionPane.showMessageDialog(this, "Error");
-        }
-        txtNombre.setText(null);
-        txtMarca.setText(null);
-        txtAct.setText(null);
-         txtMax.setText(null);
-      }                             
+                        
     }//GEN-LAST:event_guardarMouseClicked
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
